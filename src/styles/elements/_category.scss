@@ -1,0 +1,57 @@
+.category-item {
+  @include set-size(106px, 106px);
+  border-radius: 8px;
+  position: relative;
+  padding: 6px;
+}
+
+.category-item__header {
+  @include font(1.2rem, 1.6rem, $color-extra-dark, 600);
+  @extend %reset-margin;
+}
+
+.category-item__img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.category-item_promo {
+  background: $purple-gradient;
+  h3 {
+    color: $color-extra-light;
+  }
+
+  img {
+    bottom: 5px;
+    right: 5px;
+  }
+}
+
+.category-item_phones {
+  background-color: $color-peach;
+}
+
+.category-item_shoes {
+  background-color: $color-light-blue;
+}
+
+.category-item_tv {
+  background-color: $color-magnolia;
+}
+
+.category-item_auto-stuff {
+  background-color: $color-dark-grey;
+}
+
+.category-item_laptops {
+  background-color: $color-honeydew;
+}
+
+.category-item_beauty {
+  background-color: $color-light-purple;
+}
+
+.category-item_kitchenware {
+  background-color: $color-honeydew;
+}

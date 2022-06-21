@@ -1,0 +1,21 @@
+.categories-wrapper {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  overflow-x: scroll;
+  position: relative;
+  padding-bottom: 10px;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $color-extra-light;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-medium-gray;
+  }
+}
