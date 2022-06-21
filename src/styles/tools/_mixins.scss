@@ -10,8 +10,16 @@
   height: $height;
 }
 
-@mixin flex($align-items, $justify-content) {
+@mixin flex($align-items: stretch, $justify-content: start, $direction: row) {
   display: flex;
+  flex-direction: $direction;
   align-items: $align-items;
   justify-content: $justify-content;
+}
+
+@mixin header-overflow-dotted($width) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: $width;
+  white-space: nowrap;
 }

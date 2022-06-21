@@ -4,4 +4,5 @@ section.section.section_has_header.recently-watch
       include ../../../../components/all-button/_index
     .flex-second-row
       .recently-watch-wrapper
-        include ../elements/_product
+        - for(var x = 0; x < 5; x++)
+          include ../elements/_product

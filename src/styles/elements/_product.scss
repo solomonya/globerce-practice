@@ -1,0 +1,88 @@
+.product {
+  position: relative;
+  width: 135px;
+  @include flex(center, start, column);
+  gap: 12px 0;
+}
+
+.options {
+  position: absolute;
+  top: 0;
+  left: 0;
+  @include flex(stretch, start, column);
+  gap: 5px 0;
+}
+
+.product__installment {
+  display: inline-block;
+  background-color: $color-semantic-error;
+  border-radius: 2px;
+  padding: 0 7px;
+  @include font(1rem, 1.2rem, $color-extra-light, 700);
+}
+
+.product__discount {
+  display: inline-flex;
+  background-color: $color-brand-primary-50;
+  @include font(1rem, 1.2rem, $color-extra-light, 700);
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-info {
+  @include flex($direction: column);
+  gap: 6px 0;
+}
+
+.product__title {
+  @extend %reset-margin;
+  @include font(1.2rem, 1.6rem, $color-grey-10, 500);
+  @include header-overflow-dotted(130px);
+}
+
+.product__favorites {
+  display: inline-block;
+  @include set-size(24px, 24px);
+  background: url('images/icons/favorite.svg') no-repeat center;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.reviews {
+  width: 100%;
+  @include flex(center, start);
+  gap: 0 5px;
+
+  &-list {
+    @include flex(center, start);
+    @extend %reset-lists;
+    gap: 0 3px;
+  }
+
+  &__rating {
+    display: inline-block;
+    @include set-size(10px, 10px);
+    background: url(images/icons/star.svg);
+  }
+
+  &__amount {
+    @include font(0.8rem, 1rem, $color-grey-20, 500);
+  }
+}
+
+.prices {
+  width: 100%;
+  @include flex(center, start);
+  gap: 0 5px;
+}
+
+.prices__price_new {
+  @include font(1.2rem, 1.6rem, $color-dark-xl, 600);
+}
+
+.prices__price_old {
+  @include font(1rem, 1.4rem, $color-grey-20, 500);
+  text-decoration: line-through;
+}
