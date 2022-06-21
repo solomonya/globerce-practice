@@ -17,6 +17,11 @@
   align-items: center;
 }
 
+.banner_without-content {
+  background-image: url('images/mocks/stocks.png');
+  @include set-size(335px, 152px);
+}
+
 .banner-content {
   margin-left: 16px;
 }
