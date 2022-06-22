@@ -1,0 +1,14 @@
+let items = [];
+
+mixin category-card(props)
+  a(href=props.link).category-card
+    p.category-card__text !{props.text}
+    img(src=props.img).category-card__img
+
+mixin category-grid()
+  .category-card-grid
+    block
+
++category-grid()
+  each item in items
+    category-card(item)

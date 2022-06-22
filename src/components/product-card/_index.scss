@@ -86,3 +86,38 @@
   @include font(1rem, 1.4rem, $color-grey-20, 500);
   text-decoration: line-through;
 }
+
+.product-card {
+  $this: &;
+
+  &__img-box {
+  }
+  &__img {
+  }
+  &__body {
+  }
+  &__title {
+  }
+  &__rate {
+  }
+
+  &__cost {
+  }
+  &__price {
+  }
+  &__sale-price {
+  }
+  &__loan {
+  }
+
+  &_sm {
+    #{$this}__img-box {
+      width: 100px;
+    }
+  }
+  &_lg {
+    #{$this}__img-box {
+      width: 200px;
+    }
+  }
+}

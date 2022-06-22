@@ -1,0 +1,11 @@
+mixin product-card(props)
+  a().product-card&attributes(attributes)
+    if props && props.tags
+      +#{props.tags}
+    .product-car__img-box
+      img(src=props.img).product-car__img
+    .product-car__body
+      +rate({
+        rate: 5,
+        text: ''
+      }).product-car__rate

@@ -1,10 +1,14 @@
-section.section.section_has_header.halyk-stocks
+include _base
++section({class: 'section_has_header promo'})
+  block section
     .flex-first-row
-      h2.section-header Акции Halyk Market
+      h2.section-header Акции
       include ../../../../components/all-button/_index
     .flex-second-row_banners
-      .banners
-        .banners-wrapper
-          - for(var i = 0; i < 7; i++)
-            .banner_without-content.banner
-      include ../elements/_indicators
+      +banners-wrapper({
+        img: '../../../../images/mocks/stocks.png',
+        alt: 'promo banner',
+        amount: 7
+      })
+
+

@@ -6,7 +6,7 @@
 .search__input {
   display: inline-flex;
   align-items: center;
-  width: 335px;
+  @include set-size(90%, 36px);
   border: none;
   border-radius: 6px;
   background-color: $color-light-gray;
