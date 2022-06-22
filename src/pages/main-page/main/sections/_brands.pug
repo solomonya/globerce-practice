@@ -1,18 +1,10 @@
+- const brands = [{img: '../../../../images/logotypes/philips.svg', alt: "philips logo"}, {img: '../../../../images/logotypes/sony.svg', alt: "philips logo"},{img: '../../../../images/logotypes/xiaomi.svg', alt: "philips logo"},{img: '../../../../images/logotypes/apple.svg', alt: "philips logo"},{img: '../../../../images/logotypes/samsung-logo.svg', alt: "philips logo"},{img: '../../../../images/logotypes/michelin.svg', alt: "philips logo"},{img: '../../../../images/logotypes/bosch.svg', alt: "philips logo"},{img: '../../../../images/logotypes/adidas.svg', alt: "philips logo"},{img: '../../../../images/logotypes/huawei.svg', alt: "philips logo"},{img: '../../../../images/logotypes/pandora.svg', alt: "philips logo"},{img: '../../../../images/logotypes/dyson.svg', alt: "philips logo"},{img: '../../../../images/logotypes/nike.svg', alt: "philips logo"}]
+
 include _base
 +section({class: "section_has_header brands"})
   block section
     +section-header({title: "Популярные бренды", btn: false})
     .flex-second-row_brands
       .brands-wrapper
-          .brands__logo.brands__logo_philips
-          .brands__logo.brands__logo_sony
-          .brands__logo.brands__logo_xiaomi
-          .brands__logo.brands__logo_apple
-          .brands__logo.brands__logo_samsung
-          .brands__logo.brands__logo_michelin
-          .brands__logo.brands__logo_bosch
-          .brands__logo.brands__logo_adidas
-          .brands__logo.brands__logo_huawei
-          .brands__logo.brands__logo_pandora
-          .brands__logo.brands__logo_dyson
-          .brands__logo.brands__logo_nike
+        each brand in brands
+          +brand(brand)

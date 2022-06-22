@@ -1,0 +1,4 @@
+.brand {
+  width: 29%;
+  @include flex(center, center, row);
+}
