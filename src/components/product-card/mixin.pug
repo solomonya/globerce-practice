@@ -1,11 +1,50 @@
+mixin rate(props)
+  .product-card__rate
+    ul.product-card__stars-list
+      - for (var i = 0; i < props.rate; i++)
+        li.product-card__star-icon
+    span.product-card__reviews-amount #{props.reviewsAmount} отзывов
+
 mixin product-card(props)
-  a().product-card&attributes(attributes)
-    if props && props.tags
-      +#{props.tags}
-    .product-car__img-box
-      img(src=props.img).product-car__img
-    .product-car__body
-      +rate({
-        rate: 5,
-        text: ''
-      }).product-car__rate
+  if props.size === 'sm'
+    a(class="product-card_sm").product-card&attributes(attributes)
+      if props && props.tags
+        .product-card__tags
+          if props.tags.installments
+            span.product-card__tag.product-card__tag_loan #{props.tags.installments}
+          if props.tags.discount
+            span.product-card__tag.product-card__tag_discount #{props.tags.discount}
+      button.product-card__favorite-btn
+        span.product-card__favorite-icon
+      .product-card__img-box
+        img(src=props.img).product-card__img
+      .product-card__body
+        h3.product-card__title #{props.title}
+        +rate({
+            rate: 5,
+            reviewsAmount: 35,
+        }).product-card__rate
+        .product-card__cost
+          span.product-card__sale-price #{props.prices.new}
+          span.product-card__price #{props.prices.old}
+  if props.size === 'lg'
+    a(class="product-card_sm").product-card&attributes(attributes)
+      if props && props.tags
+        .product-card__tags
+          if props.tags.installments
+            span.product-card__tag.product-card__tag_loan #{props.tags.installments}
+          if props.tags.discount
+            span.product-card__tag.product-card__tag_discount #{props.tags.discount}
+      button.product-card__favorite-btn
+        span.product-card__favorite-icon
+      .product-card__img-box
+        img(src=props.img).product-card__img
+      .product-card__body
+        h3.product-card__title #{props.title}
+        +rate({
+            rate: 5,
+            reviewsAmount: 35,
+        }).product-card__rate
+        .product-card__cost
+          span.product-card__sale-price #{props.prices.new}
+          span.product-card__price #{props.prices.old}

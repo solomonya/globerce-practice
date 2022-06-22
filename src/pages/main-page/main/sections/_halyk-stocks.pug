@@ -1,9 +1,7 @@
 include _base
 +section({class: 'section_has_header promo'})
   block section
-    .flex-first-row
-      h2.section-header Акции
-      include ../../../../components/all-button/_index
+    +section-header({title: 'Акции', btn: true})
     .flex-second-row_banners
       +banners-wrapper({
         img: '../../../../images/mocks/stocks.png',

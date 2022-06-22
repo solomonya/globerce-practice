@@ -1,6 +1,7 @@
-section.section_has_header.brands
-    .flex-first-row
-      h2.section-header Популярные бренды
+include _base
++section({class: "section_has_header brands"})
+  block section
+    +section-header({title: "Популярные бренды", btn: false})
     .flex-second-row_brands
       .brands-wrapper
           .brands__logo.brands__logo_philips

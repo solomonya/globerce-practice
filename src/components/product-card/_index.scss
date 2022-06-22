@@ -1,123 +1,105 @@
-.product {
-  position: relative;
-  width: 135px;
-  @include flex(center, start, column);
-  gap: 12px 0;
-}
-
-.options {
-  position: absolute;
-  top: 0;
-  left: 0;
-  @include flex(stretch, start, column);
-  gap: 5px 0;
-}
-
-.product__installment {
-  display: inline-block;
-  background-color: $color-semantic-error;
-  border-radius: 2px;
-  padding: 0 7px;
-  @include font(1rem, 1.2rem, $color-extra-light, 700);
-}
-
-.product__discount {
-  display: inline-flex;
-  background-color: $color-brand-primary-50;
-  @include font(1rem, 1.2rem, $color-extra-light, 700);
-  text-transform: uppercase;
-  align-items: center;
-  justify-content: center;
-}
-
-.product-info {
-  @include flex($direction: column);
-  gap: 6px 0;
-}
-
-.product__title {
-  @extend %reset-margin;
-  @include font(1.2rem, 1.6rem, $color-grey-10, 500);
-  @include header-overflow-dotted(130px);
-}
-
-.product__favorites {
-  display: inline-block;
-  @include set-size(24px, 24px);
-  background: url('images/icons/favorite.svg') no-repeat center;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.reviews {
-  width: 100%;
-  @include flex(center, start);
-  gap: 0 5px;
-
-  &-list {
-    @include flex(center, start);
-    @extend %reset-lists;
-    gap: 0 3px;
-  }
-
-  &__rating {
-    display: inline-block;
-    @include set-size(10px, 10px);
-    background: url(images/icons/star.svg);
-  }
-
-  &__amount {
-    @include font(0.8rem, 1rem, $color-grey-20, 500);
-  }
-}
-
-.prices {
-  width: 100%;
-  @include flex(center, start);
-  gap: 0 5px;
-}
-
-.prices__price_new {
-  @include font(1.2rem, 1.6rem, $color-dark-xl, 600);
-}
-
-.prices__price_old {
-  @include font(1rem, 1.4rem, $color-grey-20, 500);
-  text-decoration: line-through;
-}
-
 .product-card {
   $this: &;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  &__favorite-icon {
+    display: inline-block;
+    @include set-size(24px, 24px);
+    background: url('images/icons/favorite.svg') no-repeat center;
+  }
 
   &__img-box {
+    width: 100%;
+    @include flex(center, center, row);
+    padding: 10px;
   }
-  &__img {
-  }
-  &__body {
-  }
-  &__title {
-  }
-  &__rate {
+  &__tags {
+    @include flex(stretch, start, column);
+    gap: 3px 0;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    @include font(1rem, 1.2rem, $color-extra-light, 700);
+
+    &_loan {
+      padding: 1px 7px;
+      background-color: $color-semantic-error;
+    }
+
+    &_discount {
+      padding: 1px 3px;
+      background-color: $color-primary-green;
+    }
+  }
+
+  &__favorite-btn {
+    @extend %reset-btn;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+
+  &__body {
+    @include flex(stretch, start, column);
+    gap: 4px 0;
+  }
+  &__title {
+    @include font(1.2rem, 1.6rem, $color-grey-10, 500);
+    margin: 0;
+  }
+  &__rate {
+    display: flex;
+    gap: 0 5px;
+  }
+  &__stars-list {
+    display: inline-flex;
+    @extend %reset-lists;
+    gap: 0 4px;
+  }
+  &__star-icon {
+    display: inline-block;
+    @include set-size(9px, 9px);
+    background: url('images/icons/star.svg') center no-repeat;
+  }
+  &__reviews-amount {
+    @include font(0.8rem, 1rem, $color-grey-20, 500);
+  }
   &__cost {
+    display: flex;
+    gap: 0 5px;
+    align-items: center;
   }
   &__price {
+    @include font(1rem, 1.4rem, $color-grey-20, 700);
+    text-decoration: line-through;
   }
   &__sale-price {
+    @include font(1.2rem, 1.6rem, $color-primary-green, 600);
   }
   &__loan {
   }
 
   &_sm {
-    #{$this}__img-box {
-      width: 100px;
+    width: 135px;
+
+    #{$this}__title {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 131px;
+      white-space: nowrap;
     }
   }
   &_lg {
-    #{$this}__img-box {
-      width: 200px;
-    }
+    width: 167px;
   }
 }

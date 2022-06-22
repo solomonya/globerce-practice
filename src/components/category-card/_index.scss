@@ -1,0 +1,35 @@
+.category-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  overflow-x: scroll;
+  gap: 8px;
+  @extend %hide-scroll;
+}
+
+.category-card {
+  display: inline-block;
+  padding: 6px;
+  position: relative;
+  text-decoration: none;
+  @include set-size(106px, 106px);
+
+  &__img {
+    position: absolute;
+    border-radius: 8px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  &__text {
+    @include font(1.2rem, 1.6rem, $color-extra-dark, 600);
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    max-width: 98px;
+
+    &_light {
+      color: $color-extra-light;
+    }
+  }
+}

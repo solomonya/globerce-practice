@@ -1,7 +1,12 @@
-section.section_has_header.categories
-    .flex-first-row
-      h2.section-header Категории
-      include ../../../../components/all-button/_index
+include _base
++section({class: 'section_has_header categories'})
+  block section
+    +section-header({title: 'Категории', btn: true})
     .flex-second-row
+      +category-grid()
+        each item in items
+          +category-card(item)
+
+
 
 

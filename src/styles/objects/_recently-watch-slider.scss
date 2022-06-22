@@ -1,0 +1,6 @@
+.recently-watch-slider {
+  display: flex;
+  overflow-x: scroll;
+  @extend %hide-scroll;
+  gap: 0 10px;
+}
