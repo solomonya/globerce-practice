@@ -1,5 +1,7 @@
+include _location
+
 header.header
   .header-container
     include _logo
-      include _location
-    include _search
+      +location-btn({hide: false})
+  include _search

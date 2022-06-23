@@ -1,13 +1,12 @@
-.banners-wrapper {
-  @include flex(center, start, row);
-  overflow-x: scroll;
-  @extend %hide-scroll;
+.swiper-container {
+  position: relative;
+  overflow-x: hidden;
 }
 
-.banner {
-  $this: &;
+.swiper-slide {
+  min-height: 187px;
+}
 
-  &_image {
-    @include set-size(335px, 152px);
-  }
+.image-slider__image {
+  border-radius: 8px;
 }

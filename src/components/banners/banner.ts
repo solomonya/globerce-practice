@@ -1,6 +1,13 @@
-import Swiper from 'swiper';
-import 'swiper/css/bundle';
+//@ts-ignore
+import Swiper from 'swiper/bundle';
+import 'swiper/scss';
+import 'swiper/scss/pagination';
 
-export const swiper = () => {
-  const swiper = new Swiper('');
-};
+export const swiper = new Swiper('.image-slider', {
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable: true,
+    dynamicBullets: true,
+  },
+});
