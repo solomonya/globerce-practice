@@ -23,6 +23,7 @@
     "axios": "^0.27.2",
     "normalize-scss": "^7.0.1",
     "rxjs": "^7.5.5",
+    "swiper": "^8.2.4",
     "webpack-cli": "^4.10.0"
   },
   "devDependencies": {

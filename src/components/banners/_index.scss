@@ -2,14 +2,12 @@
   @include flex(center, start, row);
   overflow-x: scroll;
   @extend %hide-scroll;
-  gap: 0 12px;
 }
 
 .banner {
   $this: &;
-  @include flex(center, center, row);
+
   &_image {
-    border-radius: 8px;
-    @include set-size(335px, auto);
+    @include set-size(335px, 152px);
   }
 }

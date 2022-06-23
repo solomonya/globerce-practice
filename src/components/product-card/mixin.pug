@@ -28,7 +28,7 @@ mixin product-card(props)
           span.product-card__sale-price #{props.prices.new}
           span.product-card__price #{props.prices.old}
   if props.size === 'lg'
-    a(class="product-card_sm").product-card&attributes(attributes)
+    a(class="product-card_lg").product-card&attributes(attributes)
       if props && props.tags
         .product-card__tags
           if props.tags.installments
@@ -48,3 +48,7 @@ mixin product-card(props)
         .product-card__cost
           span.product-card__sale-price #{props.prices.new}
           span.product-card__price #{props.prices.old}
+        if props.loan
+          .product-card__loan
+            span.product-card__loan-monthly-payment #{props.loan.monthlyPayment} ₸
+            span.product-card__loan-months x #{props.loan.months} мес

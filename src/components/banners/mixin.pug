@@ -3,4 +3,3 @@ mixin banners-wrapper(props)
   .banners-wrapper
     - for(let i = 0; i < props.amount; i++)
       +banner({img: props.img, alt: props.alt})
-  include _controls
