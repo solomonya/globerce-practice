@@ -1,0 +1,23 @@
+.header {
+  background-color: $color-extra-light;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-header;
+
+  &_elevated {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.header__logo {
+  @include flex(center, space-between, row);
+  padding: 5px 20px 0px 125px;
+}
+
+.header__search {
+  padding: 6px 20px;
+  @include flex(center, center, row);
+  gap: 0 14px;
+}

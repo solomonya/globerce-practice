@@ -1,0 +1,11 @@
+.index-list {
+  padding: 20px;
+
+  &__item {
+    @include font(2rem, 2.5rem, $color-brand-primary-50, 500);
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+}

@@ -14,15 +14,10 @@
 @import 'styles/objects/__all__';
 
 //06.Components
-@import 'components/all-button/index';
-@import 'components/product-card/index';
-@import 'components/banners/index';
-@import 'components/category-card/index';
-@import 'components/section-header/index';
-@import 'components/brand/index';
-@import 'components/products-section/index';
-@import 'components/navigation/index';
+@import 'components/__all__';
+
 //07.Pages
 //@import "./pages/name/index";
+
 //99.Utilities
 @import 'styles/utilities/__all__';

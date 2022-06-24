@@ -1,0 +1,26 @@
+.location-btn {
+  padding: 0;
+  @include set-size(44px, 44px);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+
+  &__city {
+    @include font(1rem, 1.2rem, $color-grey-40, 500);
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url('images/icons/geolocation.svg');
+    text-align: center;
+  }
+}
+
+.js-location-btn_hide {
+  display: none;
+}

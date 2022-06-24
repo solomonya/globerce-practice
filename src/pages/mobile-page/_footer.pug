@@ -1,0 +1,6 @@
+include ../../_mixins
+
+- var navLinks = [{icon: '../../../images/icons/home.svg', alt: 'home icon', text: 'Главная'}, {icon: '../../../images/icons/categories.svg', alt: 'category icon', text: 'Категории'}, {icon: '../../../images/icons/busket.svg', alt: 'busket icon', text: 'Корзина', active: true}, {icon: '../../../images/icons/user.svg', alt: 'user icon', text: 'Профиль'}, {icon: '../../../images/icons/globerce-logo-small.svg', alt: 'globerce icon', text: 'Globerce'}]
+
+ footer.footer
+  +navigation({links: navLinks})

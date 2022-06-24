@@ -1,0 +1,20 @@
+include ../search-bar/mixin
+include ../location-btn/mixin
+
+mixin logo-icon(props)
+  span.logo__icon
+
+mixin header-logo()
+  .header__logo.js-stickyHeaderSectionLogo
+    +logo-icon()
+    +locationBtn({hide: false, city: 'Алматы', id: 'lc-btn-1'})
+
+mixin header-search()
+  .header__search
+    +searchBar()
+    +locationBtn({hide: true, city: 'Алматы', id: 'lc-btn-2'})
+
+mixin header-logo-with-search()
+  header.header.js-stickyHeader
+    +header-logo()
+    +header-search()

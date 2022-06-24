@@ -1,5 +1,7 @@
+include ../all-button/mixin
+
 mixin section-header(props)
   .section-first-row
     h2.section-header !{props.title}
     if props.btn
-      include ../all-button/_index
+      +btn({text: 'Все'})
