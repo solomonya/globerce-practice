@@ -1,6 +1,6 @@
 include banner
 mixin banners-wrapper(props)
-  .image-slider.swiper-container
+  .banner-slider.swiper-container
     .image-slider__wrapper.swiper-wrapper
       - for(let i = 0; i < props.amount; i++)
           +banner({img: props.img, alt: props.alt})

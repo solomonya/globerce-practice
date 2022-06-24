@@ -1,5 +1,3 @@
-- var items = [{text: "Акции Globerce Market", img: "../../images/categories/sale.jpg", lightText: true},{text: "Телефоны и гаджеты", img: "../../images/categories/phones.jpg", lightText: false},{text: "Обувь", img: "../../images/categories/shoes.jpg", lightText: false},{text: "Телевизоры и аудиотехника", img: "../../images/categories/tv.jpg", lightText: false},{text: "Автотовары", img: "../../images/categories/autostuff.jpg", lightText: false},{text: "Ноутбуки и компьютеры", img: "../../images/categories/laptops.jpg", lightText: false}, {text: "Красота и здоровье", img: "../../images/categories/beauty.jpg", lightText: false},{text: "Кухонная техника", img: "../../images/categories/kitchenware.jpg", lightText: false}];
-
 mixin category-card(props)
   a(href="#").category-card
     if props.lightText
@@ -8,6 +6,8 @@ mixin category-card(props)
       h4.category-card__text !{props.text}
     img(src=props.img).category-card__img
 
-mixin category-grid()
-  .category-card-grid
-    block
+mixin category-grid(props)
+  ul.category-card-grid
+    each category in props.categories
+      li.category-card__item
+        +category-card(category)
