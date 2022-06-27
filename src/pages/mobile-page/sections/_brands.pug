@@ -1,10 +1,7 @@
 - const brands = [{img: '../../../../images/logotypes/philips.svg', alt: "philips logo"}, {img: '../../../../images/logotypes/sony.svg', alt: "philips logo"},{img: '../../../../images/logotypes/xiaomi.svg', alt: "philips logo"},{img: '../../../../images/logotypes/apple.svg', alt: "philips logo"},{img: '../../../../images/logotypes/samsung-logo.svg', alt: "philips logo"},{img: '../../../../images/logotypes/michelin.svg', alt: "philips logo"},{img: '../../../../images/logotypes/bosch.svg', alt: "philips logo"},{img: '../../../../images/logotypes/adidas.svg', alt: "philips logo"},{img: '../../../../images/logotypes/huawei.svg', alt: "philips logo"},{img: '../../../../images/logotypes/pandora.svg', alt: "philips logo"},{img: '../../../../images/logotypes/dyson.svg', alt: "philips logo"},{img: '../../../../images/logotypes/nike.svg', alt: "philips logo"}]
+include ../../../_mixins
 
-include mixin
-+section({class: "section_has_header brands"})
-  block section
-   +section-header({title: "Популярные бренды", btn: false})
-   .flex-second-row_brands
-     .brands-wrapper
-       each brand in brands
-         +brand(brand)
++section({title: "Популярные бренды"}).px-20
+  +brand-grid
+    each brand in brands
+      +brand(brand)

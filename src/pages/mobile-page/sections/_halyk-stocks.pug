@@ -1,0 +1,13 @@
+include ../../../_mixins
+
+mixin append
+  +btn({text: 'Все'})
+
++section({title: 'Акции', append: "append"}).px-20
+  +banners-wrapper({
+    img: '../../../../images/mocks/bonus-banner.png',
+    alt: 'promo banner',
+    amount: 7
+  })
+
+

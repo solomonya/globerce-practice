@@ -1,0 +1,16 @@
+.column {
+  $this: &;
+
+  @each $key, $value in $spacings {
+    &_gap-#{$key} {
+      #{$this}__container {
+        margin-top: -$value;
+        margin-bottom: -$value;
+        & > :nth-child(n + 2) {
+          margin-top: $value;
+          margin-bottom: $value;
+        }
+      }
+    }
+  }
+}

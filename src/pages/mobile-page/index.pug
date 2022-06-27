@@ -1,9 +1,28 @@
-extends ../../_base
+extends ../base-layout
+
 block head
   title mobile page
-block body
-  .wrapper
-    include _header
-    include main/_main
-    include _footer
+
+block header
+  +header-logo-with-search()
+
+block main
+  .py-12
+    +column.column_gap-32
+      .px-20.mt-15
+        +banners-wrapper({
+           img: '../../images/mocks/bonus-banner.png',
+           alt: 'globerce banner',
+           amount: 7
+         })
+      include sections/_categories
+      include sections/_recently-watch
+      include sections/_halyk-stocks
+      include sections/_brands
+      include sections/_products-8-section
+      include sections/_products-4-section
+
+block footer
+  footer.footer
+    +navigation()
 

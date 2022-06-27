@@ -7,6 +7,7 @@ export default class BannerSlider {
     new Swiper('.banner-slider', {
       loop: true,
       initialSlide: 3,
+      spaceBetween: 12,
 
       pagination: {
         el: '.swiper-pagination',

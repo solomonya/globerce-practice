@@ -20,7 +20,7 @@
   justify-content: center;
   width: 20%;
 
-  &_active {
+  &_notifed {
     .navigation-link::after {
       content: '';
       display: inline-block;

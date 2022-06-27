@@ -1,0 +1,14 @@
+- const items = [{text: "Акции Globerce Market", img: "../../images/categories/sale.jpg", lightText: true},{text: "Телефоны и гаджеты", img: "../../images/categories/phones.jpg", lightText: false},{text: "Обувь", img: "../../images/categories/shoes.jpg", lightText: false},{text: "Телевизоры и аудиотехника", img: "../../images/categories/tv.jpg", lightText: false},{text: "Автотовары", img: "../../images/categories/autostuff.jpg", lightText: false},{text: "Ноутбуки и компьютеры", img: "../../images/categories/laptops.jpg", lightText: false}, {text: "Красота и здоровье", img: "../../images/categories/beauty.jpg", lightText: false},{text: "Кухонная техника", img: "../../images/categories/kitchenware.jpg", lightText: false}];
+
+include ../../../_mixins
+
+mixin append
+  +btn({text: 'Все'})
+
++section({title: 'Категории', append: "append", bodyAttributes: {class: 'mx-20n'}}).px-20
+  +category-grid({categories: items})
+
+
+
+
+

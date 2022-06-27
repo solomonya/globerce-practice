@@ -1,0 +1,97 @@
+@each $key, $value in $spacings {
+  .p-#{$key} {
+    padding: $value;
+  }
+  .p-#{$key}n {
+    padding: -$value;
+  }
+  .pt-#{$key} {
+    padding-top: $value;
+  }
+  .pt-#{$key}n {
+    padding-top: -$value;
+  }
+  .pb-#{$key} {
+    padding-bottom: $value;
+  }
+  .pb-#{$key}n {
+    padding-bottom: -$value;
+  }
+  .pl-#{$key} {
+    padding-left: $value;
+  }
+  .pl-#{$key}n {
+    padding-left: -$value;
+  }
+  .pr-#{$key} {
+    padding-right: $value;
+  }
+  .pr-#{$key}n {
+    padding-right: -$value;
+  }
+  .px-#{$key} {
+    padding-left: $value;
+    padding-right: $value;
+  }
+  .px-#{$key}n {
+    padding-left: -$value;
+    padding-right: -$value;
+  }
+  .py-#{$key} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+  .py-#{$key}n {
+    padding-top: -$value;
+    padding-bottom: -$value;
+  }
+}
+
+@each $key, $value in $spacings {
+  .m-#{$key} {
+    margin: $value;
+  }
+  .m-#{$key}n {
+    margin: -$value;
+  }
+  .mt-#{$key} {
+    margin-top: $value;
+  }
+  .mt-#{$key}n {
+    margin-top: -$value;
+  }
+  .mb-#{$key} {
+    margin-bottom: $value;
+  }
+  .mb-#{$key}n {
+    margin-bottom: -$value;
+  }
+  .ml-#{$key} {
+    margin-left: $value;
+  }
+  .ml-#{$key}n {
+    margin-left: -$value;
+  }
+  .mr-#{$key} {
+    margin-right: $value;
+  }
+  .mr-#{$key}n {
+    margin-right: -$value;
+  }
+  .mx-#{$key} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+  .mx-#{$key}n {
+    margin-left: -$value;
+    margin-right: -$value;
+  }
+  .my-#{$key} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+  .my-#{$key}n {
+    margin-top: -$value;
+    margin-bottom: -$value;
+  }
+}

@@ -4,9 +4,21 @@
 }
 
 .swiper-slide {
-  min-height: 187px;
+  width: calc(100% - 40px);
 }
 
 .image-slider__image {
+  position: absolute;
+  @include set-size(100%, 100%);
   border-radius: 8px;
+}
+
+.image-slider__image-box {
+  position: relative;
+}
+
+.swiper-pagination {
+  position: static !important;
+  margin: 8px auto 0 auto;
+  transform: unset !important;
 }

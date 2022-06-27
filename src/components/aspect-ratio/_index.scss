@@ -1,0 +1,18 @@
+.aspect-ratio {
+  @include set-size(100%, 0);
+  overflow: hidden;
+  background: white;
+  position: relative;
+
+  &_banner {
+    padding-top: calc(170px / 375px * 100%);
+  }
+}
+
+.aspect-ratio-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

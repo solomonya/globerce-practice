@@ -1,0 +1,8 @@
+mixin section(props)
+  section.section&attributes(attributes)
+    header.section__header
+      h5.section__title #{props.title}
+      if props.append
+        +#{props.append}
+    .section__body&attributes(props.bodyAttributes)
+      block

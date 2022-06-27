@@ -12,7 +12,7 @@
 
   &__img-box {
     width: 100%;
-    min-height: 118px;
+    padding: 7px 14px;
     @include flex(center, center, row);
   }
 
@@ -25,10 +25,17 @@
       max-width: 131px;
       white-space: nowrap;
     }
+    #{$this}__img-box {
+      height: 126px;
+    }
   }
 
   &_lg {
     width: 167px;
+
+    #{$this}__img-box {
+      height: 168px;
+    }
   }
 
   &__tags {

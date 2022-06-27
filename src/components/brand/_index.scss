@@ -1,4 +1,13 @@
+.brand-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > :nth-child(n + 1) {
+    width: calc(100% / 3);
+  }
+}
+
 .brand {
-  width: 29%;
+  height: 60px;
   @include flex(center, center, row);
 }

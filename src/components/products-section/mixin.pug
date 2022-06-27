@@ -1,9 +1,0 @@
-include ../product-card/mixin
-
-mixin products(props)
-  .products-wrapper
-    img(src=props.img, alt="props.alt").product-section__img
-    div(class=props.container)
-      each product in props.products
-        +product-card(product)
-          block

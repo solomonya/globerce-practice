@@ -1,7 +1,7 @@
 import { fromEvent } from 'rxjs';
 
 export default class StickyHeader {
-  private CLASS_HANDLER: string = 'js-stickyHeader';
+  private CLASS_HANDLER: string = 'js-base-layout__header';
   private CLASS_SECTION_LOGO: string = 'js-stickyHeaderSectionLogo';
   private CLASS_HEADER_ELEVATED: string = 'header_elevated';
   private CLASS_LOCATION_BUTTON_HIDE: string = 'js-location-btn_hide';
@@ -31,19 +31,19 @@ export default class StickyHeader {
 
   private updateHeaderPosition(): void {
     const scrollTop = window.scrollY;
-    const hiddenElHeight = this.hiddenEl.clientHeight + 5;
+    const hiddenElHeight = this.hiddenEl.clientHeight;
     if (scrollTop > 0) {
       this.headerEl.style.top = `-${hiddenElHeight}px`;
+    } else {
+      this.headerEl.style.top = '';
+    }
 
-      scrollTop > hiddenElHeight
-        ? this.hiddenLocationBtn.classList.remove(
-            this.CLASS_LOCATION_BUTTON_HIDE
-          )
-        : this.hiddenLocationBtn.classList.add(this.CLASS_LOCATION_BUTTON_HIDE);
-
-      scrollTop > hiddenElHeight
-        ? this.headerEl.classList.add(this.CLASS_HEADER_ELEVATED)
-        : this.headerEl.classList.remove(this.CLASS_HEADER_ELEVATED);
-    } else this.headerEl.style.top = '';
+    if (scrollTop > hiddenElHeight) {
+      this.hiddenLocationBtn.classList.remove(this.CLASS_LOCATION_BUTTON_HIDE);
+      this.headerEl.classList.add(this.CLASS_HEADER_ELEVATED);
+    } else {
+      this.hiddenLocationBtn.classList.add(this.CLASS_LOCATION_BUTTON_HIDE);
+      this.headerEl.classList.remove(this.CLASS_HEADER_ELEVATED);
+    }
   }
 }

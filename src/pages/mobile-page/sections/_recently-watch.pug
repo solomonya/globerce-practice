@@ -1,0 +1,10 @@
+- const products = [{img: '../../../../images/mocks/samsung-photo.png', tags: {installments: '0-0-24', discount: 'Скидка'}, title: 'Смартфон Samsung S20 Ultra 16/512Gb черный', prices: {old: "142990 ₸", new: "139990 ₸"}, size: 'sm'},{img: '../../../../images/mocks/iphone-photo.png', tags: {installments: '0-0-24'}, title: 'Смартфон Samsung S20 Ultra 16/512Gb черный', prices: {old: "142990 ₸", new: "139990 ₸"}, size: 'sm'},{img: '../../../../images/mocks/samsung-photo.png', title: 'Смартфон Samsung S20 Ultra 16/512Gb черный', prices: {old: "142990 ₸", new: "139990 ₸"}, size: 'sm'},{img: '../../../../images/mocks/samsung-photo.png', tags: { discount: 'Скидка'}, title: 'Смартфон Samsung S20 Ultra 16/512Gb черный', prices: {old: "142990 ₸", new: "139990 ₸"}, size: 'sm'},{img: '../../../../images/mocks/samsung-photo.png', tags: {installments: '0-0-24', discount: 'Скидка'}, title: 'Смартфон Samsung S20 Ultra 16/512Gb черный', prices: {old: "142990 ₸", new: "139990 ₸"}, size: 'sm'},{img: '../../../../images/mocks/samsung-photo.png', tags: {installments: '0-0-24', discount: 'Скидка'}, title: 'Смартфон Samsung S20 Ultra 16/512Gb черный', prices: {old: "142990 ₸", new: "139990 ₸"}, size: 'sm'},{img: '../../../../images/mocks/samsung-photo.png', tags: {installments: '0-0-24', discount: 'Скидка'}, title: 'Смартфон Samsung S20 Ultra 16/512Gb черный', prices: {old: "142990 ₸", new: "139990 ₸"}, size: 'sm'}]
+
+mixin append()
+  +btn({text: 'Все'})
+
+include ../../../_mixins
++section({title: 'Вы недавно смотрели', append: "append", bodyAttributes: {class: 'mx-20n'}}).px-20
+  .recently-watch-slider.pl-20
+    each product in products
+      +product-card(product)

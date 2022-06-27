@@ -1,3 +1,6 @@
+include ../aspect-ratio/mixin
+
 mixin banner(props)
   a.swiper-slide(href="#")
-    img(src=props.img, alt=props.alt).image-slider__image
+    +aspect-ratio().aspect-ratio_banner.image-slider__image-box
+      img(src=props.img, alt=props.alt).image-slider__image
