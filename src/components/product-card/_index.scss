@@ -12,7 +12,23 @@
 
   &__img-box {
     width: 100%;
+    min-height: 118px;
     @include flex(center, center, row);
+  }
+
+  &_sm {
+    width: 135px;
+
+    #{$this}__title {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 131px;
+      white-space: nowrap;
+    }
+  }
+
+  &_lg {
+    width: 167px;
   }
 
   &__tags {
@@ -45,8 +61,8 @@
   &__favorite-btn {
     @extend %reset-btn;
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
   }
 
   &__body {
@@ -86,11 +102,13 @@
   &__sale-price {
     @include font(1.2rem, 1.6rem, $color-primary-green, 600);
   }
+
   &__loan {
     width: 55%;
     @include flex(center, center, row);
     gap: 4px;
     background-color: $color-brand-secondary;
+    border-radius: 4px;
 
     &-monthly-payment {
       @include font(1.2rem, 1.6rem, $color-dark-xl, 700);
@@ -99,19 +117,5 @@
     &-months {
       @include font(1rem, 1.2rem, $color-dark-xl, 500);
     }
-  }
-
-  &_sm {
-    width: 135px;
-
-    #{$this}__title {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      max-width: 131px;
-      white-space: nowrap;
-    }
-  }
-  &_lg {
-    width: 167px;
   }
 }

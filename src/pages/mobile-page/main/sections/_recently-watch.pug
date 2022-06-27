@@ -5,6 +5,6 @@ include mixin
   block section
     +section-header({title: 'Вы недавно смотрели', btn: true})
     .flex-second-row
-     .recently-watch-slider
-        each product in products
-          +product-card(product)
+      .recently-watch-slider
+         each product in products
+           +product-card(product)
