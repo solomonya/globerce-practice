@@ -1,2 +1,25 @@
-mixin searchBar()
+include ../icon/mixin
+
+mixin searchInput()
    input(type="text" class="search__input" placeholder="Найти в Globerce Market")
+
+
+mixin searchIcon()
+   +icon({icon: '../../images/icons/search.svg', alt: 'search icon'}).search__search-icon
+
+mixin clearBtn()
+   button.search__clear&attributes(attributes)
+      +icon({icon: '../../images/icons/clear.svg', alt: 'clear icon'})
+
+mixin cancelBtn()
+   button.search__cancel&attributes(attributes) Отменить
+
+mixin search(props)
+  .search
+   .search__container
+      +searchIcon()
+      +searchInput()
+      +clearBtn().d-none
+   if props.append
+      +#{props.append}
+   +cancelBtn().d-none

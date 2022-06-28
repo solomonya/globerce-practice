@@ -1,0 +1,6 @@
+.icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  @include set-size(24px, 24px);
+}

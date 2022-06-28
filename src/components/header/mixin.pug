@@ -9,12 +9,10 @@ mixin header-logo()
     +logo-icon()
     +locationBtn({hide: false, city: 'Алматы', id: 'lc-btn-1'})
 
-mixin header-search()
-  .header__search
-    +searchBar()
-    +locationBtn({hide: true, city: 'Алматы', id: 'lc-btn-2'})
+mixin append
+  +locationBtn({hide: true, city: 'Алматы', id: 'lc-btn-2'}).d-none
 
 mixin header-logo-with-search()
-  header.header.js-stickyHeader
+  header.header.js-stickyHeader&attributes(attributes)
     +header-logo()
-    +header-search()
+    +search({append: "append"})

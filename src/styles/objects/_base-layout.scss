@@ -1,10 +1,26 @@
 .base-layout {
   &__header {
+    background: $color-extra-light;
     position: sticky;
     top: 0;
     z-index: $z-index-header;
+
+    &_elevated {
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
+    }
   }
+
   &__main {
     padding-bottom: 70px;
+  }
+
+  &__footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: $z-index-footer;
+    padding: 10px;
+    border-top: 1px solid $color-grey-80;
+    background-color: $color-extra-light;
   }
 }
