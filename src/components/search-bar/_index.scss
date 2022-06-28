@@ -1,4 +1,7 @@
 .search {
+  $this: &;
+  height: 48px;
+
   padding: 6px 20px;
   @include flex(center, center, row);
   gap: 0 8px;
@@ -17,9 +20,7 @@
     border: none;
     border-radius: 6px;
     background-color: $color-light-gray;
-    padding: 8px 6px;
-    padding-left: 40px;
-    // background: url('images/icons/search.svg') no-repeat scroll 10px;
+    padding: 8px 40px;
     background-color: $color-light-gray;
     @include font(1.4rem, 2rem, $color-extra-dark, 500);
 
@@ -35,6 +36,10 @@
   &__search-icon {
     position: absolute;
     left: 8px;
+
+    &_focus > path {
+      stroke: $color-brand-primary-50;
+    }
   }
 
   &__clear {
