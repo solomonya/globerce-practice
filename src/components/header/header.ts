@@ -59,10 +59,10 @@ export default class StickyHeader {
   }
 
   private addHeaderShadow(scrollTop: number, hiddenElHeight: number): void {
-    if (
-      scrollTop > hiddenElHeight &&
-      !this.hiddenEl.classList.contains('d-none')
-    ) {
+    const isHiddenElHide = this.hiddenEl
+      ? this.hiddenEl.classList.contains('d-none')
+      : false;
+    if (scrollTop > hiddenElHeight && !isHiddenElHide) {
       this.headerEl.classList.add(this.CLASS_HEADER_ELEVATED);
     } else {
       this.headerEl.classList.remove(this.CLASS_HEADER_ELEVATED);

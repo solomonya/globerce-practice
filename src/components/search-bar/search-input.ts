@@ -54,9 +54,7 @@ export default class SearchInput {
       this.showSearchModal();
       this.blockPageScroll();
       this.removeHeaderShadow();
-      if (this.stickyHeaderlogo) {
-        this.removeStickyHeaderLogo();
-      }
+      if (this.stickyHeaderlogo) this.removeStickyHeaderLogo();
     });
 
     fromEvent(this.searchEl, 'blur').subscribe((e: Event) => {
@@ -74,7 +72,7 @@ export default class SearchInput {
       this.defineClearButtonState();
       this.removeSearchModal();
       this.returnScroll();
-      this.returnStickyHeaderLogo();
+      if (this.stickyHeaderlogo) this.returnStickyHeaderLogo();
     });
 
     fromEvent(this.searchClearBtn, 'click').subscribe((e: Event) => {

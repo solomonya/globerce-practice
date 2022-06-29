@@ -1,5 +1,4 @@
 .search-modal-wrapper {
-  padding-top: 48px;
   position: fixed;
   z-index: $z-index-modal;
   height: 100%;
@@ -36,6 +35,7 @@
   &__result-box {
     display: flex;
     gap: 0 8px;
+    align-items: center;
   }
 
   &__title-box {
