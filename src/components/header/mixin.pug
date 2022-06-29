@@ -7,10 +7,10 @@ mixin logo-icon(props)
 mixin header-logo()
   .header__logo.js-stickyHeaderSectionLogo
     +logo-icon()
-    +locationBtn({hide: false, city: 'Алматы', id: 'lc-btn-1'})
+    +locationBtn({city: 'Алматы', id: 'lc-btn-1'})
 
 mixin append
-  +locationBtn({hide: true, city: 'Алматы', id: 'lc-btn-2'}).d-none.js-location-btn
+  +locationBtn({city: 'Алматы', id: 'lc-btn-2'}).d-none.js-location-btn
 
 mixin header-logo-with-search()
   header.header.js-stickyHeader&attributes(attributes)

@@ -1,0 +1,68 @@
+.search-modal-wrapper {
+  padding-top: 48px;
+  position: fixed;
+  z-index: $z-index-modal;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  background-color: $color-extra-light;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px 0;
+}
+
+.search-modal-container {
+  width: 100%;
+  @extend %reset-lists;
+}
+
+.search-result {
+  &__link {
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 8px;
+    border-bottom: 1px solid $color-grey-80;
+  }
+
+  &__result-box {
+    display: flex;
+    gap: 0 8px;
+  }
+
+  &__title-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    @include font(1.4rem, 2rem, $color-dark-xl, 600);
+  }
+
+  &__subtitle {
+    @include font(1.2rem, 1.6rem, $color-grey-60, 500);
+  }
+
+  &__delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    @include set-size(40px, 40px);
+    @extend %reset-btn;
+  }
+}
+
+.search-modal-wrapper__clear-history-btn {
+  padding: 8px 16px;
+  @extend %reset-btn;
+  @include font(1.6rem, 2.4rem, $color-grey-40, 700);
+}

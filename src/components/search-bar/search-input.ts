@@ -7,12 +7,20 @@ export default class SearchInput {
   private ID_LOCATION_BTN = 'lc-btn-2';
   private CLASS_SEARCH_CANCEL_BTN = 'js-search__cancel';
   private CLASS_SEARCH_CLEAR_BTN = 'js-search__clear';
+  private CLASS_SEARCH_MODAL_WRAPPER = 'js-search-modal-wrapper';
+  private CLASS_BODY_CONTENT = 'js-base__layout';
+  private CLASS_BODY_HEADER = 'js-base-layout__header';
+  private CLASS_STICKY_LOGO = 'js-stickyHeaderSectionLogo';
 
   private searchEl: HTMLInputElement;
   private searchIcon: SVGAElement;
   private hiddenLocationBtn: HTMLElement;
   private searchCancelBtn: HTMLElement;
   private searchClearBtn: HTMLButtonElement;
+  private searchModalWrapper: HTMLElement;
+  private pageBody: HTMLElement;
+  private header: HTMLElement;
+  private stickyHeaderlogo: HTMLElement;
 
   constructor() {
     this.searchEl = document.querySelector(`.${this.CLASS_SEARCH_INPUT}`);
@@ -25,6 +33,16 @@ export default class SearchInput {
     this.searchClearBtn = document.querySelector(
       `.${this.CLASS_SEARCH_CLEAR_BTN}`
     );
+    this.searchModalWrapper = document.querySelector(
+      `.${this.CLASS_SEARCH_MODAL_WRAPPER}`
+    );
+
+    this.header = document.querySelector(`.${this.CLASS_BODY_HEADER}`);
+
+    this.pageBody = document.querySelector(`.${this.CLASS_BODY_CONTENT}`);
+    this.stickyHeaderlogo = document.querySelector(
+      `.${this.CLASS_STICKY_LOGO}`
+    );
     this.attachEvents();
   }
 
@@ -33,6 +51,12 @@ export default class SearchInput {
       this.recolorizeIcon();
       if (this.hiddenLocationBtn) this.hideLocationBtn();
       this.showCancelButton();
+      this.showSearchModal();
+      this.blockPageScroll();
+      this.removeHeaderShadow();
+      if (this.stickyHeaderlogo) {
+        this.removeStickyHeaderLogo();
+      }
     });
 
     fromEvent(this.searchEl, 'blur').subscribe((e: Event) => {
@@ -48,6 +72,9 @@ export default class SearchInput {
       if (this.hiddenLocationBtn) this.returnLocationBtn();
       this.searchEl.value = '';
       this.defineClearButtonState();
+      this.removeSearchModal();
+      this.returnScroll();
+      this.returnStickyHeaderLogo();
     });
 
     fromEvent(this.searchClearBtn, 'click').subscribe((e: Event) => {
@@ -90,5 +117,33 @@ export default class SearchInput {
     this.searchEl.value = '';
     this.searchEl.focus();
     this.searchClearBtn.classList.add('d-none');
+  }
+
+  private showSearchModal() {
+    this.searchModalWrapper.classList.remove('d-none');
+  }
+
+  private removeSearchModal() {
+    this.searchModalWrapper.classList.add('d-none');
+  }
+
+  private blockPageScroll() {
+    this.pageBody.classList.add('lock-scroll');
+  }
+
+  private returnScroll() {
+    this.pageBody.classList.remove('lock-scroll');
+  }
+
+  private removeHeaderShadow() {
+    this.header.classList.remove('base-layout__header_elevated');
+  }
+
+  private removeStickyHeaderLogo() {
+    this.stickyHeaderlogo.classList.add('d-none');
+  }
+
+  private returnStickyHeaderLogo() {
+    this.stickyHeaderlogo.classList.remove('d-none');
   }
 }

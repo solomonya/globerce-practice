@@ -4,14 +4,11 @@
     position: sticky;
     top: 0;
     z-index: $z-index-header;
+    border-bottom: 1px solid $color-grey-80;
 
     &_elevated {
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
     }
-  }
-
-  &__main {
-    padding-bottom: 70px;
   }
 
   &__footer {

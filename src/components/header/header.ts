@@ -20,6 +20,7 @@ export default class StickyHeader {
     this.hiddenLocationBtn = document.getElementById(
       `${this.ID_LOCATION_BTN_SEARCH}`
     );
+
     this.attachEvents();
   }
 
@@ -31,7 +32,6 @@ export default class StickyHeader {
 
   private updateHeaderPosition(): void {
     const scrollTop = window.scrollY;
-
     if (this.hiddenEl) {
       const hiddenElHeight = this.hiddenEl.clientHeight;
       this.hideHiddenEl(scrollTop, hiddenElHeight);
@@ -59,7 +59,10 @@ export default class StickyHeader {
   }
 
   private addHeaderShadow(scrollTop: number, hiddenElHeight: number): void {
-    if (scrollTop > hiddenElHeight) {
+    if (
+      scrollTop > hiddenElHeight &&
+      !this.hiddenEl.classList.contains('d-none')
+    ) {
       this.headerEl.classList.add(this.CLASS_HEADER_ELEVATED);
     } else {
       this.headerEl.classList.remove(this.CLASS_HEADER_ELEVATED);

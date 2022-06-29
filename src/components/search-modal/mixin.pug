@@ -1,0 +1,21 @@
+include ../icon/mixin
+
+mixin search-result(props)
+  li.search-result
+    a.search-result__link.py-7.pl-20.pr-12
+      .search-result__result-box
+        +icon(props.icon)
+        .search-result__title-box
+          h5.search-result__title.m-0 #{props.title}
+          if props.subtitle
+            h6.search-result__subtitle.m-0 #{props.subtitle}
+      if props.type === 'history'
+        button.search-result__delete-btn
+          +icon({src: '../../images/icons/delete-btn.svg', alt: 'delete-icon'})
+
+mixin search-modal-window(props)
+  .search-modal-wrapper.js-search-modal-wrapper&attributes(attributes)
+    ul.search-modal-container
+      each searchResult in props.results
+        +search-result(searchResult)
+    button.search-modal-wrapper__clear-history-btn.js-clear-history-btn Очистить историю поиска
