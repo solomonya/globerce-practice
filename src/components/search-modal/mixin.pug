@@ -23,7 +23,7 @@ mixin search-modal-window(props)
         cancelBtnClass: 'js-modal-search__cancel',
         searchIconClass: 'js-search__search-icon',
       }).search-modal-wrapper__search.js-modal-search
-    ul.search-modal-container
+    ul.search-modal-container.js-search-modal-container
       each searchResult in props.results
         +search-result(searchResult)
     button.search-modal-wrapper__clear-history-btn.js-clear-history-btn.my-8 Очистить историю поиска
