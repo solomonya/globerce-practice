@@ -1,4 +1,5 @@
 include ../icon/mixin
+include ../search-bar/mixin
 
 mixin search-result(props)
   li.search-result
@@ -15,7 +16,14 @@ mixin search-result(props)
 
 mixin search-modal-window(props)
   .search-modal-wrapper.js-search-modal-wrapper&attributes(attributes)
+    +search({
+        append: false,
+        inputClass: 'search__input js-search-input',
+        clearBtnClass: 'js-modal-search__clear',
+        cancelBtnClass: 'js-modal-search__cancel',
+        searchIconClass: 'js-search__search-icon',
+      }).search-modal-wrapper__search.js-modal-search
     ul.search-modal-container
       each searchResult in props.results
         +search-result(searchResult)
-    button.search-modal-wrapper__clear-history-btn.js-clear-history-btn.mb-8 Очистить историю поиска
+    button.search-modal-wrapper__clear-history-btn.js-clear-history-btn.my-8 Очистить историю поиска

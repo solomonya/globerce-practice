@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./dist-server/",
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "ES2015",
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true
   }
 }
