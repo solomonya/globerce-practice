@@ -1,7 +1,7 @@
 include ../icon/mixin
 
 mixin searchInput()
-   input(type="text" class="search__input" placeholder="Найти в Globerce Market")&attributes(attributes)
+   input(type="text" placeholder="Найти в Globerce Market")&attributes(attributes)
 
 
 mixin searchIcon()
@@ -10,11 +10,11 @@ mixin searchIcon()
       path(d="M20.9999 20.9999L16.6499 16.6499" stroke="#9BA4B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
 
 mixin clearBtn()
-   button.search__clear&attributes(attributes)
+   button&attributes(attributes)
       +icon({src: '../../images/icons/clear.svg', alt: 'clear icon'})
 
 mixin cancelBtn()
-   button.search__cancel&attributes(attributes) Отменить
+   button&attributes(attributes) Отменить
 
 mixin search(props)
   .search&attributes(attributes)
@@ -24,4 +24,4 @@ mixin search(props)
       +clearBtn(class=props.clearBtnClass).d-none
    if props.append
       +#{props.append}
-   +cancelBtn(class=props.cancelBtnClass).d-none
+   +cancelBtn(class=props.cancelBtnClass, id=props.idCancelBtn).d-none

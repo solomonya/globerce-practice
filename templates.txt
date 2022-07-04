@@ -1,0 +1,24 @@
+ private getSearchItemTemplate(data): string {
+    return `
+      <div>
+        ${data.subtitle ? `<p>${data.subtitle}</p>` : ''}
+        <p>${data.title}</p>
+      </div>
+    `;
+  }
+
+  private getSearchItemsTemplate(items): string {
+    items.map((item) => this.getSearchItemTemplate(item)).join('');
+  }
+
+
+  fromEvent(this.searchCancelBtn, 'click').subscribe((e: Event) => {
+      this.removeCancelButton();
+      this.modalSearch.value = '';
+      this.defineClearButtonState();
+      this.removeSearchModal();
+      this.returnScroll();
+      this.searchModalContainer.innerHTML = '';
+      this.buildHistoryList(this.getHistoryList());
+      this.defineClearHistoryBtnState();
+    });

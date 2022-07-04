@@ -8,10 +8,11 @@ export type TItem = {
   id: number;
   title: string;
   subtitle?: string;
+  brand?: string;
   url: string;
 };
 
-export type HistoryItem = {
-  type: ITEMS.HISTORY;
+export type SearchItems = {
+  type: ITEMS;
   items: Array<TItem>;
 };

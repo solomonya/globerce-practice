@@ -12,16 +12,18 @@ mixin search-result(props)
             h6.search-result__subtitle.m-0 #{props.subtitle}
       if props.type === 'history'
         button.search-result__delete-btn
-          +icon({src: '../../images/icons/delete-btn.svg', alt: 'delete-icon'})
+          +icon({ alt: 'delete-icon',
+                  class: 'search-result__delete-btn-icon'})
 
 mixin search-modal-window(props)
   .search-modal-wrapper.js-search-modal-wrapper&attributes(attributes)
     +search({
         append: false,
-        inputClass: 'search__input js-search-input',
-        clearBtnClass: 'js-modal-search__clear',
-        cancelBtnClass: 'js-modal-search__cancel',
-        searchIconClass: 'js-search__search-icon',
+        inputClass: 'js-search__input-modal search__input',
+        clearBtnClass: 'js-search__clear search__clear',
+        cancelBtnClass: 'js-search__cancel search__cancel',
+        searchIconClass: 'js-search__search-icon search__icon',
+        idCancelBtn: 'js-search-cancel',
       }).search-modal-wrapper__search.js-modal-search
     ul.search-modal-container.js-search-modal-container
       each searchResult in props.results

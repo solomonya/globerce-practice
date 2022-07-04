@@ -15,4 +15,7 @@ mixin append
 mixin header-logo-with-search()
   header.header.js-stickyHeader&attributes(attributes)
     +header-logo()
-    +search({append: "append"})
+    +search({append: "append",
+             inputClass: "js-search__input search__input",
+             clearBtnClass: "search__clear",
+             cancelBtnClass: "search__cancel"})
