@@ -63,6 +63,7 @@ export default class SearchInput {
 
     fromEvent(this.searchClearBtn, 'click').subscribe((e: Event) => {
       this.clearInput();
+      this.modalSearch.dispatchEvent(new Event('change'));
     });
   }
   private emitEventShowModal(): void {
