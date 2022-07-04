@@ -130,7 +130,7 @@ export default class SearchModal {
 
   private async buildHistoryList() {
     console.log('build history!');
-    await axios
+    return await axios
       .get<SearchItems>('http://localhost:3003/search-suggest/?q=')
       .then((response) => response.data)
       .then((responseData) => {
@@ -143,9 +143,12 @@ export default class SearchModal {
   }
 
   private removeHistoryItem(id: number): void {
-    this.sendRemoveHistoryItemRequest(id);
-    const deleteItem = document.getElementById(`${id}`);
-    this.searchModalContainer.removeChild(deleteItem);
+    this.sendRemoveHistoryItemRequest(id).then((response) => {
+      if (response.status === 200) {
+        const deleteItem = document.getElementById(`${id}`);
+        this.searchModalContainer.removeChild(deleteItem);
+      }
+    });
   }
 
   private async sendRemoveHistoryItemRequest(id: number) {
@@ -156,8 +159,6 @@ export default class SearchModal {
 
     return removeHistoryItemResponse;
   }
-
-  private fillHistoryList(data: SearchItems) {}
 
   private drawItemsList(drawItems: Array<TItem>, type: string) {
     drawItems.forEach((item) => {
