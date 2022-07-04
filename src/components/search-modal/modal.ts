@@ -64,7 +64,6 @@ export default class SearchModal {
         this.buildSearchItems(e.detail.value);
         if (e.detail.value === '') {
           this.buildHistoryList();
-          this.returnClearHistoryBtn();
         }
       }
     );
@@ -130,15 +129,16 @@ export default class SearchModal {
   }
 
   private async buildHistoryList() {
+    console.log('build history!');
     await axios
       .get<SearchItems>('http://localhost:3003/search-suggest/?q=')
       .then((response) => response.data)
       .then((responseData) => {
-        console.log(responseData);
+        console.log(responseData.items);
         this.drawItemsList(responseData.items, responseData.type);
         responseData.items.length === 0
-          ? this.removeClearHistoryBtn
-          : this.returnClearHistoryBtn;
+          ? this.removeClearHistoryBtn()
+          : this.returnClearHistoryBtn();
       });
   }
 
