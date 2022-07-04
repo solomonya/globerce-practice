@@ -61,19 +61,12 @@ export default class SearchModal {
       (e: CustomEvent<{ value: string }>) => {
         this.searchModalContainer.innerHTML = '';
         this.removeClearHistoryBtn();
-        this.searchItems(this.sendSearchItemsRequest(e.detail.value));
-        console.log(this.searchModalContainer.innerHTML);
+        this.buildSearchItems(e.detail.value);
         if (e.detail.value === '') {
           this.buildHistoryList();
           this.returnClearHistoryBtn();
         }
       }
-    );
-  }
-
-  private async sendSearchItemsRequest(searchText: string) {
-    return axios.get<Array<SearchItems>>(
-      `http://localhost:3003/search-suggest/?q=${searchText}`
     );
   }
 
@@ -85,12 +78,13 @@ export default class SearchModal {
     this.searchModalWrapper.classList.add('d-none');
   }
 
-  private searchItems(
-    searchItemsResponse: Promise<AxiosResponse<Array<SearchItems>>>
-  ) {
-    searchItemsResponse
+  private async buildSearchItems(searchText: string) {
+    return await axios
+      .get<Array<SearchItems>>(
+        `http://localhost:3003/search-suggest/?q=${searchText}`
+      )
       .then((response) => response.data)
-      .then((data) => {
+      .then((data: Array<SearchItems>) => {
         console.log(data);
         for (const group of data) {
           this.drawItemsList(group.items, group.type);
