@@ -12,8 +12,6 @@ export default class SearchModal {
   private clearHistoryBtn: HTMLButtonElement;
   private searchModalContainer: HTMLUListElement;
 
-  private historyList: SearchItems;
-
   constructor() {
     this.searchModalWrapper = document.querySelector(
       `.${this.CLASS_SEARCH_MODAL_WRAPPER}`
@@ -27,30 +25,10 @@ export default class SearchModal {
     );
 
     this.attachEvents();
-    this.buildHistoryList(this.getHistoryList());
+    this.buildHistoryList();
   }
 
   private attachEvents(): void {
-    // fromEvent(this.modalSearch, 'focus').subscribe((e) => {
-    //   this.blockPageScroll();
-    // });
-
-    // merge(
-    //   fromEvent(this.modalSearch, 'input'),
-    //   fromEvent(this.modalSearch, 'change')
-    // )
-    //   .pipe(
-    //     map((e: Event) => {
-    //       return this.modalSearch.value;
-    //     }),
-    //     debounceTime(500)
-    //   )
-    //   .subscribe((value) => {
-    //     this.searchModalContainer.innerHTML = '';
-    //     this.removeClearHistoryBtn();
-    //     this.searchItems(this.sendSearchItemsRequest(value));
-    //   });
-
     fromEvent(this.clearHistoryBtn, 'click').subscribe((e: Event) => {
       this.clearHistory(this.sendClearHistoryRequest());
     });
@@ -81,8 +59,14 @@ export default class SearchModal {
 
     fromEvent(document, 'input-change').subscribe(
       (e: CustomEvent<{ value: string }>) => {
-        //handle input change
-        console.log(e.detail.value);
+        this.searchModalContainer.innerHTML = '';
+        this.removeClearHistoryBtn();
+        this.searchItems(this.sendSearchItemsRequest(e.detail.value));
+        console.log(this.searchModalContainer.innerHTML);
+        if (e.detail.value === '') {
+          this.buildHistoryList();
+          this.returnClearHistoryBtn();
+        }
       }
     );
   }
@@ -122,16 +106,6 @@ export default class SearchModal {
     this.pageBody.classList.remove('lock-scroll');
   }
 
-  private async getHistoryList() {
-    console.log('get request');
-    const historyList = await axios({
-      method: 'get',
-      url: 'http://localhost:3003/search-history/',
-    });
-
-    return historyList;
-  }
-
   private async sendClearHistoryRequest() {
     console.log('post request');
     const clearHistoryResponse = await axios({
@@ -151,7 +125,7 @@ export default class SearchModal {
       })
       .catch((err) => console.error(err.message));
 
-    this.buildHistoryList(this.getHistoryList());
+    this.buildHistoryList();
   }
 
   private removeClearHistoryBtn(): void {
@@ -161,32 +135,23 @@ export default class SearchModal {
     this.clearHistoryBtn.classList.remove('d-none');
   }
 
-  private buildHistoryList(respone: Promise<any>) {
-    respone
+  private async buildHistoryList() {
+    await axios
+      .get<SearchItems>('http://localhost:3003/search-suggest/?q=')
       .then((response) => response.data)
-      .then((responseData) => this.fillHistoryList(responseData));
-  }
-
-  private updateHistoryList(response: Promise<any>) {
-    response
-      .then((response) => response.data)
-      .then((data) => {
-        this.historyList = data;
-        console.log(this.historyList);
+      .then((responseData) => {
+        console.log(responseData);
+        this.drawItemsList(responseData.items, responseData.type);
+        responseData.items.length === 0
+          ? this.removeClearHistoryBtn
+          : this.returnClearHistoryBtn;
       });
   }
 
   private removeHistoryItem(id: number): void {
     this.sendRemoveHistoryItemRequest(id);
-    this.updateHistoryList(this.getHistoryList());
     const deleteItem = document.getElementById(`${id}`);
     this.searchModalContainer.removeChild(deleteItem);
-  }
-
-  private defineClearHistoryBtnState(): void {
-    this.historyList.items.length === 0
-      ? this.removeClearHistoryBtn()
-      : this.returnClearHistoryBtn();
   }
 
   private async sendRemoveHistoryItemRequest(id: number) {
@@ -198,11 +163,7 @@ export default class SearchModal {
     return removeHistoryItemResponse;
   }
 
-  private fillHistoryList(data: SearchItems) {
-    this.historyList = data;
-    console.log(this.historyList);
-    this.drawItemsList(this.historyList.items, this.historyList.type);
-  }
+  private fillHistoryList(data: SearchItems) {}
 
   private drawItemsList(drawItems: Array<TItem>, type: string) {
     drawItems.forEach((item) => {
