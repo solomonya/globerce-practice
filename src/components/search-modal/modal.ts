@@ -88,7 +88,13 @@ export default class SearchModal {
       .then((data: Array<SearchItem>) => {
         this.searchModalContainer.innerHTML = '';
         this.searchModalContainer.innerHTML = this.getItemsTemplate(data);
-        if (data.find((item) => item.type === 'history') && !searchInputValue) {
+        console.log(data);
+        if (
+          data.find(
+            (item) => item.type === 'history' && item.items.length !== 0
+          ) &&
+          !searchInputValue
+        ) {
           this.showClearHistoryBtn();
         } else {
           this.hideClearHistoryBtn();
@@ -131,13 +137,10 @@ export default class SearchModal {
     clearResponse
       .then((response) => {
         if (response.status === 200) {
-          this.searchModalContainer.innerHTML = '';
-          this.hideClearHistoryBtn();
+          this.buildSearchItems();
         }
       })
       .catch((err) => console.error(err.message));
-
-    this.buildSearchItems();
   }
 
   private hideClearHistoryBtn(): void {
@@ -157,12 +160,10 @@ export default class SearchModal {
   }
 
   private async sendRemoveHistoryItemRequest(id: number) {
-    const removeHistoryItemResponse = await axios({
+    return await axios({
       method: 'post',
       url: `http://localhost:3003/search-history/remove/${id}`,
     });
-
-    return removeHistoryItemResponse;
   }
 
   private getItemsTemplate(items: Array<SearchItem>): string {
