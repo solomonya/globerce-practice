@@ -17,14 +17,15 @@ mixin search-result(props)
 
 mixin search-modal-window(props)
   .search-modal-wrapper.js-search-modal&attributes(attributes)
-    +search({
-        append: false,
-        inputClass: 'js-search__input search__input',
-        clearBtnClass: 'js-search__clear search__clear',
-        cancelBtnClass: 'js-search__cancel search__cancel',
-        searchIconClass: 'js-search__search-icon search__icon',
-        idCancelBtn: 'js-search-cancel',
-      }).search-modal-wrapper__search.js-modal-search.js-search
+    form(method="GET" action="/pages/search-page/index.html").js-search-form
+      +search({
+          append: false,
+          inputClass: 'js-search__input search__input',
+          clearBtnClass: 'js-search__clear search__clear',
+          cancelBtnClass: 'js-search__cancel search__cancel',
+          searchIconClass: 'js-search__search-icon search__icon',
+          idCancelBtn: 'js-search-cancel',
+        }).search-modal-wrapper__search.js-modal-search.js-search
     ul.search-modal-container.js-search-modal-container
       each searchResult in props.results
         +search-result(searchResult)

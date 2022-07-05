@@ -10,11 +10,11 @@ mixin searchIcon()
       path(d="M20.9999 20.9999L16.6499 16.6499" stroke="#9BA4B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
 
 mixin clearBtn()
-   button&attributes(attributes)
+   button(type="button")&attributes(attributes)
       +icon({src: '../../images/icons/clear.svg', alt: 'clear icon'})
 
 mixin cancelBtn()
-   button&attributes(attributes) Отменить
+   button(type="button")&attributes(attributes) Отменить
 
 mixin search(props)
   .search&attributes(attributes)
