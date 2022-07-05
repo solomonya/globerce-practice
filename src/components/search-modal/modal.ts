@@ -58,17 +58,7 @@ export default class SearchModal {
     });
 
     fromEvent(this.searchModalContainer, 'click').subscribe((e) => {
-      let target = <HTMLElement>e.target;
-
-      if (
-        target.classList.contains('search-result__delete-btn') ||
-        target.classList.contains('search-result__delete-btn-icon')
-      ) {
-        const deleteItem: HTMLLIElement = target.closest('li');
-        const deleteItemId = Number(deleteItem.id);
-
-        this.removeHistoryItem(deleteItemId);
-      }
+      this.handleDeleteHistoryItem(e);
     });
 
     fromEvent(this.searchEl, 'cancel').subscribe((e: Event) => {
@@ -104,6 +94,20 @@ export default class SearchModal {
           this.hideClearHistoryBtn();
         }
       });
+  }
+
+  private handleDeleteHistoryItem(e: Event): void {
+    let target = e.target as HTMLElement;
+
+    if (
+      target.classList.contains('search-result__delete-btn') ||
+      target.classList.contains('search-result__delete-btn-icon')
+    ) {
+      const deleteItem: HTMLLIElement = target.closest('li');
+      const deleteItemId = Number(deleteItem.id);
+
+      this.removeHistoryItem(deleteItemId);
+    }
   }
 
   private blockPageScroll() {
@@ -184,6 +188,8 @@ export default class SearchModal {
   }
 
   private getSearchItemTemplate(item: TItemSearch): string {
+    const title = this.capitalizeFirstLetter(item.title);
+    const subtitle = this.capitalizeFirstLetter(item.subtitle);
     return `
       <li class="search-result">
         <a class="search-result__link py-7 pl-20 pr-12">
@@ -192,8 +198,8 @@ export default class SearchModal {
               <img src="../../images/icons/search.svg" />
             </span>
             <div class="search-result__title-box">
-              <h5 class="search-result__title m-0">${item.title}</h5>
-              <h6 class="search-result__subtitle m-0">${item.subtitle}</h6>
+              <h5 class="search-result__title m-0">${title}</h5>
+              <h6 class="search-result__subtitle m-0">${subtitle}</h6>
             </div>
           </div>
         </a>
@@ -206,6 +212,7 @@ export default class SearchModal {
   }
 
   private getHistoryItemTemplate(item: TItemHistory): string {
+    const title = this.capitalizeFirstLetter(item.title);
     return `
       <li class="search-result" id=${item.id}>
         <a class="search-result__link py-7 pl-20 pr-12">
@@ -214,7 +221,7 @@ export default class SearchModal {
               <img src="../../images/icons/clock.svg" />
             </span>
             <div class="search-result__title-box">
-              <h5 class="search-result__title m-0">${item.title}</h5>
+              <h5 class="search-result__title m-0">${title}</h5>
             </div>
           </div>
           <button class="search-result__delete-btn">
@@ -231,6 +238,7 @@ export default class SearchModal {
     return items.map((item) => this.getHotTemplate(item)).join('');
   }
   private getHotTemplate(item: TItemHot): string {
+    const title = this.capitalizeFirstLetter(item.title);
     return `
       <li class="search-result">
         <a class="search-result__link py-7 pl-20 pr-12">
@@ -239,11 +247,15 @@ export default class SearchModal {
               <img src="../../images/icons/fair.svg" />
             </span>
             <div class="search-result__title-box">
-              <h5 class="search-result__title m-0">${item.title}</h5>
+              <h5 class="search-result__title m-0">${title} ${item.brand}</h5>
             </div>
           </div>
         </a>
       </li>
     `;
+  }
+
+  private capitalizeFirstLetter(title: string): string {
+    return title.slice(0, 1).toUpperCase() + title.slice(1);
   }
 }
