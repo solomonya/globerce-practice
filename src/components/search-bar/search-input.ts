@@ -2,78 +2,98 @@ import { fromEvent, merge, debounceTime } from 'rxjs';
 
 export default class SearchInput {
   private CLASS_SEARCH_INPUT = 'js-search__input';
-  private CLASS_MODAL_SEARCH = 'js-search__input-modal';
   private CLASS_SEARCH_CLEAR = 'js-search__clear';
   private CLASS_SEARCH_CANCEL = 'js-search__cancel';
   private CLASS_DISPLAY_NONE = 'd-none';
   private CLASS_SEARCH_ICON = 'js-search__search-icon';
-  private searchEl: HTMLInputElement;
+
+  private searchEl: HTMLElement;
+  private searchInputEl: HTMLInputElement;
   private searchClearBtn: HTMLElement;
   private searchCancelBtn: HTMLButtonElement;
-  private modalSearch: HTMLInputElement;
   private searchIcon: SVGAElement;
 
-  constructor() {
-    this.searchEl = document.querySelector(`.${this.CLASS_SEARCH_INPUT}`);
-    if (!this.searchEl) return;
-    this.searchClearBtn = document.querySelector(`.${this.CLASS_SEARCH_CLEAR}`);
-    this.searchCancelBtn = document.querySelector(
+  constructor(searchEl: HTMLElement) {
+    this.searchEl = searchEl;
+    this.searchInputEl = this.searchEl.querySelector(
+      `.${this.CLASS_SEARCH_INPUT}`
+    );
+    this.searchClearBtn = this.searchEl.querySelector(
+      `.${this.CLASS_SEARCH_CLEAR}`
+    );
+    this.searchCancelBtn = this.searchEl.querySelector(
       `.${this.CLASS_SEARCH_CANCEL}`
     );
-    this.searchIcon = document.querySelector(`.${this.CLASS_SEARCH_ICON}`);
-    this.modalSearch = document.querySelector(`.${this.CLASS_MODAL_SEARCH}`);
-
+    this.searchIcon = this.searchEl.querySelector(`.${this.CLASS_SEARCH_ICON}`);
+    console.log(this.searchInputEl);
     this.attachEvents();
+  }
 
-    console.log(this.searchEl);
-    console.log(this.searchClearBtn);
+  public clearInput(dispatchEvent = false): void {
+    this.searchInputEl.value = '';
+    this.defineClearBtnState();
+    if (dispatchEvent) {
+      this.emitEventInputChange();
+    }
+    this.searchInputEl.focus();
   }
 
   private attachEvents(): void {
-    fromEvent(this.searchEl, 'focus').subscribe((e: Event) => {
-      this.showCancelBtn();
-      this.colorizeSearchIcon();
-      this.emitEventShowModal();
-      this.modalSearch.focus();
-    });
-
-    fromEvent(this.modalSearch, 'blur').subscribe((e: Event) => {
-      this.returnSearchIconColor();
-    });
-
-    fromEvent(this.modalSearch, 'focus').subscribe((e: Event) => {
-      this.colorizeSearchIcon();
+    fromEvent(this.searchInputEl, 'focus').subscribe((e: Event) => {
+      this.handleInputFocus(e);
     });
 
     fromEvent(this.searchCancelBtn, 'click').subscribe((e: Event) => {
-      this.modalSearch.value = '';
-      this.defineClearBtnState();
       this.emitEventCancel();
     });
 
+    fromEvent(this.searchClearBtn, 'click').subscribe((e: Event) => {
+      this.clearInput(true);
+    });
+
     merge(
-      fromEvent(this.modalSearch, 'input'),
-      fromEvent(this.modalSearch, 'change')
+      fromEvent(this.searchInputEl, 'change'),
+      fromEvent(this.searchInputEl, 'input')
     )
       .pipe(debounceTime(500))
-      .subscribe((e) => {
-        this.defineClearBtnState();
-        this.emitEventInputChange();
+      .subscribe((e: Event) => {
+        this.handleInputChange(e);
       });
 
-    fromEvent(this.searchClearBtn, 'click').subscribe((e: Event) => {
-      this.clearInput();
-      this.modalSearch.dispatchEvent(new Event('change'));
+    fromEvent(this.searchInputEl, 'blur').subscribe((e: Event) => {
+      this.handleInputBlur(e);
     });
   }
-  private emitEventShowModal(): void {
-    this.searchEl.dispatchEvent(
-      new CustomEvent('show-modal', {
-        bubbles: true,
-        composed: true,
-      })
-    );
+
+  public getInputValue(): string {
+    return this.searchInputEl.value;
   }
+
+  public setInputValue(value: string): void {
+    this.searchInputEl.value = value;
+  }
+
+  public focusInput(): void {
+    this.showCancelBtn();
+    this.colorizeSearchIcon();
+    this.searchInputEl.focus();
+  }
+
+  protected handleInputFocus(e: Event): void {
+    this.focusInput();
+    this.emitEventInputFocus();
+  }
+
+  private handleInputChange(e?: Event) {
+    this.defineClearBtnState();
+    this.emitEventInputChange();
+  }
+
+  private handleInputBlur(e: Event) {
+    this.returnSearchIconColor();
+    this.emitEventInputBlur();
+  }
+
   private emitEventCancel(): void {
     this.searchEl.dispatchEvent(
       new CustomEvent('cancel', {
@@ -87,11 +107,24 @@ export default class SearchInput {
     const event = new CustomEvent('input-change', {
       bubbles: true,
       composed: true,
-      detail: {
-        value: this.modalSearch.value,
-      },
     });
-    this.modalSearch.dispatchEvent(event);
+    this.searchEl.dispatchEvent(event);
+  }
+
+  private emitEventInputFocus(): void {
+    const event = new CustomEvent('input-focus', {
+      bubbles: true,
+      composed: true,
+    });
+    this.searchEl.dispatchEvent(event);
+  }
+
+  private emitEventInputBlur(): void {
+    const event = new CustomEvent('input-blur', {
+      bubbles: true,
+      composed: true,
+    });
+    this.searchEl.dispatchEvent(event);
   }
 
   private showCancelBtn(): void {
@@ -107,14 +140,8 @@ export default class SearchInput {
   }
 
   private defineClearBtnState(): void {
-    this.modalSearch.value.length > 0
+    this.searchInputEl.value.length > 0
       ? this.searchClearBtn.classList.remove('d-none')
       : this.searchClearBtn.classList.add('d-none');
-  }
-
-  private clearInput(): void {
-    this.modalSearch.value = '';
-    this.defineClearBtnState();
-    this.modalSearch.focus();
   }
 }

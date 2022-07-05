@@ -5,14 +5,28 @@ export enum ITEMS {
 }
 
 export type TItem = {
-  id: number;
   title: string;
-  subtitle?: string;
-  brand?: string;
   url: string;
 };
 
-export type SearchItems = {
-  type: ITEMS;
-  items: Array<TItem>;
+export type TItemHistory = TItem & {
+  id: number;
+};
+
+export type TItemSearch = TItem & {
+  subtitle: string;
+};
+
+export type TItemHot = TItem & {
+  brand: string;
+};
+
+export type SearchItem =
+  | SearchItemGen<ITEMS.HISTORY, TItemHistory>
+  | SearchItemGen<ITEMS.SEARCH, TItemSearch>
+  | SearchItemGen<ITEMS.HOT, TItemHot>;
+
+export type SearchItemGen<Type = keyof typeof ITEMS, ArrayItemType = any> = {
+  type: Type;
+  items: Array<ArrayItemType>;
 };

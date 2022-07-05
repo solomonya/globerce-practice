@@ -1,31 +1,55 @@
 import axios, { AxiosResponse } from 'axios';
-import { debounceTime, fromEvent, map, merge } from 'rxjs';
-import { TItem, SearchItems } from './modal-types';
+import { fromEvent } from 'rxjs';
+import SearchInput from '../search-bar/search-input';
+import {
+  SearchItem,
+  ITEMS,
+  TItemSearch,
+  TItemHistory,
+  TItemHot,
+} from './modal-types';
 
 export default class SearchModal {
-  private CLASS_SEARCH_MODAL_WRAPPER = 'js-search-modal-wrapper';
-  private CLASS_BODY_CONTENT = 'js-base__layout';
+  private CLASS_BODY = 'js-base__layout';
   private CLASS_CLEAR_HISTORY_BTN = 'js-clear-history-btn';
   private CLASS_MODAL_CONTAINER = 'js-search-modal-container';
-  private searchModalWrapper: HTMLElement;
+  private CLASS_SEARCH = 'js-modal-search';
+
+  private modalEl: HTMLElement;
   private pageBody: HTMLElement;
   private clearHistoryBtn: HTMLButtonElement;
   private searchModalContainer: HTMLUListElement;
+  private searchEl: HTMLElement;
+  private search: SearchInput;
+  private isOpen: boolean = false;
 
-  constructor() {
-    this.searchModalWrapper = document.querySelector(
-      `.${this.CLASS_SEARCH_MODAL_WRAPPER}`
-    );
-    this.pageBody = document.querySelector(`.${this.CLASS_BODY_CONTENT}`);
-    this.clearHistoryBtn = document.querySelector(
+  constructor(modalEl: HTMLElement) {
+    this.modalEl = modalEl;
+    this.searchEl = this.modalEl.querySelector(`.${this.CLASS_SEARCH}`);
+    this.search = new SearchInput(this.searchEl);
+    this.pageBody = document.querySelector(`.${this.CLASS_BODY}`);
+    this.clearHistoryBtn = modalEl.querySelector(
       `.${this.CLASS_CLEAR_HISTORY_BTN}`
     );
-    this.searchModalContainer = document.querySelector(
+    this.searchModalContainer = modalEl.querySelector(
       `.${this.CLASS_MODAL_CONTAINER}`
     );
-
     this.attachEvents();
-    this.buildHistoryList();
+  }
+
+  public open(): void {
+    this.showSearchModal();
+    this.blockPageScroll();
+    this.isOpen = true;
+    this.search.clearInput(false);
+    this.search.focusInput();
+    this.buildSearchItems();
+  }
+
+  public close(): void {
+    this.removeSearchModal();
+    this.returnScroll();
+    this.isOpen = false;
   }
 
   private attachEvents(): void {
@@ -47,46 +71,37 @@ export default class SearchModal {
       }
     });
 
-    fromEvent(document, 'show-modal').subscribe((e: Event) => {
-      this.showSearchModal();
-      this.blockPageScroll();
+    fromEvent(this.searchEl, 'cancel').subscribe((e: Event) => {
+      this.close();
     });
 
-    fromEvent(document, 'cancel').subscribe((e: Event) => {
-      this.removeSearchModal();
-      this.returnScroll();
+    fromEvent(this.searchEl, 'input-change').subscribe(() => {
+      this.buildSearchItems();
     });
-
-    fromEvent(document, 'input-change').subscribe(
-      (e: CustomEvent<{ value: string }>) => {
-        this.searchModalContainer.innerHTML = '';
-        this.removeClearHistoryBtn();
-        this.buildSearchItems(e.detail.value);
-        if (e.detail.value === '') {
-          this.buildHistoryList();
-        }
-      }
-    );
   }
 
   private showSearchModal() {
-    this.searchModalWrapper.classList.remove('d-none');
+    this.modalEl.classList.remove('d-none');
   }
 
   private removeSearchModal() {
-    this.searchModalWrapper.classList.add('d-none');
+    this.modalEl.classList.add('d-none');
   }
 
-  private async buildSearchItems(searchText: string) {
+  private async buildSearchItems() {
+    const searchInputValue = this.search.getInputValue();
     return await axios
-      .get<Array<SearchItems>>(
-        `http://localhost:3003/search-suggest/?q=${searchText}`
+      .get<Array<SearchItem>>(
+        `http://localhost:3003/search-suggest/?q=${searchInputValue}`
       )
       .then((response) => response.data)
-      .then((data: Array<SearchItems>) => {
-        console.log(data);
-        for (const group of data) {
-          this.drawItemsList(group.items, group.type);
+      .then((data: Array<SearchItem>) => {
+        this.searchModalContainer.innerHTML = '';
+        this.searchModalContainer.innerHTML = this.getItemsTemplate(data);
+        if (data.find((item) => item.type === 'history') && !searchInputValue) {
+          this.showClearHistoryBtn();
+        } else {
+          this.hideClearHistoryBtn();
         }
       });
   }
@@ -108,38 +123,24 @@ export default class SearchModal {
     return clearHistoryResponse;
   }
 
-  private clearHistory(clearResponse: Promise<any>) {
+  private clearHistory(clearResponse: Promise<AxiosResponse>) {
     clearResponse
       .then((response) => {
         if (response.status === 200) {
           this.searchModalContainer.innerHTML = '';
-          this.removeClearHistoryBtn();
+          this.hideClearHistoryBtn();
         }
       })
       .catch((err) => console.error(err.message));
 
-    this.buildHistoryList();
+    this.buildSearchItems();
   }
 
-  private removeClearHistoryBtn(): void {
+  private hideClearHistoryBtn(): void {
     this.clearHistoryBtn.classList.add('d-none');
   }
-  private returnClearHistoryBtn(): void {
+  private showClearHistoryBtn(): void {
     this.clearHistoryBtn.classList.remove('d-none');
-  }
-
-  private async buildHistoryList() {
-    console.log('build history!');
-    return await axios
-      .get<SearchItems>('http://localhost:3003/search-suggest/?q=')
-      .then((response) => response.data)
-      .then((responseData) => {
-        console.log(responseData.items);
-        this.drawItemsList(responseData.items, responseData.type);
-        responseData.items.length === 0
-          ? this.removeClearHistoryBtn()
-          : this.returnClearHistoryBtn();
-      });
   }
 
   private removeHistoryItem(id: number): void {
@@ -160,85 +161,89 @@ export default class SearchModal {
     return removeHistoryItemResponse;
   }
 
-  private drawItemsList(drawItems: Array<TItem>, type: string) {
-    drawItems.forEach((item) => {
-      this.buildItem(item, type);
-    });
+  private getItemsTemplate(items: Array<SearchItem>): string {
+    return items
+      .map((item) => {
+        switch (item.type) {
+          case ITEMS.HISTORY: {
+            return this.getHistoryItemsTemplate(item.items);
+          }
+          case ITEMS.SEARCH: {
+            return this.getSearchItemsTemplate(item.items);
+          }
+          case ITEMS.HOT: {
+            return this.getHotItemsTemplate(item.items);
+          }
+        }
+      })
+      .join('');
   }
 
-  private buildItem(item: TItem, itemType: string): void {
-    const searchResult = document.createElement('li');
-    searchResult.className = 'search-result';
-    searchResult.id = `${item.id}`;
-
-    const searchResultLink = document.createElement('a');
-    searchResultLink.className = 'search-result__link py-7 pl-20 pr-12';
-
-    searchResult.append(searchResultLink);
-
-    const resultBox = document.createElement('div');
-    resultBox.className = 'search-result__result-box';
-
-    searchResultLink.append(resultBox);
-
-    const spanIcon = document.createElement('span');
-    spanIcon.classList.add('icon');
-
-    const iconImg = document.createElement('img');
-    const pathImage = this.identifyTypeImage(itemType);
-    iconImg.src = pathImage;
-
-    spanIcon.append(iconImg);
-    resultBox.append(spanIcon);
-
-    const titleBox = document.createElement('div');
-    titleBox.className = 'search-result__title-box';
-    resultBox.append(titleBox);
-
-    const title = document.createElement('h5');
-    const titleText =
-      itemType === 'hot' ? `${item.title} ${item.brand}` : item.title;
-    title.className = 'search-result__title m-0';
-    title.innerText = titleText;
-    titleBox.append(title);
-
-    if (item.hasOwnProperty('subtitle')) {
-      const subtitle = document.createElement('h6');
-      subtitle.className = 'search-result__subtitle m-0';
-      subtitle.innerText = `${item.subtitle}`;
-      titleBox.append(subtitle);
-    }
-
-    if (itemType === 'history') {
-      const deleteBtn = document.createElement('button');
-      deleteBtn.className = 'search-result__delete-btn';
-
-      const spanIcon = document.createElement('span');
-      spanIcon.classList.add('icon');
-      const iconImg = document.createElement('img');
-      const pathImage = '../../images/icons/delete-btn.svg';
-      iconImg.src = pathImage;
-      iconImg.className = 'search-result__delete-btn-icon';
-
-      spanIcon.append(iconImg);
-
-      deleteBtn.append(spanIcon);
-      searchResultLink.append(deleteBtn);
-    }
-
-    this.searchModalContainer.append(searchResult);
+  private getSearchItemsTemplate(items: Array<TItemSearch>): string {
+    return items.map((item) => this.getSearchItemTemplate(item)).join('');
   }
 
-  private identifyTypeImage(imageType: string): string {
-    switch (imageType.toUpperCase()) {
-      case 'HISTORY':
-        return '../../images/icons/clock.svg';
-      case 'SEARCH':
-        return '../../images/icons/search.svg';
-      case 'HOT':
-        return '../../images/icons/fair.svg';
-      default:
-        return 'not exist type';
-    }
+  private getSearchItemTemplate(item: TItemSearch): string {
+    return `
+      <li class="search-result">
+        <a class="search-result__link py-7 pl-20 pr-12">
+          <div class="search-result__result-box">
+            <span class="icon">
+              <img src="../../images/icons/search.svg" />
+            </span>
+            <div class="search-result__title-box">
+              <h5 class="search-result__title m-0">${item.title}</h5>
+              <h6 class="search-result__subtitle m-0">${item.subtitle}</h6>
+            </div>
+          </div>
+        </a>
+      </li>
+    `;
+  }
+
+  private getHistoryItemsTemplate(items: Array<TItemHistory>): string {
+    return items.map((item) => this.getHistoryItemTemplate(item)).join('');
+  }
+
+  private getHistoryItemTemplate(item: TItemHistory): string {
+    return `
+      <li class="search-result" id=${item.id}>
+        <a class="search-result__link py-7 pl-20 pr-12">
+          <div class="search-result__result-box">
+            <span class="icon">
+              <img src="../../images/icons/clock.svg" />
+            </span>
+            <div class="search-result__title-box">
+              <h5 class="search-result__title m-0">${item.title}</h5>
+            </div>
+          </div>
+          <button class="search-result__delete-btn">
+              <span class="icon">
+                <img class="search-result__delete-btn-icon" src="../../images/icons/delete-btn.svg" />
+              </span>
+          </button>
+        </a>
+      </li>
+    `;
+  }
+
+  private getHotItemsTemplate(items: Array<TItemHot>): string {
+    return items.map((item) => this.getHotTemplate(item)).join('');
+  }
+  private getHotTemplate(item: TItemHot): string {
+    return `
+      <li class="search-result">
+        <a class="search-result__link py-7 pl-20 pr-12">
+          <div class="search-result__result-box">
+            <span class="icon">
+              <img src="../../images/icons/fair.svg" />
+            </span>
+            <div class="search-result__title-box">
+              <h5 class="search-result__title m-0">${item.title}</h5>
+            </div>
+          </div>
+        </a>
+      </li>
+    `;
   }
 }
