@@ -1,0 +1,53 @@
+.product-memory-modifiers,
+.product-color-modifiers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px 0;
+
+  &__title {
+    @include font(1.2rem, 1.6rem, $color-grey-40, 500);
+  }
+
+  &__list {
+    @extend %reset-lists;
+    display: flex;
+    gap: 0 4px;
+  }
+}
+
+.product-memory-modifiers {
+  &__memory {
+    border: 1px solid $color-grey-70;
+    border-radius: 8px;
+    @include font(1.4rem, 2rem, $color-dark-xl, 700);
+    padding: 7px 12px;
+  }
+
+  &__memory_selected {
+    border: 1px solid $color-brand-primary-50;
+    background-color: rgba(39, 177, 231, 0.2);
+    color: $color-brand-primary-50;
+  }
+}
+
+.product-color-modifiers {
+  &__color {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    @include set-size(32px, 32px);
+    border-radius: 50%;
+    border: 2px solid $color-grey-70;
+  }
+
+  &__color_selected {
+    border-color: $color-brand-primary-50;
+  }
+
+  &__color-value {
+    display: inline-block;
+    @include set-size(24px, 24px);
+    border-radius: 50%;
+    border: none;
+  }
+}

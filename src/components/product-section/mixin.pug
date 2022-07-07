@@ -1,9 +1,11 @@
+include ../sort-btn/mixin
+
 mixin product-section(props)
-  section&attributes(attributes).product-section.px-20.py-20
+  section.product-section.px-20.py-20
     if (props.header)
       header.product-section__header
-        h5.product-section__title #{props.title}
+        h5.product-section__title.m-0 #{props.header.title}
         if (props.header.append)
           +#{props.header.append}
-    .product-section__body
+    .product-section__body&attributes(attributes)
       block

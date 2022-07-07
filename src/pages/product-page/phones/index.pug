@@ -1,0 +1,25 @@
+extends ../../base-layout
+
+mixin append-sort
+  +sort-btn()
+
+block head
+  title Product page
+
+block header
+  +product-header()
+
+block main
+  - const productSlides = [{src: '../../../images/mocks/product-page-mock.png', alt: 'iphone image'}, {src: '../../../images/mocks/product-page-mock.png', alt: 'iphone image'},{src: '../../../images/mocks/product-page-mock.png', alt: 'iphone image'},{src: '../../../images/mocks/product-page-mock.png', alt: 'iphone image'},{src: '../../../images/mocks/product-page-mock.png', alt: 'iphone image'},{src: '../../../images/mocks/product-page-mock.png', alt: 'iphone image'},{src: '../../../images/mocks/product-page-mock.png', alt: 'iphone image'}];
+  +product-section({header: false}).product-section_product-info
+    +product-slider({slides: productSlides})
+    +product-info({partNumber: '002900006', title: 'Смартфон Apple Iphone 11 128Gb Yellow Смартфон Apple', rate: {
+      rating: 5,
+      reviewsAmount: 17,
+    }})
+  +product-section({header: false}).product-section_product-cost
+    +product-cost({price: 357890, monthlyPayment: 13375, months: 36})
+  +product-section({header: false}).product-section_modifiers
+    +product-memory-modifiers({memories: [{amount: 64}, {amount: 128}, {amount: 256},{amount: 512}]})
+    +product-color-modifiers({colors: [{bgColor: "background-color:#FEECC7"}, {bgColor: "background-color: #FD2D39"},{bgColor: "background-color: #11BCD3"}]})
+  +product-section({header: {title: 'Продавцы', append: "append-sort"}})

@@ -1,0 +1,16 @@
+mixin product-memory-modifiers(props)
+  .product-memory-modifiers
+    h6.product-memory-modifiers__title.m-0 Память
+    ul.product-memory-modifiers__list
+      each memory in props.memories
+        li.product-memory-modifiers__memory #{memory.amount} GB
+          block
+
+mixin product-color-modifiers(props)
+  .product-color-modifiers
+    h6.product-color-modifiers__title.m-0 Цвет
+    ul.product-color-modifiers__list
+      each color in props.colors
+        li.product-color-modifiers__color
+          span(style=color.bgColor).product-color-modifiers__color-value
+          block
