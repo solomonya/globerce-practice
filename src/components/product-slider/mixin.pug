@@ -1,0 +1,12 @@
+include ../plate/mixin
+
+mixin product-slider(props)
+  .product-slider
+    ul.product-slider__wrapper.swiper-wrapper
+      each slide in props.slides
+        li.product-slider__slide.swiper-slide
+          .product-slider__plates
+            +plate({class: "plate_loan plate_lg", title: "0-0-24"})
+            +plate({class: "plate_discount plate_lg", title: "Скидка"})
+          img(src=slide.src, alt="slide.alt")
+    .swiper-pagination

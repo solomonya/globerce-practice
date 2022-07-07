@@ -1,0 +1,13 @@
+include ../rate/mixin
+
+mixin product-info(props)
+  - const rating = props.rate.rating;
+  - const reviewsAmount = props.rate.reviewsAmount;
+  .product-info.mt-16
+    span.product-info__part-number Артикул: #{props.partNumber}
+    h6.product-info__title.m-0.pt-4 #{props.title}
+    +rate({
+      size: 'lg',
+      rate: rating,
+      reviewsAmount: reviewsAmount,
+    }).pt-8

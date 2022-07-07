@@ -38,31 +38,13 @@
     }
   }
 
-  &__tags {
+  &__plates {
     @include flex(stretch, start, column);
     gap: 3px 0;
     padding: 5px;
     position: absolute;
     top: 0;
     left: 2px;
-  }
-
-  &__tag {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
-    @include font(1rem, 1.2rem, $color-extra-light, 700);
-
-    &_loan {
-      padding: 1px 7px;
-      background-color: $color-semantic-error;
-    }
-
-    &_discount {
-      padding: 1px 3px;
-      background-color: $color-primary-green;
-    }
   }
 
   &__favorite-btn {
@@ -80,23 +62,7 @@
     @include font(1.2rem, 1.6rem, $color-grey-10, 500);
     margin: 0;
   }
-  &__rate {
-    display: flex;
-    gap: 0 5px;
-  }
-  &__stars-list {
-    display: inline-flex;
-    @extend %reset-lists;
-    gap: 0 4px;
-  }
-  &__star-icon {
-    display: inline-block;
-    @include set-size(9px, 9px);
-    background: url('images/icons/star.svg') center no-repeat;
-  }
-  &__reviews-amount {
-    @include font(0.8rem, 1rem, $color-grey-20, 500);
-  }
+
   &__cost {
     display: flex;
     gap: 0 5px;
@@ -108,21 +74,5 @@
   }
   &__sale-price {
     @include font(1.2rem, 1.6rem, $color-primary-green, 600);
-  }
-
-  &__loan {
-    width: 55%;
-    @include flex(center, center, row);
-    gap: 4px;
-    background-color: $color-brand-secondary;
-    border-radius: 4px;
-
-    &-monthly-payment {
-      @include font(1.2rem, 1.6rem, $color-dark-xl, 700);
-    }
-
-    &-months {
-      @include font(1rem, 1.2rem, $color-dark-xl, 500);
-    }
   }
 }

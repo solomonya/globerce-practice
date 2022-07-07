@@ -1,0 +1,23 @@
+.product-cost {
+  $this: &;
+
+  display: flex;
+  align-items: center;
+  gap: 0 12px;
+
+  &__price,
+  &__loan {
+    display: flex;
+    flex-direction: column;
+    gap: 4px 0;
+  }
+
+  &__title {
+    @include font(1.2rem, 1.6rem, $color-grey-40, 500);
+  }
+
+  &__price-value {
+    width: 162px;
+    @include font(1.8rem, 2.4rem, $color-extra-dark, 700);
+  }
+}

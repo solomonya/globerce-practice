@@ -1,0 +1,39 @@
+.rate {
+  $this: &;
+
+  display: flex;
+  gap: 0 5px;
+
+  &__stars-list {
+    display: inline-flex;
+    @extend %reset-lists;
+  }
+
+  &_sm {
+    #{$this}__stars-list {
+      gap: 0 2px;
+    }
+
+    #{$this}__star-icon {
+      display: inline-block;
+      @include set-size(10px, 10px);
+      background: url('images/icons/star.svg') center no-repeat;
+    }
+
+    #{$this}__reviews-amount {
+      @include font(0.8rem, 1rem, $color-grey-20, 500);
+    }
+  }
+
+  &_lg {
+    #{$this}__star-icon {
+      display: inline-block;
+      @include set-size(16px, 16px);
+      background: url('images/icons/star-lg.svg') center no-repeat;
+    }
+
+    #{$this}__reviews-amount {
+      @include font(1.2rem, 1.6rem, $color-grey-20, 500);
+    }
+  }
+}

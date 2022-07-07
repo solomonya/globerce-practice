@@ -1,0 +1,28 @@
+.product-loan {
+  $this: &;
+
+  &_sm {
+    @include set-size(102px, 18px);
+    #{$this}__monthly-payment {
+      @include font(1.2rem, 1.6rem, $color-dark-xl, 700);
+    }
+    #{$this}__months {
+      @include font(1rem, 1.2rem, $color-dark-xl, 500);
+    }
+  }
+
+  &_lg {
+    @include set-size(115px, 24px);
+    #{$this}__monthly-payment {
+      @include font(1.4rem, 2rem, $color-dark-xl, 700);
+    }
+    #{$this}__months {
+      @include font(1.2rem, 1.6rem, $color-dark-xl, 500);
+    }
+  }
+
+  @include flex(center, center, row);
+  gap: 4px;
+  background-color: $color-brand-secondary;
+  border-radius: 4px;
+}

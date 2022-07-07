@@ -1,0 +1,5 @@
+mixin product-loan(props)
+  - const size = props.size === 'sm' ? 'product-loan_sm' : 'product-loan_lg'
+  div(class=size).product-loan
+    span.product-loan__monthly-payment #{props.monthlyPayment} ₸
+    span.product-loan__months x #{props.months} мес

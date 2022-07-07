@@ -1,0 +1,12 @@
+include ../product-loan/mixin.pug
+
+mixin product-cost(props)
+  .product-cost
+    .product-cost__price
+      span.product-cost__title Цена:
+      h6.m-0.product-cost__price-value от #{props.price} ₸
+    .product-cost__loan
+      span.product-cost__title В кредит:
+      - const monthlyPayment = props.monthlyPayment;
+      - const months = props.months;
+      +product-loan({size: 'lg', monthlyPayment: monthlyPayment, months: months})

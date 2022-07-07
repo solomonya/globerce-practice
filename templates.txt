@@ -22,3 +22,23 @@
       this.buildHistoryList(this.getHistoryList());
       this.defineClearHistoryBtnState();
     });
+
+
+
+    &__tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    @include font(1rem, 1.2rem, $color-extra-light, 700);
+
+    &_loan {
+      padding: 1px 7px;
+      background-color: $color-semantic-error;
+    }
+
+    &_discount {
+      padding: 1px 3px;
+      background-color: $color-primary-green;
+    }
+  }

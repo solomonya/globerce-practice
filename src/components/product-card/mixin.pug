@@ -1,19 +1,16 @@
-mixin rate(props)
-  .product-card__rate
-    ul.product-card__stars-list
-      - for (var i = 0; i < props.rate; i++)
-        li.product-card__star-icon
-    span.product-card__reviews-amount #{props.reviewsAmount} отзывов
+include ../plate/mixin
+include ../rate/mixin
+include ../product-loan/mixin
 
 mixin product-card(props)
   - const cardSize = props.size === 'sm' ? 'product-card_sm' : 'product-card_lg'
   a(class=cardSize).product-card&attributes(attributes)
-    if props && props.tags
-      .product-card__tags
-        if props.tags.installments
-          span.product-card__tag.product-card__tag_loan #{props.tags.installments}
-        if props.tags.discount
-          span.product-card__tag.product-card__tag_discount #{props.tags.discount}
+    if props && props.plates
+      .product-card__plates
+        if props.plates.installments
+          +plate({class: "plate_loan plate_sm", title: "0-0-24"})
+        if props.plates.discount
+          +plate({class: "plate_discount plate_sm", title: "Скидка"})
     button.product-card__favorite-btn
       span.product-card__favorite-icon
     .product-card__img-box
@@ -21,14 +18,13 @@ mixin product-card(props)
     .product-card__body
       h3.product-card__title #{props.title}
       +rate({
+          size: 'sm',
           rate: 5,
           reviewsAmount: 35,
-      }).product-card__rate
+      })
       .product-card__cost
         span.product-card__sale-price #{props.prices.new}
         span.product-card__price #{props.prices.old}
       if props.loan
-        .product-card__loan
-          span.product-card__loan-monthly-payment #{props.loan.monthlyPayment} ₸
-          span.product-card__loan-months x #{props.loan.months} мес
+        +product-loan({size: 'sm', monthlyPayment: 4888, months: 36})
 

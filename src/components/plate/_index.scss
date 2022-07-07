@@ -1,0 +1,29 @@
+.plate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+
+  &_sm {
+    @include font(1rem, 1.2rem, $color-extra-light, 700);
+  }
+
+  &_lg {
+    width: 67px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    @include font(1.4rem, 2rem, $color-extra-light, 700);
+  }
+
+  &_loan {
+    padding: 1px 7px;
+    background-color: $color-semantic-error;
+  }
+
+  &_discount {
+    padding: 1px 3px;
+    background-color: $color-primary-green;
+  }
+}

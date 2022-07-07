@@ -1,0 +1,24 @@
+.product-slider {
+  overflow-x: hidden;
+
+  &__wrapper {
+    @extend %reset-lists;
+  }
+
+  &__slide {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  &__plates {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px 0;
+  }
+}

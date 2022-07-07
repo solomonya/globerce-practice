@@ -1,0 +1,7 @@
+mixin rate(props)
+  - const size = props.size === 'sm' ? 'rate_sm' : 'rate_lg';
+  div(class=size)&attributes(attributes).rate
+    ul.rate__stars-list
+      - for (var i = 0; i < props.rate; i++)
+        li.rate__star-icon
+    span.rate__reviews-amount #{props.reviewsAmount} отзывов
