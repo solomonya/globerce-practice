@@ -1,0 +1,52 @@
+.star-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.star-list {
+  $this: &;
+
+  display: inline-flex;
+  @extend %reset-lists;
+
+  &_active {
+    position: absolute;
+    overflow: hidden;
+  }
+
+  &_passive {
+  }
+
+  &_sm {
+    gap: 0 2px;
+
+    #{$this}__star_active {
+      display: inline-block;
+      min-width: 10px;
+      min-height: 10px;
+      background: url('images/icons/star.svg') center no-repeat;
+    }
+
+    #{$this}__star_passive {
+      display: inline-block;
+      @include set-size(10px, 10px);
+      background: url('images/icons/star-grey-sm.svg') center no-repeat;
+    }
+  }
+
+  &_lg {
+    #{$this}__star_active {
+      display: inline-block;
+      min-width: 16px;
+      min-height: 16px;
+      background: url('images/icons/star-lg.svg') center no-repeat;
+    }
+
+    #{$this}__star_passive {
+      display: inline-block;
+      @include set-size(16px, 16px);
+      background: url('images/icons/star-grey-lg.svg') center no-repeat;
+    }
+  }
+}

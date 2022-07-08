@@ -1,0 +1,11 @@
+mixin star-list(props)
+  - const size = props.size === 'sm' ? 'star-list_sm' : 'star-list_lg';
+    .star-box
+      - const rate = Number(props.rate) * 20;
+      - const styleEl = 'width:' + ' ' + rate + '%';
+      ul(class=size, style=styleEl).star-list.star-list_active
+        - for(let i = 0; i < 5; i++)
+            li.star-list__star_active
+      ul(class=size).star-list.star-list_passive
+        - for(let j = 0; j < 5; j++)
+            li.star-list__star_passive
