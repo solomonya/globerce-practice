@@ -1,0 +1,58 @@
+.reviews-statistic {
+  display: flex;
+  align-items: center;
+  gap: 0 16px;
+
+  &__reviews {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__evaluation {
+    @include font(2.4rem, 3.2rem, $color-dark-xl, 700);
+  }
+
+  &__reviews-amount {
+    @include font(1rem, 1.2rem, $color-dark-70, 500);
+  }
+
+  &__statistic {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px 0;
+  }
+
+  &__eval-amount {
+    display: flex;
+    align-items: center;
+    gap: 0 9px;
+  }
+
+  &__eval-value {
+    @include font(1.2rem, 1.6rem, $color-dark-10, 700);
+  }
+
+  &__eval-visual-box,
+  &__eval-visual-bg,
+  &__eval-visual {
+    width: 100%;
+    height: 6px;
+    border-radius: 8px;
+  }
+
+  &__eval-visual-box {
+    position: relative;
+  }
+
+  &__eval-visual-bg {
+    background-color: $color-grey-80;
+  }
+
+  &__eval-visual {
+    position: absolute;
+    background-color: $color-reviews;
+    top: 0;
+  }
+}
