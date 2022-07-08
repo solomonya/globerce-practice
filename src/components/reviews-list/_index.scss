@@ -1,0 +1,32 @@
+.reviews-list {
+  @extend %reset-lists;
+  display: flex;
+  overflow-x: scroll;
+  @extend %hide-scroll;
+  gap: 0 16px;
+  margin: 0 -20px;
+}
+
+.review-card {
+  width: 276px;
+  border: 1px solid $color-grey-80;
+  border-radius: 8px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__user-name {
+    @include font(1.4rem, 2rem, $color-extra-dark, 700);
+  }
+
+  &__date {
+    @include font(1.2rem, 1.6rem, $color-grey-60, 500);
+  }
+
+  &__review-text {
+    @include font(1.4rem, 2rem, $color-extra-dark, 500);
+  }
+}

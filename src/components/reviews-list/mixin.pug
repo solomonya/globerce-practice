@@ -1,0 +1,16 @@
+include ../star-list/mixin
+
+mixin review-card(props)
+  .review-card.p-12
+    .review-card__header
+      h6.review-card__user-name.m-0.mb-4  #{props.userName}
+      - const reviewRate = props.reviewRate;
+      +star-list({size: 'lg', rate: reviewRate})
+    span.review-card__date #{props.date}
+    p.pt-8.m-0.review-card__review-text #{props.reviewText}
+
+mixin reviews-list(props)
+  ul.reviews-list.py-29.pb-24.px-20
+    each review in props.reviews
+      li.reviews-list__item
+        +review-card(review)
