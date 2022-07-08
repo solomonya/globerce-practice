@@ -1,5 +1,8 @@
 mixin product-loan(props)
   - const size = props.size === 'sm' ? 'product-loan_sm' : 'product-loan_lg'
-  div(class=size).product-loan
-    span.product-loan__monthly-payment #{props.monthlyPayment} ₸
+  - const type = props.type === 'standard' ? 'product-loan_st' : 'product-loan_gold';
+  - const classEl = size + ' ' + type;
+  div(class=classEl).product-loan
+    - let monthlyPayment = props.monthlyPayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    span.product-loan__monthly-payment #{monthlyPayment} ₸
     span.product-loan__months x #{props.months} мес

@@ -18,9 +18,16 @@ block main
       reviewsAmount: 17,
     }})
   +product-section({header: false}).product-section_product-cost
-    +product-cost({price: 357890, monthlyPayment: 13375, months: 36})
+    +product-cost({from: 'от', price: 357890, loanType: 'standard', loan: 'В кредит', monthlyPayment: 13375, months: 36})
   +product-section({header: false}).product-section_modifiers
     +product-memory-modifiers({memories: [{amount: 64}, {amount: 128, selected: true}, {amount: 256},{amount: 512}]})
     +product-color-modifiers({colors: [{bgColor: "background-color:#FEECC7"}, {bgColor: "background-color: #FD2D39", selected: true},{bgColor: "background-color: #11BCD3"}]})
   +product-section({header: {title: 'Продавцы', append: "append-sort"}})
     +payment({months: [{value: 3, id: 1}, {value: 12, id: 2},{value: 24, id: 3},{value: 48, id: 4},{value: 60, id: 5}]})
+    +sellers-list({sellers: [{title: 'Evrica', sellerRate: 5, sellerReviewsAmount: 17, delivery: {price: 'Бесплатно', from: 1, to: 2, selfCall: false}, cost: {
+      price: 667890, monthlyPayment: 226630, months: 3, loan: 'В рассрочку'
+    }}, {title: 'Alser', sellerRate: 5, sellerReviewsAmount: 17, delivery: {price: 'Бесплатно', from: 1, to: 2, selfCall: false}, cost: {
+      price: 4667890, monthlyPayment: 1222630, months: 3, loan: 'В рассрочку'
+    }}, {title: 'Sulpak', sellerRate: 5, sellerReviewsAmount: 17, delivery: {price: 'Бесплатно', from: 1, to: 2, selfCall: false}, cost: {
+      price: 4667890, monthlyPayment: 1222630, months: 3, loan: 'В рассрочку'
+    }}]})

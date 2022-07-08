@@ -1,0 +1,32 @@
+include ../rate/mixin
+include ../select-btn/mixin
+include ../product-cost/mixin
+
+mixin seller-card(props)
+  .seller-card.py-12
+    .seller-card__header
+      .seller-card__header-content.px-12.pb-8
+        .seller-card__seller
+          h6.seller-card__title.m-0 #{props.title}
+          - const sellerRate = props.sellerRate
+          - const sellerReviewsAmount = props.sellerReviewsAmount
+          +rate({size: 'sm', rate: sellerRate, reviewsAmount: sellerReviewsAmount})
+        +select-btn()
+    .seller-card__body
+      .seller-card__body-content.px-12.py-8
+        span.seller-card__delivery Доставка - #{props.delivery.price}, #{props.delivery.from}-#{props.delivery.to} дня
+        if (props.delivery.selfCall)
+          span.seller-card__self-call Доступен самовызов
+        else
+          span.seller-card__self-call Самовызов отсутствует
+    .seller-card__footer
+      .seller-card__footer-content.pl-12.py-8
+        +product-cost(props.cost)
+
+
+
+mixin sellers-list(props)
+  ul.sellers-list
+    each seller in props.sellers
+      li.sellers-list__item
+        +seller-card(seller)

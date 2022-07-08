@@ -2,7 +2,7 @@
   $this: &;
 
   &_sm {
-    @include set-size(102px, 18px);
+    padding: 1px 8px;
     #{$this}__monthly-payment {
       @include font(1.2rem, 1.6rem, $color-dark-xl, 700);
     }
@@ -12,7 +12,7 @@
   }
 
   &_lg {
-    @include set-size(115px, 24px);
+    padding: 2px 7px;
     #{$this}__monthly-payment {
       @include font(1.4rem, 2rem, $color-dark-xl, 700);
     }
@@ -21,8 +21,21 @@
     }
   }
 
+  &_st {
+    background-color: $color-brand-secondary;
+  }
+
+  &_gold {
+    #{$this}__monthly-payment {
+      color: $color-extra-light;
+    }
+    #{$this}__months {
+      color: $color-extra-light;
+    }
+    background-color: $color-brand-secondary-50;
+  }
+
   @include flex(center, center, row);
   gap: 4px;
-  background-color: $color-brand-secondary;
   border-radius: 4px;
 }

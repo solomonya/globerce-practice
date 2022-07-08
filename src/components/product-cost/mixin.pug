@@ -4,9 +4,12 @@ mixin product-cost(props)
   .product-cost
     .product-cost__price
       span.product-cost__title Цена:
-      h6.m-0.product-cost__price-value от #{props.price} ₸
+      - let price = props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      h6.m-0.product-cost__price-value #{props.from} #{price} ₸
     .product-cost__loan
-      span.product-cost__title В кредит:
+      - const loan = props.loan;
+      span.product-cost__title #{loan}:
       - const monthlyPayment = props.monthlyPayment;
       - const months = props.months;
-      +product-loan({size: 'lg', monthlyPayment: monthlyPayment, months: months})
+      - const loanType = props.loanType;
+      +product-loan({type: loanType, size: 'lg', monthlyPayment: monthlyPayment, months: months})
