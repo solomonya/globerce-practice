@@ -1,7 +1,7 @@
 include ../sort-btn/mixin
 
 mixin product-section(props)
-  section.product-section.px-20.py-20
+  section.product-section.px-20.py-20&attributes(attributes)
     if (props.header)
       header.product-section__header
         h5.product-section__title.m-0 #{props.header.title}
