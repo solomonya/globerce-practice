@@ -1,0 +1,83 @@
+select {
+  // A reset of styles, including removing the default dropdown arrow
+  appearance: none;
+  // Additional resets for further consistency
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  gap: 8px 0;
+
+  &__loan {
+    border: 1px solid $color-brand-primary-50;
+    border-radius: 8px;
+  }
+
+  &__title-box {
+    display: flex;
+    align-items: center;
+    gap: 0 5px;
+  }
+
+  &__title-loan {
+    @include font(1.4rem, 2rem, $color-brand-primary-50, 700);
+  }
+
+  &__title-available-months {
+    @include font(1.2rem, 1.6rem, $color-brand-primary-50, 500);
+  }
+
+  &__loan-box {
+    border-top: 1px solid $color-grey-80;
+  }
+
+  &__loan-list {
+    @extend %reset-lists;
+    display: flex;
+    gap: 0 4px;
+  }
+
+  &__loan-input {
+    display: none;
+  }
+
+  &__loan-months {
+    @extend %reset-btn;
+    border: 1px solid $color-grey-70;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    @include font(1.4rem, 2rem, $color-dark-xl, 700);
+    @include set-size(47px, 36px);
+  }
+
+  &__loan-input:checked + &__loan-months {
+    border: 1px solid $color-brand-primary-50;
+    background-color: rgba(39, 177, 231, 0.2);
+    color: $color-brand-primary-50;
+  }
+
+  &__select {
+    width: 100%;
+    border: 1px solid $color-grey-70;
+    border-radius: 8px;
+    @include font(1.4rem, 2rem, $color-dark-xl, 700);
+    padding: 8px 16px;
+  }
+}

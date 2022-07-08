@@ -20,6 +20,7 @@ block main
   +product-section({header: false}).product-section_product-cost
     +product-cost({price: 357890, monthlyPayment: 13375, months: 36})
   +product-section({header: false}).product-section_modifiers
-    +product-memory-modifiers({memories: [{amount: 64}, {amount: 128}, {amount: 256},{amount: 512}]})
-    +product-color-modifiers({colors: [{bgColor: "background-color:#FEECC7"}, {bgColor: "background-color: #FD2D39"},{bgColor: "background-color: #11BCD3"}]})
+    +product-memory-modifiers({memories: [{amount: 64}, {amount: 128, selected: true}, {amount: 256},{amount: 512}]})
+    +product-color-modifiers({colors: [{bgColor: "background-color:#FEECC7"}, {bgColor: "background-color: #FD2D39", selected: true},{bgColor: "background-color: #11BCD3"}]})
   +product-section({header: {title: 'Продавцы', append: "append-sort"}})
+    +payment({months: [{value: 3, id: 1}, {value: 12, id: 2},{value: 24, id: 3},{value: 48, id: 4},{value: 60, id: 5}]})

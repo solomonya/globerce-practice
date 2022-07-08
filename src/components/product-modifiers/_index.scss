@@ -12,6 +12,8 @@
     @extend %reset-lists;
     display: flex;
     gap: 0 4px;
+    align-items: center;
+    min-height: 36px;
   }
 }
 
@@ -19,11 +21,16 @@
   &__memory {
     border: 1px solid $color-grey-70;
     border-radius: 8px;
+    background: none;
     @include font(1.4rem, 2rem, $color-dark-xl, 700);
     padding: 7px 12px;
   }
 
-  &__memory_selected {
+  &__memory-input {
+    display: none;
+  }
+
+  &__memory-input:checked + &__memory {
     border: 1px solid $color-brand-primary-50;
     background-color: rgba(39, 177, 231, 0.2);
     color: $color-brand-primary-50;
@@ -31,7 +38,12 @@
 }
 
 .product-color-modifiers {
+  &__color-input {
+    display: none;
+  }
+
   &__color {
+    @extend %reset-btn;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +52,7 @@
     border: 2px solid $color-grey-70;
   }
 
-  &__color_selected {
+  &__color-input:checked + &__color {
     border-color: $color-brand-primary-50;
   }
 
