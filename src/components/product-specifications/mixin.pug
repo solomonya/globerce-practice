@@ -1,0 +1,14 @@
+mixin specifications-block(props)
+  .product-specifications__block&attributes(attributes)
+    h6.m-0.mb-4.product-specifications__title #{props.title}
+    each specification in props.specs
+      - const multiple = specification.multipleLine ? 'product-specifications__line_multiple' : '';
+      div(class=multiple).product-specifications__line
+        span.product-specifications__header #{specification.header}
+        span.product-specifications__value #{specification.value}
+
+
+mixin product-specifications(props)
+  .product-specifications.pt-16
+    +specifications-block(props.general).product-specifications__block_bg.p-12
+    +specifications-block(props.display).pt-12

@@ -1,0 +1,33 @@
+.product-specifications {
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px 0;
+  }
+
+  &__block_bg {
+    background-color: $color-grey-90;
+    border-radius: 8px;
+  }
+
+  &__title {
+    @include font(1.4rem, 2rem, $color-extra-dark, 700);
+  }
+
+  &__line {
+    display: flex;
+    gap: 0 3px;
+  }
+
+  &__line_multiple {
+    flex-direction: column;
+  }
+
+  &__header {
+    @include font(1.4rem, 2rem, $color-grey-40, 500);
+  }
+
+  &__value {
+    @include font(1.4rem, 2rem, $color-dark-xl, 500);
+  }
+}
