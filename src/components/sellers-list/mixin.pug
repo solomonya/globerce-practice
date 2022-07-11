@@ -2,8 +2,93 @@ include ../rate/mixin
 include ../select-btn/mixin
 include ../product-cost/mixin
 
+-
+  var offerData = {
+    0: {
+      type: 'FULL_PRICE',
+      discountPrice: '235 000 ₸',
+      delivery: {
+        date: '1-2 дня',
+        price: 'Бесплатно',
+      },
+    },
+    3: {
+      loanPrice: '259 083 ₸',
+      month: 'x 3 мес.',
+      label: 'В рассрочку',
+      type: 'LOAN',
+      discountPrice: '230 000 ₸',
+      delivery: {
+        date: '1-2 дня',
+        price: 'Бесплатно',
+      },
+    },
+    12: {
+      loanPrice: '50 000 ₸',
+      month: 'x 12 мес.',
+      label: 'В рассрочку',
+      type: 'LOAN',
+      discountPrice: '230 000 ₸',
+      delivery: null,
+    },
+    24: {
+      loanPrice: '25 500 ₸',
+      month: 'x 24 мес.',
+      label: 'В кредит',
+      type: 'CREDIT',
+      discountPrice: '230 000 ₸',
+      delivery: {
+        date: 'сегодня',
+        price: '500 ₸',
+      },
+    },
+    36: {
+      loanPrice: '35 560 ₸',
+      month: 'x 36 мес.',
+      label: 'В кредит',
+      type: 'CREDIT',
+      discountPrice: null,
+      delivery: null,
+    },
+  }
+  var offerDataTwo = {
+    0: {
+      type: 'FULL_PRICE',
+      discountPrice: '300000 ₸',
+      discountPrice: null,
+      delivery: null,
+    },
+    3: {
+      loanPrice: '275 000 ₸',
+      month: 'x 3 мес.',
+      label: 'В рассрочку',
+      type: 'LOAN',
+      discountPrice: '230 000 ₸',
+      delivery: {
+        date: 'завтра',
+        price: '1500 ₸',
+      },
+    },
+    24: {
+      loanPrice: '30 500 ₸',
+      month: 'x 24 мес.',
+      label: 'В кредит',
+      type: 'CREDIT',
+      discountPrice: null,
+      delivery: null,
+    },
+    36: {
+      loanPrice: '45 560 ₸',
+      month: 'x 36 мес.',
+      label: 'В кредит',
+      type: 'CREDIT',
+      discountPrice: null,
+      delivery: null,
+    }
+  }
+
 mixin seller-card(props)
-  .seller-card
+  .seller-card&attributes(attributes)
     .seller-card__header
       .seller-card__header-content
         .seller-card__seller
@@ -27,6 +112,6 @@ mixin seller-card(props)
 
 mixin sellers-list(props)
   ul.sellers-list
-    each seller in props.sellers
+    each seller, i in props.sellers
       li.sellers-list__item
-        +seller-card(seller)
+        +seller-card(seller)(data-offers= i % 2 ? offerData : offerDataTwo).js-productSellersItem

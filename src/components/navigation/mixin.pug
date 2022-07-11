@@ -1,8 +1,8 @@
-- var navLinks = [{icon: '../../../images/icons/home.svg', alt: 'home icon', text: 'Главная'}, {icon: '../../../images/icons/categories.svg', alt: 'category icon', text: 'Категории'}, {icon: '../../../images/icons/busket.svg', alt: 'busket icon', text: 'Корзина', active: true}, {icon: '../../../images/icons/user.svg', alt: 'user icon', text: 'Профиль'}, {icon: '../../../images/icons/globerce-logo-small.svg', alt: 'globerce icon', text: 'Globerce'}]
+- var navLinks = [{icon: '../../../images/icons/home.svg', alt: 'home icon', text: 'Главная', link: '../../../pages/mobile-page/index.html'}, {icon: '../../../images/icons/categories.svg', alt: 'category icon', text: 'Категории'}, {icon: '../../../images/icons/busket.svg', alt: 'busket icon', text: 'Корзина', active: true}, {icon: '../../../images/icons/user.svg', alt: 'user icon', text: 'Профиль'}, {icon: '../../../images/icons/globerce-logo-small.svg', alt: 'globerce icon', text: 'Globerce'}]
 
 
 mixin navigation-link(props)
-  a(href="#").navigation-link
+  a(href=props.link).navigation-link
     img(src=props.icon, alt=props.alt)
     span.navigation-link__text #{props.text}
 
