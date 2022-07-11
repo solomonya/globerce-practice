@@ -21,11 +21,11 @@
     }
   }
 
-  &_st {
+  &_credit {
     background-color: $color-brand-secondary;
   }
 
-  &_gold {
+  &_loan {
     #{$this}__monthly-payment {
       color: $color-extra-light;
     }
