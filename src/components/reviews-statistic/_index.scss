@@ -33,26 +33,4 @@
   &__eval-value {
     @include font(1.2rem, 1.6rem, $color-dark-10, 700);
   }
-
-  &__eval-visual-box,
-  &__eval-visual-bg,
-  &__eval-visual {
-    width: 100%;
-    height: 6px;
-    border-radius: 8px;
-  }
-
-  &__eval-visual-box {
-    position: relative;
-  }
-
-  &__eval-visual-bg {
-    background-color: $color-grey-80;
-  }
-
-  &__eval-visual {
-    position: absolute;
-    background-color: $color-reviews;
-    top: 0;
-  }
 }

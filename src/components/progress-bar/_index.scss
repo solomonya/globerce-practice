@@ -1,0 +1,21 @@
+.progress-bar,
+.progress-bar__progress,
+.progress-bar__bg {
+  width: 100%;
+  height: 6px;
+  border-radius: 8px;
+}
+
+.progress-bar {
+  position: relative;
+
+  &__bg {
+    background-color: $color-grey-80;
+  }
+
+  &__progress {
+    position: absolute;
+    background-color: $color-reviews;
+    top: 0;
+  }
+}

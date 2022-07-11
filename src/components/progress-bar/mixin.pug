@@ -1,0 +1,6 @@
+mixin progress-bar(props)
+  - const progress = Math.floor(Number(props.progress));
+  - const style = `width: ${progress}%`;
+  .progress-bar
+    div(style=style).progress-bar__progress
+    .progress-bar__bg

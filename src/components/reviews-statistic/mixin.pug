@@ -1,3 +1,5 @@
+include ../progress-bar/mixin
+
 mixin reviews-statistic(props)
   - let reviewsAmount = 0;
   - let sumOfRatings = 0;
@@ -14,10 +16,8 @@ mixin reviews-statistic(props)
     .reviews-statistic__statistic
       each value, key in statistics
         - let percent = (Number(value) / Number(reviewsAmount)) * 100;
-        - let style = 'width:' + ' ' + percent + '%';
         .reviews-statistic__eval-amount
           span.reviews-statistic__eval-value= key
-          .reviews-statistic__eval-visual-box
-            .reviews-statistic__eval-visual-bg
-            div(style=style).reviews-statistic__eval-visual
+          +progress-bar({progress: percent})
+
 
