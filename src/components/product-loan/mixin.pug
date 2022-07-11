@@ -4,5 +4,5 @@ mixin product-loan(props)
   - const classEl = size + ' ' + type;
   div(class=classEl).product-loan
     - let monthlyPayment = props.monthlyPayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    span.product-loan__monthly-payment #{monthlyPayment} ₸
-    span.product-loan__months x #{props.months} мес
+    span.product-loan__monthly-payment.js-loanMonthlyPayment #{monthlyPayment} ₸
+    span.product-loan__months.js-loanMonths x #{props.months} мес

@@ -9,6 +9,7 @@ export default class ProductSellers {
   private loanSellector: LoanSelector;
 
   constructor() {
+    this.loanSellector = new LoanSelector();
     this.sellerCards = [];
     this.sellerCardsElems = document.querySelectorAll(
       `.${this.CLASS_SELLER_CARD}`
@@ -17,6 +18,17 @@ export default class ProductSellers {
     Array.from(this.sellerCardsElems).forEach((elem) => {
       this.sellerCards.push(new SellerCard(elem as HTMLElement));
     });
-    console.log(this.sellerCards);
+    this.attachEvents();
+  }
+
+  private attachEvents() {
+    const streamOnChange = this.loanSellector.getStreamOnChange();
+    streamOnChange.subscribe((e: Event) => {
+      const month = e.target as HTMLElement;
+      const monthValue = month.getAttribute('data-value');
+      this.sellerCards.forEach((sellerCard) => {
+        sellerCard.setLoanPrice(Number(monthValue));
+      });
+    });
   }
 }

@@ -4,7 +4,7 @@ export enum PaymentType {
   CREDIT = 'CREDIT',
 }
 
-interface SellerInfo {
+export interface SellerInfo {
   type: PaymentType;
   discountPrice: string | null;
   loanPrice: string | null;
