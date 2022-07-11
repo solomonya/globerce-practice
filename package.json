@@ -6,8 +6,7 @@
   "scripts": {
     "start": "set NODE_ENV=development&&webpack serve",
     "dev": "set NODE_ENV=development&&webpack",
-    "build": "set NODE_ENV=production&&webpack",
-    "back-dev": "nodemon --exec \"ts-node --project tsconfig.json ./server/index.ts"
+    "build": "set NODE_ENV=production&&webpack"
   },
   "repository": {
     "type": "git",

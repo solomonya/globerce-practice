@@ -7,7 +7,10 @@ mixin review-card(props)
       - const reviewRate = props.reviewRate;
       +star-list({size: 'lg', rate: reviewRate})
     span.review-card__date #{props.date}
-    p.pt-8.m-0.review-card__review-text #{props.reviewText}
+    .review-card__text-box
+      p.review-card__review-text #{props.reviewText}
+      .review-card__full-text-box
+        button.review-card__full-text-btn Читать полный отзыв
 
 mixin reviews-list(props)
   ul.reviews-list.py-29.pb-24.px-20

@@ -75,4 +75,8 @@
   &__sale-price {
     @include font(1.2rem, 1.6rem, $color-primary-green, 600);
   }
+
+  &__loan-box {
+    width: 65%;
+  }
 }

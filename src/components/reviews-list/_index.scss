@@ -3,8 +3,13 @@
   display: flex;
   overflow-x: scroll;
   @extend %hide-scroll;
-  gap: 0 16px;
   margin: 0 -20px;
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+  }
 }
 
 .review-card {
@@ -26,7 +31,33 @@
     @include font(1.2rem, 1.6rem, $color-grey-60, 500);
   }
 
+  &__text-box {
+    margin-top: 8px;
+    max-height: 120px;
+    position: relative;
+    overflow-y: hidden;
+  }
+
+  &__full-text-box {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: $color-extra-light;
+
+    &::before {
+      content: '...';
+      @include font(1.4rem, 2rem, $color-extra-dark, 500);
+    }
+  }
+
+  &__full-text-btn {
+    @extend %reset-btn;
+    padding: 0 4px;
+    @include font(1.4rem, 2rem, $color-brand-primary-50, 500);
+  }
+
   &__review-text {
+    margin: 0;
     @include font(1.4rem, 2rem, $color-extra-dark, 500);
   }
 }

@@ -26,5 +26,6 @@ mixin product-card(props)
         span.product-card__sale-price #{props.prices.new}
         span.product-card__price #{props.prices.old}
       if props.loan
-        +product-loan({size: 'sm', monthlyPayment: 4888, months: 36})
+        .product-card__loan-box
+          +product-loan({type: 'standard', size: 'sm', monthlyPayment: 4888, months: 36})
 
