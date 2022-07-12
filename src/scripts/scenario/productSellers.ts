@@ -26,9 +26,15 @@ export default class ProductSellers {
     streamOnChange.subscribe((e: Event) => {
       const month = e.target as HTMLElement;
       const monthValue = month.getAttribute('data-value');
-      this.sellerCards.forEach((sellerCard) => {
-        sellerCard.setLoanPrice(Number(monthValue));
-      });
+      if (parseInt(monthValue)) {
+        this.sellerCards.forEach((sellerCard) => {
+          sellerCard.setLoanPrice(parseInt(monthValue));
+        });
+      } else if (monthValue === 'card') {
+        this.sellerCards.forEach((sellerCard) => {
+          sellerCard.setFullPrice();
+        });
+      }
     });
   }
 }

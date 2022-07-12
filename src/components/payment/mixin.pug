@@ -1,9 +1,7 @@
 mixin payment(props)
-  .payment.py-16
+  .payment.js-payment.py-16
     .payment__type
-      select.payment__select
-        option(value="card") Оплата картой
-        option(value="cash") Оплата наличными
+      button(data-value='card').js-paymentCard.payment__card Оплата картой
     .payment__loan.py-8
       .payment__title-box.px-16.pb-8
         span.payment__title-loan Рассрочка / кредит

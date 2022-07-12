@@ -73,7 +73,8 @@ select {
     color: $color-brand-primary-50;
   }
 
-  &__select {
+  &__card {
+    @extend %reset-btn;
     width: 100%;
     border: 1px solid $color-grey-70;
     border-radius: 8px;

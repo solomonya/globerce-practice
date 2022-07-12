@@ -6,9 +6,9 @@ mixin product-cost(props)
       span.product-cost__title Цена:
       - let price = props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
       h6.m-0.product-cost__price-value.js-productCost #{props.from} #{price} ₸
-    .product-cost__loan
+    .product-cost__loan.js-productLoan
       - const loan = props.loanType === 'credit' ? 'В кредит' : 'В рассрочку';
-      span.product-cost__title #{loan}:
+      span.product-cost__title.js-loanTitle #{loan}:
       - const monthlyPayment = props.monthlyPayment;
       - const months = props.months;
       - const loanType = props.loanType;
