@@ -1,7 +1,8 @@
 mixin payment(props)
   .payment.js-payment.py-16
     .payment__type
-      button(data-value='card').js-paymentCard.payment__card Оплата картой
+      input(type='radio' id='99' name='payment-type' data-value='card' checked).payment__loan-input
+      label(for="99", data-value='card').js-paymentCard.payment__card Оплата картой
     .payment__loan.py-8
       .payment__title-box.px-16.pb-8
         span.payment__title-loan Рассрочка / кредит
@@ -10,5 +11,5 @@ mixin payment(props)
         ul.payment__loan-list.px-16
           each month in props.months
             li.payment__loan-item.js-paymentLoanMonth
-              input(type="radio" id=month.id name="months" data-value=month.value).payment__loan-input
+              input(type="radio" id=month.id name="payment-type" data-value=month.value).payment__loan-input
               label(for=month.id data-value=month.value).payment__loan-months #{month.value}

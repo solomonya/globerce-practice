@@ -19,9 +19,20 @@ select {
 }
 
 .payment {
+  $this: &;
+
   display: flex;
   flex-direction: column;
   gap: 8px 0;
+
+  &__card {
+    @extend %reset-btn;
+    width: 100%;
+    border: 1px solid $color-grey-70;
+    border-radius: 8px;
+    @include font(1.4rem, 2rem, $color-dark-xl, 700);
+    padding: 8px 16px;
+  }
 
   &__loan {
     border: 1px solid $color-brand-primary-50;
@@ -73,12 +84,9 @@ select {
     color: $color-brand-primary-50;
   }
 
-  &__card {
-    @extend %reset-btn;
-    width: 100%;
-    border: 1px solid $color-grey-70;
-    border-radius: 8px;
-    @include font(1.4rem, 2rem, $color-dark-xl, 700);
-    padding: 8px 16px;
+  &__loan-input:checked + &__card {
+    border: 1px solid $color-brand-primary-50;
+    background-color: rgba(39, 177, 231, 0.2);
+    color: $color-brand-primary-50;
   }
 }
