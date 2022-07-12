@@ -35,7 +35,7 @@ select {
   }
 
   &__loan {
-    border: 1px solid $color-brand-primary-50;
+    border: 1px solid $color-grey-70;
     border-radius: 8px;
   }
 
@@ -46,11 +46,25 @@ select {
   }
 
   &__title-loan {
-    @include font(1.4rem, 2rem, $color-brand-primary-50, 700);
+    @include font(1.4rem, 2rem, $color-dark-xl, 700);
   }
 
   &__title-available-months {
-    @include font(1.2rem, 1.6rem, $color-brand-primary-50, 500);
+    @include font(1.2rem, 1.6rem, $color-dark-xl, 500);
+  }
+
+  &_active {
+    #{$this}__loan {
+      border-color: $color-brand-primary-50;
+    }
+
+    #{$this}__title-loan {
+      color: $color-brand-primary-50;
+    }
+
+    #{$this}__title-available-months {
+      color: $color-brand-primary-50;
+    }
   }
 
   &__loan-box {

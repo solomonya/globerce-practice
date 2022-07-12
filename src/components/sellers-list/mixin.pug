@@ -99,7 +99,7 @@ mixin seller-card(props)
         +select-btn()
     .seller-card__body
       .seller-card__body-content
-        span.seller-card__delivery Доставка - #{props.delivery.price}, #{props.delivery.from}-#{props.delivery.to} дня
+        span.seller-card__delivery.js-productDelivery Доставка - #{props.delivery.price}, #{props.delivery.from}-#{props.delivery.to} дня
         if (props.delivery.selfCall)
           span.seller-card__self-call Доступен самовызов
         else

@@ -1,8 +1,8 @@
 mixin payment(props)
   .payment.js-payment.py-16
     .payment__type
-      input(type='radio' id='99' name='payment-type' data-value='card' checked).payment__loan-input
-      label(for="99", data-value='card').js-paymentCard.payment__card Оплата картой
+      input(type='radio' id='99' data-value='card').payment__loan-input.js-paymentCard
+      label(for="99", data-value='card').payment__card Оплата картой
     .payment__loan.py-8
       .payment__title-box.px-16.pb-8
         span.payment__title-loan Рассрочка / кредит

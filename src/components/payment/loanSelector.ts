@@ -1,4 +1,5 @@
-import { fromEvent, Observer, Subject } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 export default class LoanSelector {
   private CLASS_PAYMENT_LOAN_MONTH: string = 'js-paymentLoanMonth';
@@ -7,6 +8,7 @@ export default class LoanSelector {
   private CLASS_PAYMENT: string = 'js-payment';
 
   private streamOnChange;
+  private loanMonths;
   private paymentLoanBox: HTMLElement;
   private paymentCard: HTMLButtonElement;
   private payment: HTMLDivElement;
@@ -20,20 +22,42 @@ export default class LoanSelector {
     this.paymentCard = this.payment.querySelector(
       `.${this.CLASS_PAYMENT_CARD}`
     );
+    this.loanMonths = this.payment.querySelectorAll(
+      `.${this.CLASS_PAYMENT_LOAN_MONTH}`
+    );
     this.attachEvents();
-    console.log(this.paymentLoanBox);
-    console.log(this.paymentCard);
   }
 
   public getStreamOnChange() {
-    return this.streamOnChange;
+    return this.streamOnChange.asObservable();
+  }
+
+  public removeLoanSelectorFocus() {
+    this.payment.classList.remove('payment_active');
+    Array.from(this.loanMonths).forEach((month) => {
+      const monthInput = month.firstChild as HTMLInputElement;
+      monthInput.checked = false;
+    });
   }
 
   private attachEvents(): void {
-    fromEvent(this.payment, 'click').subscribe((e: Event) => {
-      this.streamOnChange.next(e);
-    });
+    fromEvent(this.payment, 'click')
+      .pipe(
+        filter((e) => {
+          const target = e.target as HTMLElement;
+          return (
+            target.classList.contains(this.CLASS_PAYMENT_LOAN_MONTH) ||
+            !!target.closest(`.${this.CLASS_PAYMENT_LOAN_MONTH}`)
+          );
+        })
+      )
+      .subscribe((e: Event) => {
+        this.addLoanSelectorFocus();
+        this.streamOnChange.next(e);
+      });
+  }
 
-    this.streamOnChange.subscribe((e: Event) => {});
+  private addLoanSelectorFocus() {
+    this.payment.classList.add('payment_active');
   }
 }

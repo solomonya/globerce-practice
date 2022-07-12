@@ -13,6 +13,7 @@ export default class SellerCard {
   private CLASS_LOAN_MONTHS: string = 'js-loanMonths';
   private CLASS_LOAN: string = 'js-productLoan';
   private CLASS_LOAN_TITLE: string = 'js-loanTitle';
+  private CLASS_PRODUCT_DELIVERY: string = 'js-productDelivery';
 
   private sellerCard: HTMLElement;
   private sellerInfo: Seller;
@@ -21,6 +22,7 @@ export default class SellerCard {
   private loanMonthsEl: HTMLElement;
   private loanProductEl: HTMLElement;
   private loanTitleEl: HTMLSpanElement;
+  private productDeliveryEl: HTMLSpanElement;
 
   constructor(cardItem: HTMLElement) {
     this.sellerCard = cardItem;
@@ -39,14 +41,17 @@ export default class SellerCard {
     this.loanTitleEl = this.sellerCard.querySelector(
       `.${this.CLASS_LOAN_TITLE}`
     );
+    this.productDeliveryEl = this.sellerCard.querySelector(
+      `.${this.CLASS_PRODUCT_DELIVERY}`
+    );
     this.setFullPrice();
-    console.log(this.loanProductEl);
   }
 
   public setLoanPrice(period: number) {
     const loanPeriodKey = period.toString();
     if (this.hasLoanPeriod(period)) {
       this.drawLoanPrices(loanPeriodKey);
+      this.drawProductDelivery(loanPeriodKey);
     } else {
       this.setFullPrice();
     }
@@ -114,5 +119,11 @@ export default class SellerCard {
   private beautifyPrice(price: number): string {
     let dividedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     return `${dividedPrice} ₸`;
+  }
+
+  private drawProductDelivery(loanPeriodKey: unknown) {
+    const loanMonthlyPayment = this.sellerInfo[loanPeriodKey as keyof Seller];
+    if (loanMonthlyPayment.delivery) {
+    }
   }
 }
