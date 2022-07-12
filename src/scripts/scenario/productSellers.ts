@@ -1,6 +1,7 @@
 import SellerCard from '../../components/sellers-list/sellerCard';
 import Payment from '../modules/Payment';
 import LoanSelector from '../../components/payment/loanSelector';
+import { PaymentType } from '../interfaces/Seller';
 
 export default class ProductSellers {
   private CLASS_SELLER_CARD: string = 'js-productSellersItem';
@@ -8,7 +9,7 @@ export default class ProductSellers {
   private sellerCards: Array<SellerCard>;
   private loanSelector;
   private sellerCardsElems: NodeList;
-  private paymentStream;
+  private payment: Payment;
 
   constructor() {
     this.sellerCards = [];
@@ -19,26 +20,22 @@ export default class ProductSellers {
     Array.from(this.sellerCardsElems).forEach((elem) => {
       this.sellerCards.push(new SellerCard(elem as HTMLElement));
     });
-    this.paymentStream = new Payment();
+    this.payment = new Payment();
     this.attachEvents();
   }
 
   private attachEvents() {
-    const paymentStream = this.paymentStream.getPaymentStream();
-
-    paymentStream.subscribe((e: Event) => {
-      const paymentType = e.target as HTMLElement;
-      const paymentValue = paymentType.getAttribute('data-value');
-      if (parseInt(paymentValue)) {
-        this.paymentStream.removeCardPaymentFocus();
-        this.sellerCards.forEach((sellerCard) => {
-          sellerCard.setLoanPrice(parseInt(paymentValue));
-        });
-      } else {
+    this.payment.getPaymentStream().subscribe((data) => {
+      if (data.type === PaymentType.FULL_PRICE) {
         this.sellerCards.forEach((sellerCard) => {
           sellerCard.setFullPrice();
         });
         this.loanSelector.removeLoanSelectorFocus();
+      } else {
+        this.payment.removeCardPaymentFocus();
+        this.sellerCards.forEach((sellerCard) => {
+          sellerCard.setLoanPrice(data.period);
+        });
       }
     });
   }

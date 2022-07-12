@@ -1,5 +1,5 @@
 import { fromEvent, Subject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 export default class LoanSelector {
   private CLASS_PAYMENT_LOAN_MONTH: string = 'js-paymentLoanMonth';
@@ -7,7 +7,7 @@ export default class LoanSelector {
   private CLASS_PAYMENT_CARD: string = 'js-paymentCard';
   private CLASS_PAYMENT: string = 'js-payment';
 
-  private streamOnChange;
+  private streamOnChange: Subject<number>;
   private loanMonths;
   private paymentLoanBox: HTMLElement;
   private paymentCard: HTMLButtonElement;
@@ -45,16 +45,22 @@ export default class LoanSelector {
       .pipe(
         filter((e) => {
           const target = e.target as HTMLElement;
-          return (
-            target.classList.contains(this.CLASS_PAYMENT_LOAN_MONTH) ||
-            !!target.closest(`.${this.CLASS_PAYMENT_LOAN_MONTH}`)
-          );
-        })
+          return !!this.getItemByTarget(target);
+        }),
+        map((e) => this.getItemByTarget(e.target as HTMLElement))
       )
-      .subscribe((e: Event) => {
+      .subscribe((item: HTMLElement) => {
+        const inputEl = item.querySelector('input');
         this.addLoanSelectorFocus();
-        this.streamOnChange.next(e);
+        this.streamOnChange.next(parseFloat(inputEl.value));
       });
+  }
+
+  private getItemByTarget(target: HTMLElement): HTMLElement | null {
+    if (target.classList.contains(this.CLASS_PAYMENT_LOAN_MONTH)) {
+      return target;
+    }
+    return target.closest(`.${this.CLASS_PAYMENT_LOAN_MONTH}`) || null;
   }
 
   private addLoanSelectorFocus() {
