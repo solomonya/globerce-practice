@@ -16,13 +16,13 @@ export default class LoanSelector {
   constructor() {
     this.streamOnChange = new Subject();
     this.payment = document.querySelector(`.${this.CLASS_PAYMENT}`);
-    this.paymentLoanBox = this.payment.querySelector(
+    this.paymentLoanBox = this.payment?.querySelector(
       `.${this.CLASS_PAYMENT_LOAN_BOX}`
     );
-    this.paymentCard = this.payment.querySelector(
+    this.paymentCard = this.payment?.querySelector(
       `.${this.CLASS_PAYMENT_CARD}`
     );
-    this.loanMonths = this.payment.querySelectorAll(
+    this.loanMonths = this.payment?.querySelectorAll(
       `.${this.CLASS_PAYMENT_LOAN_MONTH}`
     );
     this.attachEvents();

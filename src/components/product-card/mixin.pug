@@ -3,15 +3,16 @@ include ../rate/mixin
 include ../product-loan/mixin
 
 mixin product-card(props)
-  - const cardSize = props.size === 'sm' ? 'product-card_sm' : 'product-card_lg'
-  a(class=cardSize).product-card&attributes(attributes)
+  - const randomId = (Math.floor(Math.random() * 10000));
+  - const cardSize = props.size === 'sm' ? 'product-card_sm' : 'product-card_lg';
+  a(class=cardSize data-id=randomId).js-productCard.product-card&attributes(attributes)
     if props && props.plates
       .product-card__plates
         if props.plates.installments
           +plate({class: "plate_loan plate_sm", title: "0-0-24"})
         if props.plates.discount
           +plate({class: "plate_discount plate_sm", title: "Скидка"})
-    button.product-card__favorite-btn
+    button.product-card__favorite-btn.js-favouriteBtn
       span.product-card__favorite-icon
     .product-card__img-box
       img(src=props.img).product-card__img
@@ -27,5 +28,5 @@ mixin product-card(props)
         span.product-card__price #{props.prices.old}
       if props.loan
         .product-card__loan-box
-          +product-loan({type: 'standard', size: 'sm', monthlyPayment: 4888, months: 36})
+          +product-loan({type: 'credit', size: 'sm', monthlyPayment: 4888, months: 36})
 

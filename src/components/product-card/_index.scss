@@ -7,7 +7,18 @@
   &__favorite-icon {
     display: inline-block;
     @include set-size(24px, 24px);
-    background: url('images/icons/favorite.svg') no-repeat center;
+
+    &_not-added {
+      background: url('images/icons/favorite.svg') no-repeat center;
+    }
+
+    &_load {
+      background: url('images/icons/process.svg') no-repeat center;
+    }
+
+    &_added {
+      background: url('images/icons/wishlist.svg') no-repeat center;
+    }
   }
 
   &__img-box {
