@@ -26,7 +26,9 @@ export default class FavouriteBtn {
     );
     const favouritesProducts = favouriteBtnResponse.data as Array<Number>;
     const isFavourite = favouritesProducts.includes(this.cardId);
-    this.colorizeBtn(isFavourite);
+    setTimeout(() => {
+      this.colorizeBtn(isFavourite);
+    }, 300);
     this.favouriteBtnEl.disabled = false;
   }
 
