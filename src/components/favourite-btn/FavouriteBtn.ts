@@ -19,6 +19,7 @@ export default class FavouriteBtn {
   }
 
   public async updateFavouriteState(id: number) {
+    this.favouriteBtnEl.disabled = true;
     this.colorizeBtn(false, true);
     const favouriteBtnResponse = await axios.post(
       `http://localhost:3003/favourite-list/processing/${id}`
@@ -26,9 +27,11 @@ export default class FavouriteBtn {
     const favouritesProducts = favouriteBtnResponse.data as Array<Number>;
     const isFavourite = favouritesProducts.includes(this.cardId);
     this.colorizeBtn(isFavourite);
+    this.favouriteBtnEl.disabled = false;
   }
 
   private async defineFavouriteState() {
+    this.colorizeBtn(false, true);
     const favouriteBtnResponse = await axios.get(
       `http://localhost:3003/favourite-list/`
     );
@@ -39,14 +42,14 @@ export default class FavouriteBtn {
 
   private colorizeBtn(isFavourite: boolean, loading = false) {
     console.log(isFavourite);
-    const btnIcon = this.favouriteBtnEl.firstChild as HTMLElement;
 
     if (loading) {
-      console.log('load');
-      btnIcon.className =
-        'product-card__favorite-icon product-card__favorite-icon_load';
+      this.favouriteBtnEl.innerHTML = this.getSpinnerTemplate();
       return;
     }
+
+    this.favouriteBtnEl.innerHTML = this.getFavoriteIconTemplate();
+    const btnIcon = this.favouriteBtnEl.firstChild as HTMLElement;
 
     if (isFavourite) {
       btnIcon.className =
@@ -55,5 +58,26 @@ export default class FavouriteBtn {
       btnIcon.className =
         'product-card__favorite-icon product-card__favorite-icon_not-added';
     }
+  }
+
+  private getSpinnerTemplate(): string {
+    return ` <div class="lds-spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>`;
+  }
+
+  private getFavoriteIconTemplate(): string {
+    return `<span class="product-card__favorite-icon"></span>`;
   }
 }
