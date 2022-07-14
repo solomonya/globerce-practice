@@ -22,7 +22,7 @@ block main
   +product-section({header: false}).product-section_modifiers
     +product-memory-modifiers({memories: [{amount: 64}, {amount: 128, selected: true}, {amount: 256},{amount: 512}]})
     +product-color-modifiers({colors: [{bgColor: "background-color:#FEECC7"}, {bgColor: "background-color: #FD2D39", selected: true},{bgColor: "background-color: #11BCD3"}]})
-  +product-section({header: {title: 'Продавцы', append: "append-sort"}})
+  +product-section({header: {title: 'Продавцы', append: "append-sort"}}).js-productSellers
     +payment({months: [{value: 3, id: 1}, {value: 12, id: 2},{value: 24, id: 3},{value: 36, id: 6}, {value: 48, id: 4},{value: 60, id: 5}]})
     +sellers-list({sellers: [{title: 'Evrica', sellerRate: 3, sellerReviewsAmount: 17, delivery: {price: 'Бесплатно', from: 1, to: 2, selfCall: false}, cost: {
       price: 667890, monthlyPayment: 226630, months: 3, loan: 'В рассрочку'

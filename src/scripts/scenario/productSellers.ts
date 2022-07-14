@@ -4,14 +4,20 @@ import LoanSelector from '../../components/payment/loanSelector';
 import { PaymentType } from '../interfaces/Seller';
 
 export default class ProductSellers {
+  private CLASS_HANDLER: string = 'js-productSellers';
   private CLASS_SELLER_CARD: string = 'js-productSellersItem';
 
   private sellerCards: Array<SellerCard>;
   private loanSelector;
   private sellerCardsElems: NodeList;
   private payment: Payment;
+  private handlerEl: HTMLElement;
 
   constructor() {
+    this.handlerEl = document.querySelector(`.${this.CLASS_HANDLER}`);
+    if (!this.handlerEl) {
+      return;
+    }
     this.sellerCards = [];
     this.sellerCardsElems = document.querySelectorAll(
       `.${this.CLASS_SELLER_CARD}`

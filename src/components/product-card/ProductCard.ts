@@ -5,10 +5,10 @@ import FavouriteBtn from '../favourite-btn/FavouriteBtn';
 export default class ProductCard {
   private CLASS_FAVOURITE_BTN: string = 'js-favouriteBtn';
 
+  public favouriteBtn: FavouriteBtn;
   private productCardEl: HTMLElement;
   private favouriteBtnEl: HTMLButtonElement;
-  private favouriteBtn: FavouriteBtn;
-  private productCardId: number;
+  readonly productCardId: number;
 
   constructor(productCardEl: HTMLElement) {
     this.productCardEl = productCardEl;

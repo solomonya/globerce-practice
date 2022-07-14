@@ -10,5 +10,5 @@ BannerSlider.init();
 ProductSlider.init();
 new StickyHeader();
 new OpenSearchModal().init();
-// new ProductSellers();
+new ProductSellers();
 new FavouriteProducts();
