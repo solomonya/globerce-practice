@@ -7,15 +7,15 @@ mixin logo-icon(props)
 mixin header-logo()
   .header__logo.js-stickyHeaderSectionLogo
     +logo-icon()
-    +locationBtn({city: 'Алматы', id: 'lc-btn-1'})
+    +locationBtn({city: 'Алматы', id: 'lc-btn-1'}).js-openCitiesModalHandler
 
 mixin append
-  +locationBtn({city: 'Алматы', id: 'lc-btn-2'}).d-none.js-location-btn
+  +locationBtn({city: 'Алматы', id: 'lc-btn-2'}).d-none.js-openCitiesModalHandler
 
 mixin header-logo-with-search()
   header.header.js-stickyHeader&attributes(attributes)
     +header-logo()
     +search({append: "append",
-             inputClass: "js-search__input search__input",
+             inputClass: "js-search__input search__input js-open-search-modal-handler",
              clearBtnClass: "search__clear",
-             cancelBtnClass: "search__cancel"}).js-search.js-open-search-modal-handler
+             cancelBtnClass: "search__cancel"}).js-search
