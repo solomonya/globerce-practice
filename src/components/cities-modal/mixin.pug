@@ -1,7 +1,5 @@
 include ../search-bar/mixin
 
-- var cities = [{city: 'Алматы', id: 'id-almaty'}, {city: 'Нур-Султан', id: 'id-nursultan'},{city: 'Талдыкорган', id: 'id-taldykorgan'},{city: 'Кокшетау', id: 'id-kokshetau'},{city: 'Актобе', id: 'id-aktobe'},{city: 'Атырау', id: 'id-atyrau'},{city: 'Тараз', id: 'id-taraz'}]
-
 mixin city(props)
   .cities-modal__city
     .cities-modal__city-container
@@ -25,7 +23,4 @@ mixin cities-modal()
                  cancelBtnClass: 'none',
                  searchIconClass: 'js-search__search-icon search__icon',
                  idCancelBtn: 'none',}).js-citiesSearch
-          ul.cities-modal__list
-            each city in cities
-              li.cities-modal__item
-                +city(city)
+          ul.cities-modal__list.js-citiesList
