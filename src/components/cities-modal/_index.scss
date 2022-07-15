@@ -1,0 +1,111 @@
+.cities-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  z-index: $z-index-modal;
+
+  &__container {
+    height: 100%;
+    background-color: $color-extra-light;
+    border-radius: 12px 12px 0 0;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0 4px 0;
+    border-bottom: 1px solid $color-grey-80;
+  }
+
+  &__plate {
+    width: 24px;
+    height: 3px;
+    background-color: $color-grey-70;
+    border-radius: 5px;
+    margin-bottom: 12px;
+  }
+
+  &__header-container {
+    width: calc(100% - 40px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    margin: 0;
+    @include font(1.6rem, 2.4rem, $color-dark-xl, 700);
+    padding-left: calc(50% - 42px);
+  }
+
+  &__close-btn {
+    @extend %reset-btn;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  &__search-container {
+    padding: 2px 0;
+  }
+
+  &__list {
+    @extend %reset-lists;
+    padding: 0 20px;
+  }
+
+  &__city {
+    border-bottom: 1px solid $color-grey-70;
+    padding: 12px;
+  }
+
+  &__city-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__city-title {
+    @include font(1.6rem, 2.4rem, $color-dark-xl, 500);
+  }
+
+  &__radio {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: $color-brand-primary-50;
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid $color-grey-60;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background-color: $color-brand-primary-50;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+    }
+
+    &:checked {
+      border-color: $color-brand-primary-50;
+    }
+
+    &:checked::before {
+      transform: scale(1);
+    }
+  }
+}

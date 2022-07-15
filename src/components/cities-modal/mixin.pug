@@ -1,0 +1,31 @@
+include ../search-bar/mixin
+
+- var cities = [{city: 'Алматы', id: 'id-almaty'}, {city: 'Нур-Султан', id: 'id-nursultan'},{city: 'Талдыкорган', id: 'id-taldykorgan'},{city: 'Кокшетау', id: 'id-kokshetau'},{city: 'Актобе', id: 'id-aktobe'},{city: 'Атырау', id: 'id-atyrau'},{city: 'Тараз', id: 'id-taraz'}]
+
+mixin city(props)
+  .cities-modal__city
+    .cities-modal__city-container
+      label(for=props.id).cities-modal__city-title #{props.city}
+      input(type="radio" name="select-city" id=props.id class="cities-modal__radio")
+
+
+mixin cities-modal()
+  .cities-modal
+    .cities-modal__container
+      header.cities-modal__header
+        span.cities-modal__plate
+        .cities-modal__header-container
+          h5.cities-modal__title Мой город
+          +clearBtn().cities-modal__close-btn
+      .cities-modal__body
+        .cities-modal__search-container
+          +search({append: false,
+                 inputClass: 'js-search__input search__input',
+                 clearBtnClass: 'js-search__clear search__clear',
+                 cancelBtnClass: 'none',
+                 searchIconClass: 'js-search__search-icon search__icon',
+                 idCancelBtn: 'none',})
+          ul.cities-modal__list
+            each city in cities
+              li.cities-modal__item
+                +city(city)
