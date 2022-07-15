@@ -88,7 +88,6 @@ export default class SearchModal {
       .then((data: Array<SearchItem>) => {
         this.searchModalContainer.innerHTML = '';
         this.searchModalContainer.innerHTML = this.getItemsTemplate(data);
-        console.log(data);
         if (
           data.find(
             (item) => item.type === 'history' && item.items.length !== 0

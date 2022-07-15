@@ -3,7 +3,7 @@ import CityModal from '../../components/cities-modal/CityModal';
 
 export default class OpenCitiesModal {
   private CLASS_OPEN_CITIES_HANDLER: string = 'js-openCitiesModalHandler';
-  private CLASS_CITIES_MODAL: string = 'js-citiesModal';
+  private CLASS_CITIES_MODAL: string = 'js-modalWrapper';
   private CLASS_LOCATION_CITY_TITLE: string = 'js-locationCityTitle';
 
   private openCitiesHandlers;
@@ -22,7 +22,6 @@ export default class OpenCitiesModal {
       );
     });
     this.citiesModalEl = document.querySelector(`.${this.CLASS_CITIES_MODAL}`);
-    console.log(this.locationCityTitlesEl);
   }
 
   public init() {

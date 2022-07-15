@@ -1,8 +1,9 @@
 import { fromEvent } from 'rxjs';
+import { returnBodyScroll, blockBodyScroll } from '../bodyEl/scrollBehavior';
 
 export default class BottomModal {
   private CLASS_MODAL_HEADER: string = 'js-modalHeader';
-  private CLASS_MODAL_CONTAINER: string = 'js-modalContainer';
+  private CLASS_MODAL_CONTAINER: string = 'js-modalBody';
   private CLASS_MODAL_CLOSE: string = 'js-modalCloseBtn';
 
   private modalWrapper: HTMLDivElement;
@@ -25,11 +26,17 @@ export default class BottomModal {
 
   public open() {
     this.modalWrapper.classList.add('modal_open');
+    blockBodyScroll();
     this.attachEvents();
   }
 
   public close() {
-    this.modalContainer.classList.remove('modal_open');
+    this.modalWrapper.classList.remove('modal_open');
+    returnBodyScroll();
+  }
+
+  public getModalWrapper(): HTMLDivElement {
+    return this.modalWrapper;
   }
 
   private attachEvents() {

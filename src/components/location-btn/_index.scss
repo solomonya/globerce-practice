@@ -9,6 +9,7 @@
   &__city {
     display: inline-block;
     @include font(1rem, 1.2rem, $color-grey-40, 500);
+    text-overflow: ellipsis;
   }
 
   &__icon {

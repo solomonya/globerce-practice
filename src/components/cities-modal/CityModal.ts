@@ -2,52 +2,45 @@ import axios from 'axios';
 import { fromEvent } from 'rxjs';
 import { EServerResponse } from '../../scripts/enums/serverResponse';
 import ICity from '../../scripts/interfaces/cities';
-import { blockBodyScroll, returnBodyScroll } from '../bodyEl/scrollBehavior';
 import SearchInput from '../search-bar/search-input';
 import { filter, map } from 'rxjs/operators';
+import BottomModal from '../bottom-modal/BottomModal';
 
-export default class CityModal {
-  private CLASS_CLOSE_BTN: string = 'js-citiesModalCloseBtn';
+export default class CityModal extends BottomModal {
   private CLASS_CITIES_SEARCH: string = 'js-citiesSearch';
   private CLASS_CITIES_LIST: string = 'js-citiesList';
   private CLASS_CITY_INPUT: string = 'js-cityInput';
 
-  private cityModalEl: HTMLDivElement;
-  private cityModalCloseBtnEl: HTMLButtonElement;
   private citySearchEl: HTMLElement;
   private citySearch: SearchInput;
   private citiesListEl: HTMLUListElement;
-  private citiesList: Promise<Array<ICity>>;
-  private list: Array<ICity>;
+  private citiesList: Array<ICity>;
+  private isCitiesListRecived: boolean = false;
 
-  constructor(cityModalEl: HTMLDivElement) {
-    this.cityModalEl = cityModalEl;
-    this.cityModalCloseBtnEl = this.cityModalEl.querySelector(
-      `.${this.CLASS_CLOSE_BTN}`
-    );
-    this.citySearchEl = this.cityModalEl.querySelector(
-      `.${this.CLASS_CITIES_SEARCH}`
-    );
-    this.citiesListEl = this.cityModalEl.querySelector(
-      `.${this.CLASS_CITIES_LIST}`
-    );
-    this.list = [];
+  constructor(modalEl: HTMLDivElement) {
+    super(modalEl);
+    this.citySearchEl = super
+      .getModalWrapper()
+      .querySelector(`.${this.CLASS_CITIES_SEARCH}`);
+    this.citiesListEl = super
+      .getModalWrapper()
+      .querySelector(`.${this.CLASS_CITIES_LIST}`);
     this.citySearch = new SearchInput(this.citySearchEl);
-    this.citiesList = this.getCitiesList();
-    this.buildCitiesList();
+    this.citiesList = [];
   }
 
   public open() {
-    this.cityModalEl.classList.add('cities-modal_open');
-    blockBodyScroll();
-    this.attachEvents();
+    super.open();
+    this.isCitiesListRecived ? this.buildCitiesList : this.getCitiesList();
+    this.attachCityEvents();
   }
 
-  private attachEvents() {
-    fromEvent(this.cityModalCloseBtnEl, 'click').subscribe((e: Event) => {
-      this.close();
-    });
+  public close() {
+    super.close();
+    this.citySearch.clearInput();
+  }
 
+  private attachCityEvents() {
     fromEvent(this.citySearchEl, 'input-change').subscribe((e: CustomEvent) => {
       const inputValue = e.detail.toLowerCase() as string;
       this.handleCitySearchInputChange(inputValue);
@@ -64,29 +57,42 @@ export default class CityModal {
       .subscribe((radioInput: HTMLInputElement) => {
         this.emitCitySelected(radioInput);
       });
+
+    fromEvent(this.citySearchEl, 'cancel').subscribe((e: Event) => {
+      this.close();
+    });
+
+    fromEvent(this.citiesListEl, 'scroll').subscribe((e: Event) => {
+      this.handleScroll();
+    });
   }
 
-  public close() {
-    this.cityModalEl.classList.remove('cities-modal_open');
-    returnBodyScroll();
+  private handleScroll(): void {
+    if (this.citiesListEl.scrollTop > 0) {
+      this.citySearchEl.classList.add('search_elevated');
+    } else {
+      this.citySearchEl.classList.remove('search_elevated');
+    }
   }
 
-  private async getCitiesList(): Promise<ICity[]> {
+  private async getCitiesList() {
     const citiesListResponse = await axios.get(
       'http://localhost:3003/cities-list/'
     );
     if (citiesListResponse.status === EServerResponse.OK) {
       const citiesList = citiesListResponse.data as Array<ICity>;
-      this.list = citiesList;
-      console.log(this.list);
-      return citiesList;
+      this.handleGetCitiesRequest(citiesList);
     }
   }
 
+  private handleGetCitiesRequest(citiesList: Array<ICity>) {
+    this.citiesList = citiesList;
+    this.buildCitiesList();
+    this.isCitiesListRecived = true;
+  }
+
   private buildCitiesList(): void {
-    this.citiesList.then((citiesList) => {
-      this.renderCitiesList(citiesList);
-    });
+    this.renderCitiesList(this.citiesList);
   }
 
   private getCityTemplate(city: ICity): string {
@@ -94,8 +100,14 @@ export default class CityModal {
       <li class="cities-modal__item">
         <div class="cities-modal__city">
           <div class="cities-modal__city-container">
-            <label for="${city.id}" class="cities-modal__city-title">${city.title}</label>
-            <input type="radio" name="select-city" id="${city.id}" value="${city.title}" class="cities-modal__radio js-cityInput"/>
+            <label for="${city.id}" class="cities-modal__city-title">${
+      city.title
+    }</label>
+            <input type="radio" name="select-city" id="${city.id}" value="${
+      city.title
+    }" class="cities-modal__radio js-cityInput" ${
+      city.current ? 'checked' : ''
+    }/>
           </div>
         </div>
       </li>
@@ -103,16 +115,14 @@ export default class CityModal {
   }
 
   private handleCitySearchInputChange(inputValue: string) {
-    this.citiesList.then((citiesList) => {
-      const updatedCitiesList: Array<ICity> = [];
-      citiesList.forEach((city) => {
-        const title = city.title.toLowerCase();
-        if (title.includes(inputValue)) {
-          updatedCitiesList.push(city);
-        }
-      });
-      this.renderCitiesList(updatedCitiesList);
+    const updatedCitiesList: Array<ICity> = [];
+    this.citiesList.forEach((city) => {
+      const title = city.title.toLowerCase();
+      if (title.includes(inputValue)) {
+        updatedCitiesList.push(city);
+      }
     });
+    this.renderCitiesList(updatedCitiesList);
   }
 
   private renderCitiesList(cityList: Array<ICity>) {
@@ -132,10 +142,11 @@ export default class CityModal {
 
   private emitCitySelected(radioInput: HTMLInputElement) {
     this.close();
+    radioInput.checked = true;
     const city = radioInput.value;
     const event = new CustomEvent('city-selected', {
       detail: city,
     });
-    this.cityModalEl.dispatchEvent(event);
+    super.getModalWrapper().dispatchEvent(event);
   }
 }

@@ -1,4 +1,5 @@
 include ../search-bar/mixin
+include ../bottom-modal/mixin
 
 mixin city(props)
   .cities-modal__city
@@ -8,19 +9,13 @@ mixin city(props)
 
 
 mixin cities-modal()
-  .cities-modal&attributes(attributes)
-    .cities-modal__container
-      header.cities-modal__header
-        span.cities-modal__plate
-        .cities-modal__header-container
-          h5.cities-modal__title Мой город
-          +clearBtn().cities-modal__close-btn.js-citiesModalCloseBtn
-      .cities-modal__body
-        .cities-modal__search-container
-          +search({append: false,
-                 inputClass: 'js-search__input search__input',
-                 clearBtnClass: 'js-search__clear search__clear',
-                 cancelBtnClass: 'js-search__cancel search__cancel',
-                 searchIconClass: 'js-search__search-icon search__icon',
-                 idCancelBtn: 'js-search-cancel',}).js-citiesSearch
-          ul.cities-modal__list.js-citiesList
+  +modal({title: 'Мой город'})
+    .cities-modal__body
+      .cities-modal__search-container
+        +search({append: false,
+               inputClass: 'js-search__input search__input',
+               clearBtnClass: 'js-search__clear search__clear',
+               cancelBtnClass: 'js-search__cancel search__cancel',
+               searchIconClass: 'js-search__search-icon search__icon',
+               idCancelBtn: 'js-search-cancel',}).js-citiesSearch
+      ul.cities-modal__list.js-citiesList

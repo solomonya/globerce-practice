@@ -1,0 +1,12 @@
+include ../search-bar/mixin
+
+mixin modal(props)
+  .modal.js-modalWrapper
+    .modal__container
+      header.modal__header.js-modalHeader
+        span.modal__plate
+        .modal__header-container
+          h5.modal__title #{props.title}
+          +clearBtn().modal__close-btn.js-modalCloseBtn
+      .modal__body.js-modalBody
+        block
