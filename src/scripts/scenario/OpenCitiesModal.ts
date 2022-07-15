@@ -4,16 +4,25 @@ import CityModal from '../../components/cities-modal/CityModal';
 export default class OpenCitiesModal {
   private CLASS_OPEN_CITIES_HANDLER: string = 'js-openCitiesModalHandler';
   private CLASS_CITIES_MODAL: string = 'js-citiesModal';
+  private CLASS_LOCATION_CITY_TITLE: string = 'js-locationCityTitle';
 
   private openCitiesHandlers;
+  private locationCityTitlesEl: Array<HTMLElement>;
   private citiesModalEl: HTMLDivElement;
   private cityModal: CityModal;
 
   constructor() {
-    this.openCitiesHandlers = document.querySelectorAll(
-      `.${this.CLASS_OPEN_CITIES_HANDLER}`
+    this.openCitiesHandlers = Array.from(
+      document.querySelectorAll(`.${this.CLASS_OPEN_CITIES_HANDLER}`)
     );
+    this.locationCityTitlesEl = [];
+    this.openCitiesHandlers.forEach((locationBtn) => {
+      this.locationCityTitlesEl.push(
+        locationBtn.querySelector(`.${this.CLASS_LOCATION_CITY_TITLE}`)
+      );
+    });
     this.citiesModalEl = document.querySelector(`.${this.CLASS_CITIES_MODAL}`);
+    console.log(this.locationCityTitlesEl);
   }
 
   public init() {
@@ -25,10 +34,18 @@ export default class OpenCitiesModal {
   }
 
   private attachEvents() {
-    Array.from(this.openCitiesHandlers).forEach((openCitiesModalHandler) => {
+    this.openCitiesHandlers.forEach((openCitiesModalHandler) => {
       fromEvent(openCitiesModalHandler, 'click').subscribe((e: Event) => {
         this.cityModal.open();
       });
     });
+
+    fromEvent(this.citiesModalEl, 'city-selected').subscribe(
+      (e: CustomEvent) => {
+        this.locationCityTitlesEl.forEach((cityTitle) => {
+          cityTitle.textContent = `${e.detail}`;
+        });
+      }
+    );
   }
 }

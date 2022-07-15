@@ -108,7 +108,10 @@ export default class SearchInput {
   }
 
   private emitEventInputChange(): void {
+    const data = this.searchInputEl.value;
+
     const event = new CustomEvent('input-change', {
+      detail: data,
       bubbles: true,
       composed: true,
     });
