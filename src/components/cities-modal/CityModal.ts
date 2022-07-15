@@ -18,6 +18,7 @@ export default class CityModal {
   private citySearch: SearchInput;
   private citiesListEl: HTMLUListElement;
   private citiesList: Promise<Array<ICity>>;
+  private list: Array<ICity>;
 
   constructor(cityModalEl: HTMLDivElement) {
     this.cityModalEl = cityModalEl;
@@ -30,6 +31,7 @@ export default class CityModal {
     this.citiesListEl = this.cityModalEl.querySelector(
       `.${this.CLASS_CITIES_LIST}`
     );
+    this.list = [];
     this.citySearch = new SearchInput(this.citySearchEl);
     this.citiesList = this.getCitiesList();
     this.buildCitiesList();
@@ -75,6 +77,8 @@ export default class CityModal {
     );
     if (citiesListResponse.status === EServerResponse.OK) {
       const citiesList = citiesListResponse.data as Array<ICity>;
+      this.list = citiesList;
+      console.log(this.list);
       return citiesList;
     }
   }
