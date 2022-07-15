@@ -1,14 +1,12 @@
 import { fromEvent, merge, debounceTime } from 'rxjs';
 
 export default class SearchInput {
-  private CLASS_SEARCH_FORM = 'js-search-form';
   private CLASS_SEARCH_INPUT = 'js-search__input';
   private CLASS_SEARCH_CLEAR = 'js-search__clear';
   private CLASS_SEARCH_CANCEL = 'js-search__cancel';
   private CLASS_DISPLAY_NONE = 'd-none';
   private CLASS_SEARCH_ICON = 'js-search__search-icon';
 
-  private searchForm: HTMLFormElement;
   private searchEl: HTMLElement;
   private searchInputEl: HTMLInputElement;
   private searchClearBtn: HTMLElement;
@@ -16,7 +14,6 @@ export default class SearchInput {
   private searchIcon: SVGAElement;
 
   constructor(searchEl: HTMLElement) {
-    this.searchForm = document.querySelector(`.${this.CLASS_SEARCH_FORM}`);
     this.searchEl = searchEl;
     this.searchInputEl = this.searchEl.querySelector(
       `.${this.CLASS_SEARCH_INPUT}`
@@ -42,17 +39,15 @@ export default class SearchInput {
   }
 
   private attachEvents(): void {
-    // fromEvent(this.searchI, 'submit').subscribe((e: Event) => {
-    //   // e.preventDefault();
-    // });
-
     fromEvent(this.searchInputEl, 'focus').subscribe((e: Event) => {
       this.handleInputFocus(e);
     });
 
-    fromEvent(this.searchCancelBtn, 'click').subscribe((e: Event) => {
-      this.emitEventCancel();
-    });
+    if (this.searchCancelBtn) {
+      fromEvent(this.searchCancelBtn, 'click').subscribe((e: Event) => {
+        this.emitEventCancel();
+      });
+    }
 
     fromEvent(this.searchClearBtn, 'click').subscribe((e: Event) => {
       this.clearInput(true);
@@ -81,7 +76,9 @@ export default class SearchInput {
   }
 
   public focusInput(): void {
-    this.showCancelBtn();
+    if (this.searchCancelBtn) {
+      this.showCancelBtn();
+    }
     this.colorizeSearchIcon();
     this.searchInputEl.focus();
   }

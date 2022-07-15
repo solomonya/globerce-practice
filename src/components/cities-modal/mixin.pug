@@ -16,7 +16,7 @@ mixin cities-modal()
         span.cities-modal__plate
         .cities-modal__header-container
           h5.cities-modal__title Мой город
-          +clearBtn().cities-modal__close-btn
+          +clearBtn().cities-modal__close-btn.js-citiesModalCloseBtn
       .cities-modal__body
         .cities-modal__search-container
           +search({append: false,
@@ -24,7 +24,7 @@ mixin cities-modal()
                  clearBtnClass: 'js-search__clear search__clear',
                  cancelBtnClass: 'none',
                  searchIconClass: 'js-search__search-icon search__icon',
-                 idCancelBtn: 'none',})
+                 idCancelBtn: 'none',}).js-citiesSearch
           ul.cities-modal__list
             each city in cities
               li.cities-modal__item
