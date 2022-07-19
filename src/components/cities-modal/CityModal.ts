@@ -19,6 +19,11 @@ export default class CityModal extends BottomModal {
 
   constructor(modalEl: HTMLDivElement) {
     super(modalEl);
+
+    if (!modalEl) {
+      return;
+    }
+
     this.citySearchEl = super
       .getModalWrapper()
       .querySelector(`.${this.CLASS_CITIES_SEARCH}`);

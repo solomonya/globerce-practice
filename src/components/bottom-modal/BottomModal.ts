@@ -12,6 +12,9 @@ export default class BottomModal {
   private modalCloseBtn: HTMLButtonElement;
 
   constructor(modalWrapper: HTMLDivElement) {
+    if (!modalWrapper) {
+      return;
+    }
     this.modalWrapper = modalWrapper;
     this.modalHeader = this.modalWrapper.querySelector(
       `.${this.CLASS_MODAL_HEADER}`

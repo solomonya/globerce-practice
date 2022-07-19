@@ -6,6 +6,7 @@
 
 .star-list {
   $this: &;
+  display: inline-block;
 
   display: inline-flex;
   @extend %reset-lists;
@@ -13,9 +14,6 @@
   &_active {
     position: absolute;
     overflow: hidden;
-  }
-
-  &_passive {
   }
 
   &_sm {

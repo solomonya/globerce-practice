@@ -1,4 +1,6 @@
 .modal {
+  $this: &;
+
   position: fixed;
   left: 0;
   top: 0;
@@ -16,11 +18,22 @@
   }
 
   &__container {
-    // overflow-y: scroll;
     height: 100%;
     background-color: $color-extra-light;
     border-radius: 12px 12px 0 0;
     position: relative;
+  }
+
+  &_dynamic-height {
+    #{$this}__container {
+      height: auto;
+      position: absolute;
+      bottom: 0;
+    }
+
+    #{$this}__header {
+      border-bottom: none;
+    }
   }
 
   &__body {
@@ -38,6 +51,7 @@
     align-items: center;
     padding: 12px 0 4px 0;
     border-bottom: 1px solid $color-grey-80;
+    border-radius: 12px 12px 0 0;
   }
 
   &__plate {
@@ -51,14 +65,13 @@
   &__header-container {
     width: calc(100% - 40px);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
 
   &__title {
     margin: 0;
     @include font(1.6rem, 2.4rem, $color-dark-xl, 700);
-    padding-left: calc(50% - 42px);
   }
 
   &__close-btn {
@@ -69,5 +82,7 @@
     padding: 0;
     width: 40px;
     height: 40px;
+    position: absolute;
+    right: 13px;
   }
 }

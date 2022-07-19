@@ -1,0 +1,13 @@
+include ../bottom-modal/mixin
+include ../star-list/mixin
+
+mixin feedback-modal()
+  +modal({title: 'Отзыв покупателя'}).js-feedbackModal.modal_dynamic-height
+    .feedback
+      .feedback__container
+        .feedback__header
+          h6.feedback__user-name Юлия Х.
+          +star-list({size: 'lg', rate: 4})
+        span.feedback__date 8 ноября, 2020 г.
+        p.feedback__text.js-feedbackText
+

@@ -8,12 +8,12 @@ mixin review-card(props)
       +star-list({size: 'lg', rate: reviewRate})
     span.review-card__date #{props.date}
     .review-card__text-box
-      p.review-card__review-text #{props.reviewText}
+      p.review-card__review-text.js-feedbackSourceText #{props.reviewText}
       .review-card__full-text-box
-        button.review-card__full-text-btn Читать полный отзыв
+        button.review-card__full-text-btn.js-feedbackOpenFullText Читать полный отзыв
 
 mixin reviews-list(props)
-  ul.reviews-list.py-29.pb-24.px-20
+  ul.reviews-list.js-feedbackList.py-29.pb-24.px-20
     each review in props.reviews
       li.reviews-list__item
         +review-card(review)

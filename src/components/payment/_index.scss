@@ -47,10 +47,12 @@ select {
 
   &__title-loan {
     @include font(1.4rem, 2rem, $color-dark-xl, 700);
+    white-space: nowrap;
   }
 
   &__title-available-months {
     @include font(1.2rem, 1.6rem, $color-dark-xl, 500);
+    white-space: nowrap;
   }
 
   &_active {

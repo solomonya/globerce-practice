@@ -25,7 +25,7 @@ export default class OpenCitiesModal {
   }
 
   public init() {
-    if (!(this.openCitiesHandlers || this.citiesModalEl)) {
+    if (!(this.openCitiesHandlers.length !== 0 && this.citiesModalEl)) {
       return;
     }
     this.cityModal = new CityModal(this.citiesModalEl);
