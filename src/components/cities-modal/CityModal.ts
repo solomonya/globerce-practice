@@ -10,6 +10,7 @@ export default class CityModal extends BottomModal {
   private CLASS_CITIES_SEARCH: string = 'js-citiesSearch';
   private CLASS_CITIES_LIST: string = 'js-citiesList';
   private CLASS_CITY_INPUT: string = 'js-cityInput';
+  private CLASS_MODAL_LOADING: string = 'cities-modal__list_loading';
 
   private citySearchEl: HTMLElement;
   private citySearch: SearchInput;
@@ -36,7 +37,8 @@ export default class CityModal extends BottomModal {
 
   public open() {
     super.open();
-    this.isCitiesListRecived ? this.buildCitiesList : this.getCitiesList();
+    this.showLoader();
+    this.isCitiesListRecived ? this.buildCitiesList() : this.getCitiesList();
     this.attachCityEvents();
   }
 
@@ -100,6 +102,11 @@ export default class CityModal extends BottomModal {
     this.renderCitiesList(this.citiesList);
   }
 
+  private showLoader(): void {
+    this.citiesListEl.classList.add(this.CLASS_MODAL_LOADING);
+    this.citiesListEl.innerHTML = this.getSpinnerTemplate();
+  }
+
   private getCityTemplate(city: ICity): string {
     return `
       <li class="cities-modal__item">
@@ -135,6 +142,7 @@ export default class CityModal extends BottomModal {
     cityList.forEach((city) => {
       citiesTemplate += this.getCityTemplate(city);
     });
+    this.citiesListEl.classList.remove(this.CLASS_MODAL_LOADING);
     this.citiesListEl.innerHTML = citiesTemplate;
   }
 
@@ -153,5 +161,22 @@ export default class CityModal extends BottomModal {
       detail: city,
     });
     super.getModalWrapper().dispatchEvent(event);
+  }
+
+  private getSpinnerTemplate(): string {
+    return ` <div class="lds-spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>`;
   }
 }

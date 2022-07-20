@@ -25,6 +25,8 @@ export default class FeedbackModal extends BottomModal {
     const sourceTextEl = fullTextBtn.parentElement
       .previousElementSibling as HTMLParagraphElement;
 
-    this.feedbackTextEl.innerText = sourceTextEl.innerText;
+    if (sourceTextEl.classList.contains(this.CLASS_FULL_TEXT_SOURCE)) {
+      this.feedbackTextEl.innerText = sourceTextEl.innerText;
+    }
   }
 }

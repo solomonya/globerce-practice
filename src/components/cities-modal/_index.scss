@@ -15,6 +15,12 @@
     overflow-y: auto;
     @extend %reset-lists;
     padding: 0 20px;
+
+    &_loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &__item {

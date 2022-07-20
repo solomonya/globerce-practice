@@ -5,6 +5,12 @@
   width: 24px;
   height: 24px;
   top: 8px;
+
+  &_centered {
+    position: absolute;
+    top: calc(50% - 12px);
+    left: calc(50% - 12px);
+  }
 }
 .lds-spinner div {
   transform-origin: 5px 5px;
