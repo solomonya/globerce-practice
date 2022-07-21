@@ -13,14 +13,6 @@ export default class FeedbackModal extends BottomModal {
       .querySelector(`.${this.CLASS_FULL_TEXT}`);
   }
 
-  public open(): void {
-    super.open();
-  }
-
-  public close(): void {
-    super.close();
-  }
-
   public handleFulltextBtn(fullTextBtn: HTMLButtonElement) {
     const sourceTextEl = fullTextBtn.parentElement
       .previousElementSibling as HTMLParagraphElement;

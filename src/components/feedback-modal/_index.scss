@@ -1,13 +1,4 @@
 .feedback {
-  display: flex;
-  flex-direction: column;
-
-  &__container {
-    max-height: 605px;
-    flex-grow: 1;
-    overflow: auto;
-  }
-
   &__header {
     display: flex;
     justify-content: space-between;

@@ -10,34 +10,37 @@
   width: 100%;
   height: 100%;
   z-index: $z-index-modal;
-  transition: transform 0.2s;
-  transform: translateY(100%);
-
-  &_open {
-    transform: translateY(0%);
-  }
+  display: none;
 
   &__container {
-    height: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: $color-extra-light;
     border-radius: 12px 12px 0 0;
     position: relative;
+    transform: translateY(100%);
+    transition: transform 0.2s;
+  }
+
+  &_open {
+    display: block;
+
+    #{$this}__container {
+      position: absolute;
+      bottom: 0;
+      transform: translateY(0);
+    }
   }
 
   &_dynamic-height {
-    #{$this}__container {
-      height: auto;
-      position: absolute;
-      bottom: 0;
-    }
-
     #{$this}__header {
       border-bottom: none;
     }
   }
 
   &__body {
-    height: 100%;
+    overflow: auto;
   }
 
   &__header {
