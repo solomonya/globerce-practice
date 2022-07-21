@@ -19,8 +19,6 @@
     background-color: $color-extra-light;
     border-radius: 12px 12px 0 0;
     position: relative;
-    transform: translateY(100%);
-    transition: transform 0.2s;
   }
 
   &_open {
@@ -29,7 +27,7 @@
     #{$this}__container {
       position: absolute;
       bottom: 0;
-      transform: translateY(0);
+      animation: moveUp 0.2s;
     }
   }
 
@@ -87,5 +85,14 @@
     height: 40px;
     position: absolute;
     right: 13px;
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
