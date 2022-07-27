@@ -25,12 +25,8 @@ export default class CityModal extends BottomModal {
       return;
     }
 
-    this.citySearchEl = super
-      .getModalWrapper()
-      .querySelector(`.${this.CLASS_CITIES_SEARCH}`);
-    this.citiesListEl = super
-      .getModalWrapper()
-      .querySelector(`.${this.CLASS_CITIES_LIST}`);
+    this.citySearchEl = super.getModalWrapper().querySelector(`.${this.CLASS_CITIES_SEARCH}`);
+    this.citiesListEl = super.getModalWrapper().querySelector(`.${this.CLASS_CITIES_LIST}`);
     this.citySearch = new SearchInput(this.citySearchEl);
     this.citiesList = [];
   }
@@ -83,9 +79,7 @@ export default class CityModal extends BottomModal {
   }
 
   private async getCitiesList() {
-    const citiesListResponse = await axios.get(
-      'http://localhost:3003/cities-list/'
-    );
+    const citiesListResponse = await axios.get('http://localhost:3003/cities-list/');
     if (citiesListResponse.status === EServerResponse.OK) {
       const citiesList = citiesListResponse.data as Array<ICity>;
       this.handleGetCitiesRequest(citiesList);
@@ -112,14 +106,10 @@ export default class CityModal extends BottomModal {
       <li class="cities-modal__item">
         <div class="cities-modal__city">
           <div class="cities-modal__city-container">
-            <label for="${city.id}" class="cities-modal__city-title">${
-      city.title
-    }</label>
+            <label for="${city.id}" class="cities-modal__city-title">${city.title}</label>
             <input type="radio" name="select-city" id="${city.id}" value="${
       city.title
-    }" class="cities-modal__radio js-cityInput" ${
-      city.current ? 'checked' : ''
-    }/>
+    }" class="cities-modal__radio js-cityInput" ${city.current ? 'checked' : ''}/>
           </div>
         </div>
       </li>

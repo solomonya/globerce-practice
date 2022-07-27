@@ -4,6 +4,7 @@ import { filter, map } from 'rxjs/operators';
 
 export default class BottomModal {
   private CLASS_MODAL_HEADER: string = 'js-modalHeader';
+  private CLASS_MODAL_CONTAINER_CLOSE_ANIM: string = 'modal__container_close';
   private CLASS_MODAL_CONTAINER: string = 'js-modalContainer';
   private CLASS_MODAL_CLOSE: string = 'js-modalCloseBtn';
   private CLASS_MODAL_WRAPPER: string = 'js-modalWrapper';
@@ -18,15 +19,9 @@ export default class BottomModal {
       return;
     }
     this.modalWrapper = modalWrapper;
-    this.modalHeader = this.modalWrapper.querySelector(
-      `.${this.CLASS_MODAL_HEADER}`
-    );
-    this.modalContainer = this.modalWrapper.querySelector(
-      `.${this.CLASS_MODAL_CONTAINER}`
-    );
-    this.modalCloseBtn = this.modalHeader.querySelector(
-      `.${this.CLASS_MODAL_CLOSE}`
-    );
+    this.modalHeader = this.modalWrapper.querySelector(`.${this.CLASS_MODAL_HEADER}`);
+    this.modalContainer = this.modalWrapper.querySelector(`.${this.CLASS_MODAL_CONTAINER}`);
+    this.modalCloseBtn = this.modalHeader.querySelector(`.${this.CLASS_MODAL_CLOSE}`);
   }
 
   public open() {
