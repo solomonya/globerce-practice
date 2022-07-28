@@ -1,0 +1,14 @@
+.logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 6px 0;
+}
+
+.icon {
+  display: inline-block;
+  width: 153px;
+  height: 30px;
+  background: url('../../assets/icons/globerce-logo.svg') center no-repeat;
+}

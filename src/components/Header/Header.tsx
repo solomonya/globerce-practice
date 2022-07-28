@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { TProps } from '../../scripts/@types/headerProps';
+import HeaderLogo from '../HeaderLogo/HeaderLogo';
+import LocationBtn from '../LocationBtn/LocationBtn';
 import SearchBar from '../SearchBar/SearchBar';
 import classes from './header.module.css';
 
-function Header({ name }: TProps) {
+function Header() {
   useEffect(() => {
     const handleScroll = (event: Event) => {
       console.log('window scrollY', window.scrollY);
@@ -18,8 +19,8 @@ function Header({ name }: TProps) {
 
   return (
     <header className={classes.header}>
-      <h1> Hello, {name} !</h1>
-      <SearchBar></SearchBar>
+      <HeaderLogo />
+      <SearchBar />
     </header>
   );
 }
