@@ -4,6 +4,9 @@
   align-items: center;
   border: none;
   background: none;
+}
+
+.btnAbsolute {
   position: absolute;
   right: 20px;
 }

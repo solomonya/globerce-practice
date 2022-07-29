@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import HeaderLogo from '../HeaderLogo/HeaderLogo';
-import LocationBtn from '../LocationBtn/LocationBtn';
 import SearchBar from '../SearchBar/SearchBar';
 import classes from './header.module.css';
 
