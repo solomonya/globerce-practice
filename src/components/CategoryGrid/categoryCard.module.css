@@ -1,0 +1,23 @@
+.link {
+  display: inline-block;
+  position: relative;
+  width: 106px;
+  height: 106px;
+}
+
+.title {
+  margin: 0;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.img {
+  width: 106px;
+  height: 106px;
+  border-radius: 8px;
+}

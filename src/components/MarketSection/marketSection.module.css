@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  color: #000;
+  font-weight: 700;
+  margin: 0;
+}
+
+.sm {
+  width: 46px;
+  height: 28px;
+}
