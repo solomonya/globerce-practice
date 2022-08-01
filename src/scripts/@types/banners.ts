@@ -1,5 +1,5 @@
 type TBanner = {
-  id: number;
+  id: string;
   media: {
     url: string;
     altText: string;
