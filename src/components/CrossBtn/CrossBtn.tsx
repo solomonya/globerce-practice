@@ -1,13 +1,12 @@
-import * as React from 'react';
-import TCrossProps from '../../scripts/@types/crossBtn';
+import React, { FC } from 'react';
 import classes from './crossBtn.module.css';
 
-function CrossBtn(props: TCrossProps) {
+const CrossBtn: FC<{ className: string }> = ({ className }) => {
   return (
-    <button className={`${classes.cross} ${props.className}`}>
+    <button className={`${classes.cross} ${className}`}>
       <span className={classes.icon}></span>
     </button>
   );
-}
+};
 
 export default CrossBtn;

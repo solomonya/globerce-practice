@@ -1,13 +1,13 @@
-import TLocationButtonProps from '../../scripts/@types/locationBtnProps';
+import { FC } from 'react';
 import classes from './locationBtn.module.css';
 
-function LocationBtn({ position }: TLocationButtonProps) {
+const LocationBtn: FC<{ position: string }> = ({ position }) => {
   return (
     <button className={`${classes.btn} ${position}`}>
       <span className={classes.icon}></span>
       <span className={classes.label}>Алматы</span>
     </button>
   );
-}
+};
 
 export default LocationBtn;

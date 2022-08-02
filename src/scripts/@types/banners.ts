@@ -6,8 +6,4 @@ type TBanner = {
   };
 };
 
-export type TBannerProps = {
-  URL: string;
-};
-
 export default TBanner;

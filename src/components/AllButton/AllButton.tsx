@@ -1,8 +1,7 @@
-import React from 'react';
-import AllButtonProps from '../../scripts/@types/allButton';
+import React, { FC } from 'react';
 import classes from './allButton.module.css';
 
-const AllButton = ({ title, size }: AllButtonProps) => {
+const AllButton: FC<{ title: string; size: string }> = ({ title, size }) => {
   return <button className={`${classes.button} ${size}`}>{title}</button>;
 };
 

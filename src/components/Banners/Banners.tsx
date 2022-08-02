@@ -1,18 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import banner from '../../assets/backgrounds/banner.png';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import classes from './banners.module.css';
 import axios, { AxiosResponse } from 'axios';
-import TBanner, { TBannerProps } from '../../scripts/@types/banners';
+import TBanner from '../../scripts/@types/banners';
 import useInView from '../../hooks/useInView';
 import { v4 as uuidv4 } from 'uuid';
+import Banner from './Banner';
 
 const DEFAULT_SLIDES_AMOUNT: number = 7;
 
-function Banners({ URL }: TBannerProps) {
+const Banners: FC<{ URL: string }> = ({ URL }) => {
   const targetRef = useRef(null);
 
   const skeletBanners: Array<TBanner> = new Array(DEFAULT_SLIDES_AMOUNT)
@@ -58,17 +58,18 @@ function Banners({ URL }: TBannerProps) {
         {banners.map((el) => {
           return (
             <SwiperSlide key={el.id}>
-              <img
-                className={classes.img}
-                src={el.media.url}
+              <Banner
                 alt={el.media.altText}
-              />
+                src={el.media.url}
+                width={375}
+                height={175}
+              ></Banner>
             </SwiperSlide>
           );
         })}
       </Swiper>
     </div>
   );
-}
+};
 
 export default Banners;

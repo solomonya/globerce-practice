@@ -1,3 +1,9 @@
 .img {
   width: 100%;
 }
+
+.req {
+  width: 200px;
+  height: 400px;
+  background-color: red;
+}
