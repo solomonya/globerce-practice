@@ -1,0 +1,44 @@
+.container {
+  display: inline-block;
+  position: relative;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item:not(:nth-last-child(1)) {
+  margin-right: 2px;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+}
+
+.star {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+}
+
+.greyStar {
+  background: url('../../assets/icons/star-grey-sm.svg') center no-repeat;
+}
+
+.yellowStar {
+  background: url('../../assets/icons/star.svg') center no-repeat;
+  min-width: 10px;
+  min-height: 10px;
+}

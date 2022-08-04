@@ -11,7 +11,7 @@ const CategorySection: FC = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const targetRef = useRef(null);
-  const isVisible = useInView(
+  let isVisible = useInView(
     {
       root: null,
       rootMargin: '0px',
@@ -21,22 +21,29 @@ const CategorySection: FC = () => {
   );
 
   useEffect(() => {
-    axios
-      .get(CATEGORIES_URL)
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((reject) => {
-        setError(reject);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    if (isVisible) {
+      axios
+        .get(CATEGORIES_URL)
+        .then((response) => {
+          setData(response.data);
+        })
+        .catch((reject) => {
+          setError(reject);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }, [isVisible]);
 
   return (
     <div ref={targetRef}>
-      <MarketSection title='Категории' append={true} loading={loading}>
+      <MarketSection
+        title='Категории'
+        append={true}
+        loading={loading}
+        titleLength={84}
+      >
         {loading || error ? (
           <CategorySkeleton />
         ) : (

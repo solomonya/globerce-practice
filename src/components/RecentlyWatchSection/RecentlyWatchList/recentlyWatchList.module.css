@@ -1,0 +1,16 @@
+.list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  padding: 16px 20px 0 20px;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.item:not(:nth-last-child(1)) {
+  margin-right: 8px;
+}

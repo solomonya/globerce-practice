@@ -1,0 +1,93 @@
+.card {
+  width: 135px;
+  height: 184px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: relative;
+  height: 126px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.installments {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px 0;
+}
+
+.plate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 1px 7px;
+  border-radius: 2px;
+}
+
+.loan {
+  background-color: #ff0000;
+}
+
+.discount {
+  background-color: #2aa65c;
+  text-transform: uppercase;
+}
+
+.img {
+  width: 103px;
+  height: 110px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  font-weight: 500;
+  color: #262f40;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 131px;
+  margin-bottom: 6px;
+}
+
+.reviews {
+  display: flex;
+  align-items: center;
+}
+
+.reviewsAmount {
+  display: inline-block;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  font-weight: 500;
+  color: #4c5566;
+  margin-left: 4px;
+}
+
+.actualPrice {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  font-weight: 600;
+  color: #071222;
+}
+
+.oldPrice {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  font-weight: 500;
+  color: #4c5566;
+  text-decoration: line-through;
+}

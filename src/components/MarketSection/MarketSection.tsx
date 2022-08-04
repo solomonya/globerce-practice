@@ -11,13 +11,14 @@ const MarketSection: FC<
     title: string;
     children: any;
     loading: boolean;
+    titleLength: number;
   }>
-> = ({ append, title, children, loading }) => {
+> = ({ append, title, children, loading, titleLength }) => {
   return (
     <section className={classes.section}>
       <div className={classes.header}>
         {loading ? (
-          <Skeleton width={84} height={24} />
+          <Skeleton width={titleLength} height={24} />
         ) : (
           <h5 className={classes.title}>{title}</h5>
         )}
