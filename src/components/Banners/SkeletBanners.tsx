@@ -1,16 +1,29 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { IBanners } from '../../@types/banners';
+import TBanner from '../../@types/banners';
+import banner from '../../assets/backgrounds/banner.png';
 import classes from './banners.module.css';
 
-const Banners: FC<IBanners> = ({ banners, width, height }) => {
+const SkeletBanners: FC<{ width: number; height: number }> = ({
+  width,
+  height,
+}) => {
+  const skeletBanners: TBanner[] = new Array(7).fill(0).map((el, i) => {
+    return {
+      id: i.toString(),
+      media: {
+        url: banner,
+        altText: 'skelet banner',
+      },
+    };
+  });
+
   const styles = {
     width: `${width}px`,
     height: `${height}px`,
-    borderRadius: `8px`,
   };
 
   return (
@@ -20,13 +33,11 @@ const Banners: FC<IBanners> = ({ banners, width, height }) => {
       slidesPerView={1}
       pagination={{ clickable: true, type: 'bullets', dynamicBullets: true }}
     >
-      {banners?.map((el) => {
+      {skeletBanners.map((el) => {
         return (
           <SwiperSlide key={el.id}>
             <div className={classes.container}>
-              <a href='#' className={classes.link}>
-                <img src={el.media.url} alt={el.media.altText} style={styles} />
-              </a>
+              <img src={el.media.url} alt={el.media.altText} style={styles} />
             </div>
           </SwiperSlide>
         );
@@ -35,4 +46,4 @@ const Banners: FC<IBanners> = ({ banners, width, height }) => {
   );
 };
 
-export default Banners;
+export default SkeletBanners;

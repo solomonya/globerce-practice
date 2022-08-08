@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import TCategory from '../../../scripts/@types/category';
+import TCategory from '../../../@types/category';
 import { v4 as uuidv4 } from 'uuid';
 import saleImg from '../../../assets/mocks/Sale.png';
 import classes from '../CategoryGrid/categoryGrid.module.css';

@@ -1,40 +1,20 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import CategoryGrid from './CategoryGrid/CategoryGrid';
 import MarketSection from '../MarketSection/MarketSection';
-import axios from 'axios';
+import axios, { Axios, AxiosResponse } from 'axios';
 import { CATEGORIES_URL } from '../../controllers/api-routes';
 import useInView from '../../hooks/useInView';
 import CategorySkeleton from './CategorySkeleton/CategorySkeleton';
+import useRequest from '../../hooks/useRequest';
+import TCategory from '../../@types/category';
 
 const CategorySection: FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
   const targetRef = useRef(null);
-  let isVisible = useInView(
-    {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0,
-    },
+
+  const { loading, error, data } = useRequest<TCategory[]>(
+    CATEGORIES_URL,
     targetRef
   );
-
-  useEffect(() => {
-    if (isVisible) {
-      axios
-        .get(CATEGORIES_URL)
-        .then((response) => {
-          setData(response.data);
-        })
-        .catch((reject) => {
-          setError(reject);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  }, [isVisible]);
 
   return (
     <div ref={targetRef}>

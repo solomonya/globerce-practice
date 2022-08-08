@@ -6,4 +6,10 @@ type TBanner = {
   };
 };
 
+export interface IBanners {
+  banners: TBanner[] | null;
+  width: number;
+  height: number;
+}
+
 export default TBanner;

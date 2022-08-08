@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
-import TRecentlyWatchItem from '../../../scripts/@types/recentlyWatchItems';
+import TProduct from '../../../@types/product';
 import ProductCard from '../../ProductCard/ProductCard';
 import classes from './recentlyWatchList.module.css';
 
 export const RecentlyWatchList: FC<{
-  list: Array<TRecentlyWatchItem>;
+  list: Array<TProduct> | null;
 }> = ({ list }) => {
   return (
     <ul className={classes.list}>
-      {list.map((recentlyWatchItem) => {
+      {list?.map((recentlyWatchItem) => {
         return (
           <li key={recentlyWatchItem.id} className={classes.item}>
             <ProductCard

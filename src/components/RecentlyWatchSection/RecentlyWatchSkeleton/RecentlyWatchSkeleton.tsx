@@ -3,8 +3,7 @@ import productPlaceholder from '../../../assets/mocks/product-placeholder.png';
 import listClasses from '../RecentlyWatchList/recentlyWatchList.module.css';
 import classes from './recentlyWatchSkeleton.module.css';
 import { v4 as uuidv4 } from 'uuid';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from '../../Skeleton/Skeleton';
 
 const RecentlyWatchSkeleton: FC = () => {
   const skeletonList = new Array(5).fill(0).map(() => {
@@ -25,8 +24,8 @@ const RecentlyWatchSkeleton: FC = () => {
                 alt='product placeholder'
                 className={classes.img}
               />
-              <Skeleton width={131} height={16} />
-              <Skeleton width={105} height={10} />
+              <Skeleton width={131} height={16} bottomMargin={6} />
+              <Skeleton width={105} height={10} bottomMargin={2} />
               <Skeleton width={83} height={16} />
             </div>
           </li>

@@ -1,5 +1,5 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react';
-import TIntersectionObserverOptions from '../scripts/@types/intersectionObserverOptions';
+import React, { useState, useMemo, useEffect } from 'react';
+import TIntersectionObserverOptions from '../@types/intersectionObserverOptions';
 
 const useInView = (options: TIntersectionObserverOptions, targetRef: any) => {
   const [isVisible, setIsVisible] = useState(false);

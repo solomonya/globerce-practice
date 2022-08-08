@@ -1,9 +1,8 @@
-import React, { FC, PropsWithChildren, useState } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import AllButton from '../AllButton/AllButton';
 import classes from './marketSection.module.css';
 import allBtnClasses from '../AllButton/allButton.module.css';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from '../Skeleton/Skeleton';
 
 const MarketSection: FC<
   PropsWithChildren<{

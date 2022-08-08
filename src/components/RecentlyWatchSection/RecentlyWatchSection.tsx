@@ -1,32 +1,18 @@
-import axios from 'axios';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useRef } from 'react';
 import { RECENTLY_WATCH_URL } from '../../controllers/api-routes';
-import useInView from '../../hooks/useInView';
+import useRequest from '../../hooks/useRequest';
+import TProduct from '../../@types/product';
 import MarketSection from '../MarketSection/MarketSection';
 import { RecentlyWatchList } from './RecentlyWatchList/RecentlyWatchLIst';
 import RecentlyWatchSkeleton from './RecentlyWatchSkeleton/RecentlyWatchSkeleton';
 
 const RecentlyWatchSection: FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [data, setData] = useState([]);
   const targetRef = useRef(null);
-  let isVisible = useInView(
-    {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0,
-    },
+
+  const { loading, error, data } = useRequest<TProduct[]>(
+    RECENTLY_WATCH_URL,
     targetRef
   );
-
-  useEffect(() => {
-    axios
-      .get(RECENTLY_WATCH_URL)
-      .then((response) => setData(response.data))
-      .catch((reject) => setError(reject))
-      .finally(() => setLoading(false));
-  }, [isVisible]);
 
   return (
     <div ref={targetRef}>

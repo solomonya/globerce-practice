@@ -1,4 +1,4 @@
-type TRecentlyWatchItem = {
+type TProduct = {
   id: string;
   imgUrl: string;
   loan: boolean;
@@ -10,4 +10,4 @@ type TRecentlyWatchItem = {
   oldPrice: number;
 };
 
-export default TRecentlyWatchItem;
+export default TProduct;
