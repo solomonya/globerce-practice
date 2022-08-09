@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import { RECENTLY_WATCH_URL } from '../../controllers/api-routes';
+import { getProductsUrl } from '../../controllers/api-routes';
 import useRequest from '../../hooks/useRequest';
 import TProduct from '../../@types/product';
 import MarketSection from '../MarketSection/MarketSection';
@@ -10,7 +10,7 @@ const RecentlyWatchSection: FC = () => {
   const targetRef = useRef(null);
 
   const { loading, error, data } = useRequest<TProduct[]>(
-    RECENTLY_WATCH_URL,
+    getProductsUrl(7),
     targetRef
   );
 

@@ -12,6 +12,7 @@ export const RecentlyWatchList: FC<{
         return (
           <li key={recentlyWatchItem.id} className={classes.item}>
             <ProductCard
+              size='sm'
               imgUrl={recentlyWatchItem.imgUrl}
               title={recentlyWatchItem.title}
               loan={recentlyWatchItem.loan}

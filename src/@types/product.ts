@@ -1,5 +1,6 @@
 type TProduct = {
-  id: string;
+  size?: string;
+  id?: string;
   imgUrl: string;
   loan: boolean;
   discount: boolean;
@@ -8,6 +9,8 @@ type TProduct = {
   rating: number;
   actualPrice?: number;
   oldPrice: number;
+  months?: number;
+  monthPayment?: number;
 };
 
 export default TProduct;

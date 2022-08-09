@@ -1,13 +1,28 @@
-.card {
+.card_sm {
   width: 135px;
   height: 184px;
   display: flex;
   flex-direction: column;
 }
 
-.header {
+.card_lg {
+  width: 167px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header_sm {
   position: relative;
   height: 126px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_lg {
+  position: relative;
+  height: 168px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,9 +58,14 @@
   text-transform: uppercase;
 }
 
-.img {
+.img_sm {
   width: 103px;
   height: 110px;
+}
+
+.img_lg {
+  width: 119px;
+  height: 137px;
 }
 
 .title {
@@ -54,11 +74,14 @@
   line-height: 1.6rem;
   font-weight: 500;
   color: #262f40;
+  margin-bottom: 6px;
+}
+
+.title_sm {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   width: 131px;
-  margin-bottom: 6px;
 }
 
 .reviews {
@@ -90,4 +113,26 @@
   font-weight: 500;
   color: #4c5566;
   text-decoration: line-through;
+}
+
+.loanPlate {
+  background-color: #feecc7;
+  border-radius: 4px;
+  padding: 1px 8px;
+  width: 102px;
+  margin-top: 4px;
+}
+
+.loanPrice {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  font-weight: 700;
+}
+
+.loanMonths {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-left: 4px;
 }

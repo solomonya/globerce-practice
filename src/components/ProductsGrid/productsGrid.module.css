@@ -1,0 +1,15 @@
+.list {
+  list-style: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 6px;
+  background-color: #fff;
+  width: 347px;
+  border-radius: 4px;
+  gap: 20px 0;
+}
+
+.item {
+  margin-right: 4px;
+}
