@@ -5,7 +5,7 @@ const LocationBtn: FC<{ position: string }> = ({ position }) => {
   return (
     <button
       className={`${classes.btn} ${
-        position === 'right' ? classes.btnAbsolute : ''
+        position === 'right' ? classes.btnAbsolute : 'static'
       }`}
     >
       <span className={classes.icon}></span>

@@ -3,7 +3,8 @@
   position: fixed;
   bottom: 0;
   background-color: #fff;
-  z-index: 10;
+  z-index: 2;
+  width: 100%;
 }
 
 .list {
@@ -11,11 +12,12 @@
   padding: 0;
   margin: 0;
   list-style: none;
+  justify-content: space-between;
 }
 
 .link {
-  width: 75px;
-  height: 56px;
+  min-width: 75px;
+  min-height: 56px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;

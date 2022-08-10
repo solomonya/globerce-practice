@@ -12,3 +12,8 @@
   height: 30px;
   background: url('../../assets/icons/globerce-logo.svg') center no-repeat;
 }
+
+.hidden {
+  position: abolute;
+  top: -50px;
+}
