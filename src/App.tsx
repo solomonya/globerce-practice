@@ -1,6 +1,6 @@
 import React from 'react';
+import Navigation from './components/Navigation/Navigation';
 import './App.css';
-import Banners from './components/Banners/Banners';
 import BrandSection from './components/BrandSection/BrandSection';
 import CategorySection from './components/CategorySection/CategorySection';
 import Header from './components/Header/Header';
@@ -24,7 +24,10 @@ function App() {
       />
       <BrandSection />
       <ProductsSection productsAmount={8} bannerType='design' />
-      <ProductsSection productsAmount={4} bannerType='promo-back' />
+      <div style={{ marginBottom: '15px' }}>
+        <ProductsSection productsAmount={4} bannerType='promo-back' />
+      </div>
+      <Navigation />
     </div>
   );
 }

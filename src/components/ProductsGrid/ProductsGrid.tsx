@@ -1,21 +1,12 @@
 import React, { FC, lazy, useRef } from 'react';
 import TProduct from '../../@types/product';
-import { getProductsUrl } from '../../controllers/api-routes';
-import useRequest from '../../hooks/useRequest';
 import ProductCard from '../ProductCard/ProductCard';
 import classes from './productsGrid.module.css';
-import ProductsGridSkeleton from './ProductsGridSkeleton/ProductsGridSkeleton';
 
-const ProductsGrid: FC<{ productsAmount: number }> = ({ productsAmount }) => {
-  const targetRef = useRef(null);
-  const { loading, error, data } = useRequest<TProduct[]>(
-    getProductsUrl(productsAmount),
-    targetRef
-  );
-
+const ProductsGrid: FC<{ products: TProduct[] | null }> = ({ products }) => {
   return (
-    <ul ref={targetRef} className={classes.list}>
-      {data?.map((product) => {
+    <ul className={classes.list}>
+      {products?.map((product) => {
         return (
           <li key={product.id}>
             <ProductCard

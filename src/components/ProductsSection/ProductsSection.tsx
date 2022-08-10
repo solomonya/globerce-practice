@@ -1,11 +1,12 @@
 import React, { FC, useRef } from 'react';
-import TBanner from '../../@types/banners';
-import { getBannersUrl } from '../../controllers/api-routes';
+import TProduct from '../../@types/product';
+import { getProductsUrl } from '../../controllers/api-routes';
 import useRequest from '../../hooks/useRequest';
 import ProductsGrid from '../ProductsGrid/ProductsGrid';
 import ProductsGridSkeleton from '../ProductsGrid/ProductsGridSkeleton/ProductsGridSkeleton';
 import Skeleton from '../Skeleton/Skeleton';
 import classes from './productsSection.module.css';
+import ProductsSectionBanner from './ProductsSectionBanner/ProductsSectionBanner';
 
 const ProductsSection: FC<{ bannerType: string; productsAmount: number }> = ({
   bannerType,
@@ -13,8 +14,8 @@ const ProductsSection: FC<{ bannerType: string; productsAmount: number }> = ({
 }) => {
   const targetRef = useRef(null);
 
-  const { loading, error, data } = useRequest<TBanner>(
-    getBannersUrl(bannerType),
+  const { loading, error, data } = useRequest<TProduct[]>(
+    getProductsUrl(productsAmount),
     targetRef
   );
 
@@ -25,18 +26,12 @@ const ProductsSection: FC<{ bannerType: string; productsAmount: number }> = ({
           <Skeleton width={375} height={249} radius={0}></Skeleton>
         </div>
       )}
-      {!loading && (
-        <img
-          src={data?.media.url}
-          alt={data?.media.altText}
-          className={classes.img}
-        />
-      )}
+      {!loading && <ProductsSectionBanner bannerType={bannerType} />}
       <div className={classes.productsContainer}>
         {(loading || error) && (
           <ProductsGridSkeleton productsAmount={productsAmount} />
         )}
-        {!loading && <ProductsGrid productsAmount={productsAmount} />}
+        {!loading && <ProductsGrid products={data} />}
       </div>
     </section>
   );
