@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import HeaderLogo from '../HeaderLogo/HeaderLogo';
 import LocationBtn from '../LocationBtn/LocationBtn';
 import SearchBar from '../SearchBar/SearchBar';
+import SearchModal from '../SearchModal/SearchModal';
 import classes from './header.module.css';
 
 const Header: FC = () => {
@@ -28,6 +29,7 @@ const Header: FC = () => {
         <SearchBar />
         {isScroll && <LocationBtn position='' />}
       </div>
+      <SearchModal />
     </header>
   );
 };

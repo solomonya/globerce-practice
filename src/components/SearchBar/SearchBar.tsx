@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import CrossBtn from '../CrossBtn/CrossBtn';
 import classes from './searchBar.module.css';
 
-function SearchBar() {
+const SearchBar: FC = () => {
   return (
     <div className={classes.search}>
       <div className={classes.container}>
@@ -17,6 +17,6 @@ function SearchBar() {
       <button className={classes.cancel}>Отменить</button>
     </div>
   );
-}
+};
 
 export default SearchBar;

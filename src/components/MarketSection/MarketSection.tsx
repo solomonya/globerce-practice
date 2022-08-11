@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react';
+import React, { FC, PropsWithChildren, ReactNode } from 'react';
 import AllButton from '../AllButton/AllButton';
 import classes from './marketSection.module.css';
 import allBtnClasses from '../AllButton/allButton.module.css';
@@ -8,7 +8,7 @@ const MarketSection: FC<
   PropsWithChildren<{
     append: boolean;
     title: string;
-    children: any;
+    children: ReactNode;
     loading: boolean;
     titleLength: number;
   }>
