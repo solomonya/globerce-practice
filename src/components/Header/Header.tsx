@@ -26,10 +26,9 @@ const Header: FC = () => {
       <div
         className={isScroll ? scrollSearchContainer : classes.searchContainer}
       >
-        <SearchBar />
+        <SearchBar showCancel={false} shouldOpenModal={true} />
         {isScroll && <LocationBtn position='' />}
       </div>
-      <SearchModal />
     </header>
   );
 };

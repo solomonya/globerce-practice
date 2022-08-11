@@ -8,3 +8,6 @@ export const getProductsUrl = (amount: number) =>
 export const getBannersUrl = (type: string) => `${BASE_URL}/banners/?q=${type}`;
 
 export const BRANDS_URL = `${BASE_URL}/brands/`;
+
+export const getSearchUrl = (queryString: string) =>
+  `${BASE_URL}/search-suggest/?q=${queryString}`;

@@ -6,15 +6,13 @@ const Modal: FC<
   PropsWithChildren<{
     children: ReactNode;
     isOpen: boolean;
-    handleClose: any;
   }>
-> = ({ children, isOpen, handleClose }) => {
+> = ({ children, isOpen }) => {
   if (!isOpen) return null;
 
   return (
     <ReactPortal wrapperId='react-portal-modal-wrapper'>
       <div className={classes.modal}>
-        <button onClick={handleClose}>Close</button>
         <div className={classes.modalContent}>{children}</div>
       </div>
     </ReactPortal>

@@ -15,6 +15,7 @@ const ReactPortal: FC<
 
   useLayoutEffect(() => {
     let element = document.getElementById(wrapperId) as HTMLDivElement | null;
+    document.body.style.overflow = 'hidden';
     let systemCreated = false;
 
     if (!element) {
@@ -27,6 +28,7 @@ const ReactPortal: FC<
     return () => {
       if (systemCreated && element?.parentNode)
         element.parentNode.removeChild(element);
+      document.body.style.overflow = 'auto';
     };
   }, [wrapperId]);
 

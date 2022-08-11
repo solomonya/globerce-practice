@@ -3,6 +3,7 @@
   align-items: center;
   padding: 6px 20px;
   width: 100%;
+  border-bottom: 1px solid #e2e4e9;
 }
 
 .icon {
@@ -45,5 +46,4 @@
   font-size: 1.4rem;
   line-height: 2rem;
   color: #27b1e7;
-  display: none;
 }
