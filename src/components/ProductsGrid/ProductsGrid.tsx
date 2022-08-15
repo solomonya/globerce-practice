@@ -9,19 +9,7 @@ const ProductsGrid: FC<{ products: TProduct[] | null }> = ({ products }) => {
       {products?.map((product) => {
         return (
           <li key={product.id}>
-            <ProductCard
-              size='lg'
-              imgUrl={product.imgUrl}
-              title={product.title}
-              loan={product.loan}
-              discount={product.discount}
-              reviewsAmount={product.reviewsAmount}
-              rating={product.rating}
-              actualPrice={product.actualPrice}
-              oldPrice={product.oldPrice}
-              months={product.months}
-              monthPayment={product.monthPayment}
-            />
+            <ProductCard size='lg' {...product} />
           </li>
         );
       })}

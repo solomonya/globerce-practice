@@ -1,4 +1,5 @@
 export type TSearchItem = {
+  type: 'history' | 'search' | 'hot';
   title: string;
   url: string;
   subtitle?: string;

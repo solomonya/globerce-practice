@@ -11,17 +11,7 @@ export const RecentlyWatchList: FC<{
       {list?.map((recentlyWatchItem) => {
         return (
           <li key={recentlyWatchItem.id} className={classes.item}>
-            <ProductCard
-              size='sm'
-              imgUrl={recentlyWatchItem.imgUrl}
-              title={recentlyWatchItem.title}
-              loan={recentlyWatchItem.loan}
-              discount={recentlyWatchItem.discount}
-              reviewsAmount={recentlyWatchItem.reviewsAmount}
-              rating={recentlyWatchItem.rating}
-              actualPrice={recentlyWatchItem.actualPrice}
-              oldPrice={recentlyWatchItem.oldPrice}
-            />
+            <ProductCard size='sm' {...recentlyWatchItem} />
           </li>
         );
       })}

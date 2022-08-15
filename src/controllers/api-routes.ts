@@ -11,3 +11,5 @@ export const BRANDS_URL = `${BASE_URL}/brands/`;
 
 export const getSearchUrl = (queryString: string) =>
   `${BASE_URL}/search-suggest/?q=${queryString}`;
+
+export const FAVORITE_LIST_URL = `${BASE_URL}/favourite-list`;

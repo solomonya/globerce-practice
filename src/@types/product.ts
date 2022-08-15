@@ -1,6 +1,6 @@
 type TProduct = {
   size?: string;
-  id?: string;
+  id: string;
   imgUrl: string;
   loan: boolean;
   discount: boolean;

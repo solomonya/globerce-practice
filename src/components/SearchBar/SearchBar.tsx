@@ -16,6 +16,7 @@ const SearchBar: FC<{
   const handleCancel = () => {
     handleClose();
     setQuery('');
+    handleSearch('');
   };
 
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -26,6 +27,7 @@ const SearchBar: FC<{
 
   const handleClear = () => {
     setQuery('');
+    handleSearch('');
   };
 
   return (

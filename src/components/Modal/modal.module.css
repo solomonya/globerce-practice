@@ -5,4 +5,10 @@
   width: 100%;
   height: 100%;
   z-index: 100;
+  display: flex;
+}
+
+.modalContent {
+  flex-grow: 1;
+  overflow-y: auto;
 }

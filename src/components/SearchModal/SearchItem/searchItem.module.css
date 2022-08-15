@@ -1,0 +1,47 @@
+.link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px 6px 20px;
+  text-decoration: none;
+}
+
+.icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.titles {
+  margin-left: 8px;
+}
+
+.title {
+  font-family: 'Manrope';
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  color: #071222;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  color: #9ba4b5;
+  margin: 0;
+}
+
+.deleteBtn {
+  background: url('../../../assets/icons/delete-btn.svg') center no-repeat;
+  border: none;
+  width: 40px;
+  height: 40px;
+}

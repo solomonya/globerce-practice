@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import classes from './crossBtn.module.css';
 
-const CrossBtn: FC<{ className: string; handleClick: any }> = ({
+const CrossBtn: FC<{ className: string; handleClick: Function }> = ({
   className,
   handleClick,
 }) => {

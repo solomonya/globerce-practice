@@ -9,26 +9,31 @@ import ProductsSection from './components/ProductsSection/ProductsSection';
 import PromoSection from './components/PromoSection/PromoSection';
 import RecentlyWatchSection from './components/RecentlyWatchSection/RecentlyWatchSection';
 import { getBannersUrl } from './controllers/api-routes';
+import FavoriteProvider from './utils/FavoriteContext';
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
       <MarketBanners url={getBannersUrl('market')} width={375} height={175} />
       <CategorySection />
-      <RecentlyWatchSection />
+      <FavoriteProvider>
+        <RecentlyWatchSection />
+      </FavoriteProvider>
       <PromoSection
         promoBannersURL={getBannersUrl('promo')}
         width={335}
         height={152}
       />
       <BrandSection />
-      <ProductsSection productsAmount={8} bannerType='design' />
-      <div style={{ marginBottom: '15px' }}>
-        <ProductsSection productsAmount={4} bannerType='promo-back' />
-      </div>
+      <FavoriteProvider>
+        <ProductsSection productsAmount={8} bannerType='design' />
+        <div style={{ marginBottom: '15px' }}>
+          <ProductsSection productsAmount={4} bannerType='promo-back' />
+        </div>
+      </FavoriteProvider>
       <Navigation />
-    </div>
+    </>
   );
 }
 

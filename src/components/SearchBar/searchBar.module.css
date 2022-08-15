@@ -33,7 +33,7 @@
   font-weight: 500;
   color: #071222;
   border-radius: 8px;
-  padding-left: 40px;
+  padding: 0 40px;
 }
 
 .input:focus {

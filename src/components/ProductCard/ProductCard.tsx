@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import TProduct from '../../@types/product';
+import FavoriteBtn from '../FavoriteBtn/FavoriteBtn';
 import StarRating from '../StarRating/StarRating';
 import classes from './productCard.module.css';
 
 const ProductCard: FC<TProduct> = ({
   size,
+  id,
   imgUrl,
   loan,
   discount,
@@ -34,6 +36,7 @@ const ProductCard: FC<TProduct> = ({
             </span>
           )}
         </div>
+        <FavoriteBtn id={id} />
       </div>
       <div className={classes.body}>
         <h6
